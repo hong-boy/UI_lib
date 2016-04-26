@@ -27,14 +27,19 @@
     top: 7rem;
     background-color: rgba(51, 51, 51, 0.61);
     color: #fff;
-    opacity: 0.8;
+    opacity: .8;
     font-size: .875rem;
     cursor: pointer;
     transition: top 0.3s ease-in;
 }
-
+.page .item .desc a,
+.page .item .desc a:hover,
+.page .item .desc a:active {
+    color: #fff;
+    text-decoration: none;
+}
 .page .item:hover .desc {
-    top: 0rem;
+    top: 0;
 }
 
 .page .flex-row {
