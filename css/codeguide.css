@@ -1,14 +1,33 @@
 .sticky-wrapper {
     float: left;
 }
-.sidebar li ul {
+.page-header {
+    margin-top: 0;
+}
+.navbar ul ul {
+    display: none;
+}
+.navbar .active>ul {
+    display: block;
+}
+.navbar li ul {
     padding-left: 15px;
 }
-.sidebar li ul li {
+.navbar li ul li {
     list-style: none;
 }
-.sidebar a {
+.navbar a {
     white-space: nowrap;
+}
+li.active>a {
+    border-left: solid 1px;
+}
+.active > a{
+    background-color: #eee;
+}
+.nav>li>a {
+    padding: 1px 12px;
+    margin-bottom: 6px;
 }
 .rule-item {
     border-bottom: solid 1px #eff0f1;
