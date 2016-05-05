@@ -68,3 +68,7 @@ li.active>a {
         display: inline-block;
     }
 }
+
+.code-guide .sidebar-nav {
+    font-size: 1.4rem;
+}

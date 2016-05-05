@@ -4,7 +4,7 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Microsoft Yahei", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: #606c71; }
@@ -243,3 +243,48 @@ a {
 @media screen and (max-width: 42em) {
   .site-footer {
     font-size: 0.9rem; } }
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrap .wrap-nav {
+  height: 6rem;
+}
+
+.nav-header {
+  padding: 0;
+  height: 4rem;
+  /*position: fixed;*/
+  width: 100%;
+  z-index: 10;
+}
+
+.nav-header .container {
+  height: 100%;
+}
+
+.nav-header .nav-item {
+  display: inline-block;
+  height: 100%;
+}
+
+.nav-header .nav-item .item {
+  display: inline-block;
+  color: #FFFFFF;
+  width: auto;
+  height: 2rem;
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+}
+
+.nav-header .e-line {
+  position: absolute;
+  width: 62px;
+  height: 2px;
+  background: #fff;
+  display: inline-block;
+}
