@@ -1,0 +1,22 @@
+<div class="col-desc" hidden>
+    <h3>单行规则声明</h3>
+    <p>对于<strong>只包含一条声明</strong>的样式，为了易读性和便于快速编辑，建议将语句放在同一行。对于带有多条声明的样式，还是应当将声明分为多行。</p>
+    <p>这样做的关键因素是为了错误检测 -- 例如，CSS 校验器指出在 183 行有语法错误。如果是单行单条声明，你就不会忽略这个错误；如果是单行多条声明的话，你就要仔细分析避免漏掉错误了。</p>
+</div>
+<textarea class="lang-css" hidden>
+    /* Single declarations on one line */
+    .span1 { width: 60px; }
+    .span2 { width: 140px; }
+    .span3 { width: 220px; }
+
+    /* Multiple declarations, one per line */
+    .sprite {
+      display: inline-block;
+      width: 16px;
+      height: 15px;
+      background-image: url(../img/sprite.png);
+    }
+    .icon           { background-position: 0 0; }
+    .icon-home      { background-position: 0 -20px; }
+    .icon-account   { background-position: 0 -40px; }
+</textarea>

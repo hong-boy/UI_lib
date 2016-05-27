@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>UI library</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <script type="text/javascript" src="../lib/jquery.1.11.min.js"></script>
+    <!--<script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="../js/common.js"></script>
+</head>
+<body class="wrapper">
+<nav class="navbar navbar-fixed-top site-navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="main.html" class="navbar-brand">UI lib</a>
+        </div>
+        <div class="col-md-offset-1">
+            <ul class="nav navbar-nav">
+                <li><a href="main.html">首页</a></li>
+                <li><a href="###" class="active" id="code_guide" navigation="code_guide">编码规范</a></li>
+                <li><a href="###" navigation="ui_lib" id="ui_lib" navigation="ui_lib">UI组件</a></li>
+                <li><a href="###" navigation="font_lib" id="font_lib" navigation="font_lib">字体图标</a></li>
+                <li><a href="###" navigation="other" id="other" navigation="other">其他</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="center-block container page-wrap" id="page">Loading...</div>
+</body>
+<script type="text/javascript">
+    $(function () {
+        $('nav').on('click', '[navigation]', function () {
+            var $thiz = $(this), navi = $thiz.attr('navigation'), page = [navi, 'html'].join('.'), pagePath = ['tpl', page].join("/");
+            $('#page').load(pagePath);
+            $thiz.parents('navbar-nav').first().find('a.active').removeClass('active');
+            $thiz.addClass('active');
+            window.location.hash = ['#', navi].join('');
+            return false;
+        });
+
+        //页面加载完成时
+        var pageId = window.location.hash;
+        ($(pageId).length ? $(pageId) : $('#code_guide')).trigger('click');
+    });
+</script>
+</html>

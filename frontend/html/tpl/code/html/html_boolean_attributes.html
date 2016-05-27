@@ -1,0 +1,24 @@
+<div class="col-desc" hidden>
+    <h3>布尔（boolean）型属性</h3>
+    <p>布尔型属性可以在声明时不赋值。XHTML 规范要求为其赋值，但是 HTML5 规范不需要。</p>
+    <p>更多信息请参考 <a
+            href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#boolean-attributes">WhatWG
+        section on boolean attributes</a>：</p>
+    <blockquote>
+        <p>元素的布尔型属性如果有值，就是 true，如果没有值，就是 false。</p>
+    </blockquote>
+    <p>如果<em>一定</em>要为其赋值的话，请参考 WhatWG 规范：</p>
+    <blockquote>
+        <p>如果属性存在，其值必须是空字符串或 [...] 属性的规范名称，并且不要再收尾添加空白符。</p>
+    </blockquote>
+    <p><strong>简单来说，就是不用赋值。</strong></p>
+</div>
+<textarea class="lang-html" hidden>
+    <input type="text" disabled>
+
+    <input type="checkbox" value="1" checked>
+
+    <select>
+        <option value="1" selected>1</option>
+    </select>
+</textarea>

@@ -1,0 +1,36 @@
+<div class="col-desc" hidden>
+    <h3>For in 循环</h3>
+    <blockquote>
+        <small>
+            <p>见示例。</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    var fields = {
+        _id : 'k001',
+        name : 'qwert',
+        age : 18
+    };
+    for ( var key in fields) {
+        var value = fields[key];
+        // TODO
+    }
+
+
+    /* Good example */
+    var fields = {
+        _id  : 'k001',
+        name : 'qwert',
+        age : 18
+    };
+    for ( var key in fields) {
+        if (fields.hasOwnProperty(key)) {
+            var value = fields[key];
+            //TODO
+        }
+    }
+
+</textarea>

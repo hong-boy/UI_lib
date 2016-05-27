@@ -1,0 +1,84 @@
+@import "mixin";
+
+.main-page {
+  .p-header {
+    padding: 5rem 6rem;
+    color: #fff;
+    text-align: center;
+    background-color: #159957;
+    background-image: linear-gradient(120deg, rgba(63, 200, 245, 0.7), rgba(255, 120, 47, 0.7));
+    .btn-transparent {
+      margin: 2rem 0.5rem;
+      font-size: 1.6rem;
+    }
+  }
+  .p-content {
+    padding: 2rem 6rem;
+    .flex {
+      .flexlayout(flex, row, center, space-between);
+      .item {
+        position: relative;
+        width: 16rem;
+        height: 16rem;
+        border: 0.1rem solid #efefef;
+        overflow: hidden;
+        &:hover {
+          > .front {
+            transform: scale(1.1);
+            -webkit-filter: blur(0.1rem);
+          }
+          > .backend {
+            top: 0 !important;
+          }
+        }
+        &.li-item {
+          .front {
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 0.3s ease-out, -webkit-filter 0.3s ease-out;
+          }
+          .backend {
+            position: absolute;
+            top: 100%;
+            height: 50%;
+            width: 100%;
+            transform: scale(1.0) translateY(100%);
+            transition: top 0.3s ease-out;
+            background: #000;
+            opacity: 0.7;
+            .p-anchor {
+              color: #fff;
+              text-decoration: none;
+            }
+            header {
+              //font-weight: bold;
+              font-size: 1.6rem;
+            }
+          }
+          .code-guide-img {
+            background-image: url('../img/l_js_210x210.png');
+          }
+          .ui-lib-img {
+            background-image: url('../img/l_ui_210x210.png');
+          }
+          .font-lib-img {
+            background-image: url('../img/l_font_210x210.png');
+          }
+          .bs-custom-img {
+            background-image: url('../img/l_other_210x210.png');
+          }
+        }
+      }
+    }
+  }
+  .p-footer {
+    padding-top: 3.2rem;
+    border-top: 1px solid #eff0f1;
+    font-size: 1.4rem;
+    .p-author {
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,94 @@
+.main-page .p-header {
+    padding: 5rem 6rem;
+    color: #fff;
+    text-align: center;
+    background-color: #159957;
+    background-image: linear-gradient(120deg, rgba(63, 200, 245, 0.7), rgba(255, 120, 47, 0.7));
+}
+
+.main-page .p-header .btn-transparent {
+    margin: 2rem 0.5rem;
+    font-size: 1.6rem;
+}
+
+.main-page .p-content {
+    padding: 2rem 6rem;
+}
+
+.main-page .p-content .flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-page .p-content .flex .item {
+    position: relative;
+    width: 16rem;
+    height: 16rem;
+    border: 0.1rem solid #efefef;
+    overflow: hidden;
+}
+
+.main-page .p-content .flex .item:hover > .front {
+    transform: scale(1.1);
+    -webkit-filter: blur(0.1rem);
+}
+
+.main-page .p-content .flex .item:hover > .backend {
+    top: 0 !important;
+}
+
+.main-page .p-content .flex .item.li-item .front {
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.3s ease-out, -webkit-filter 0.3s ease-out;
+}
+
+.main-page .p-content .flex .item.li-item .backend {
+    position: absolute;
+    top: 100%;
+    height: 50%;
+    width: 100%;
+    transform: scale(1) translateY(100%);
+    transition: top 0.3s ease-out;
+    background: #000;
+    opacity: 0.7;
+}
+
+.main-page .p-content .flex .item.li-item .backend .p-anchor {
+    color: #fff;
+    text-decoration: none;
+}
+
+.main-page .p-content .flex .item.li-item .backend header {
+    font-size: 1.6rem;
+}
+
+.main-page .p-content .flex .item.li-item .code-guide-img {
+    background-image: url('../img/l_js_210x210.png');
+}
+
+.main-page .p-content .flex .item.li-item .ui-lib-img {
+    background-image: url('../img/l_ui_210x210.png');
+}
+
+.main-page .p-content .flex .item.li-item .font-lib-img {
+    background-image: url('../img/l_font_210x210.png');
+}
+
+.main-page .p-content .flex .item.li-item .bs-custom-img {
+    background-image: url('../img/l_other_210x210.png');
+}
+
+.main-page .p-footer {
+    padding-top: 3.2rem;
+    border-top: 1px solid #eff0f1;
+    font-size: 1.4rem;
+}
+
+.main-page .p-footer .p-author {
+    font-weight: bold;
+}

@@ -1,0 +1,19 @@
+<div class="col-desc" hidden>
+    <h3>不要使用 <code>@import</code></h3>
+    <p>与 <code>&lt;link&gt;</code> 标签相比，<code>@import</code> 指令要慢很多，不光增加了额外的请求次数，还会导致不可预料的问题。替代办法有以下几种：</p>
+    <ul>
+        <li>使用多个 <code>&lt;link&gt;</code> 元素</li>
+        <li>通过 Sass 或 Less 类似的 CSS 预处理器将多个 CSS 文件编译为一个文件</li>
+        <li>通过 Rails、Jekyll 或其他系统中提供过 CSS 文件合并功能</li>
+    </ul>
+    <p>请参考 <a href="http://www.stevesouders.com/blog/2009/04/09/dont-use-import/">Steve Souders 的文章</a>了解更多知识。</p>
+</div>
+<textarea class="lang-css" hidden>
+    <!-- Use link elements -->
+    <link rel="stylesheet" href="core.css">
+
+    <!-- Avoid @imports -->
+    <style>
+        @import url("more.css");
+    </style>
+</textarea>

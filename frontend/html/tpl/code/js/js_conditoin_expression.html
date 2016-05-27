@@ -1,0 +1,45 @@
+<div class="col-desc" hidden>
+    <h3>条件表达式和等式</h3>
+    <blockquote>
+        <small>
+            <p>应当总是使用三等号'==='来作等值判断</p>
+            <p>JS中任何值不为null、undefined、0的变量，均可以自动转换为布尔值，且为false。</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    if('QWERT' == tag){
+        //TODO
+    }
+
+    if(3 == num){
+        //TODO
+    }
+
+    var arr = [0,2,3];
+    if(arr.length > 0){
+        //TODO
+    }else{
+        //TODO
+    }
+
+
+    /* Good example */
+    if('QWERT' === tag){
+        //TODO
+    }
+
+    if(3 === num){
+        //TODO
+    }
+
+    var arr = [0,2,3];
+    if(arr.length){
+        //TODO
+    }else{
+        //TODO
+    }
+
+</textarea>

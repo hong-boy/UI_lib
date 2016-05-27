@@ -1,0 +1,21 @@
+<div class="col-desc" hidden>
+    <h3>单引号和双引号</h3>
+    <blockquote>
+        <small>
+            <p>应当总是优先使用单引号来表示字符串</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    var str = "name";
+    "<a href='' id='bad_demo'></a>"
+    "<a href=\"\" id=\"bad_demo1\"></a>"
+
+
+    /* Good example */
+    var str = 'name';
+    '<a href="" id="good_demo"></a>'
+
+</textarea>

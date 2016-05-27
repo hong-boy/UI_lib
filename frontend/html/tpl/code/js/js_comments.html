@@ -1,0 +1,48 @@
+<div class="col-desc" hidden>
+    <h3>注释</h3>
+    <blockquote>
+        <small>
+            <p>对于函数应该使用块级注释或文档注释，对于代码块应该使用单行注释</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    /*
+     * Block comments.
+     * Show log at console panel.
+     */
+    function log(num, arguments){
+        /**
+         * line comments
+         */
+        if(arguments){
+            for(var i=0,size=arguments.length;i<size;i++){
+                //TODO
+            }
+        }
+        return true;
+    }
+
+
+    /* Good example */
+    /**
+     * Block comments.
+     * Show log at console panel.
+     * @param {Number|String} num line number.
+     * @param {Array} arguments opt params.
+     * @returns {boolean}
+     */
+    function log(num, arguments){
+        //if statement.
+        //Single line comments
+        if(arguments){
+            for(var i=0,size=arguments.length;i<size;i++){
+                //TODO
+            }
+        }
+        return true;
+    }
+
+</textarea>

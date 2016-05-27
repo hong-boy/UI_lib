@@ -271,6 +271,9 @@ a {
   height: 100%;
 }
 
+.nav-header .nav-item .item.active {
+  color: rgb(162, 255, 18);
+}
 .nav-header .nav-item .item {
   display: inline-block;
   color: #FFFFFF;

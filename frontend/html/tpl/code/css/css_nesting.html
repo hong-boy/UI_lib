@@ -1,0 +1,15 @@
+<div class="col-desc" hidden>
+    <h3>Less 和 Sass 中的嵌套</h3>
+    <p>避免非必要的嵌套。这是因为虽然你可以使用嵌套，但是并不意味着应该使用嵌套。只有在必须将样式限制在父元素内（也就是后代选择器），并且存在多个需要嵌套的元素时才使用嵌套。</p>
+</div>
+<textarea class="lang-css" hidden>
+    // Without nesting
+    .table > thead > tr > th { … }
+    .table > thead > tr > td { … }
+
+    // With nesting
+    .table > thead > tr {
+      > th { … }
+      > td { … }
+    }
+</textarea>

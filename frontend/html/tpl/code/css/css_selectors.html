@@ -1,0 +1,26 @@
+<div class="col-desc" hidden>
+    <h3>选择器</h3>
+    <ul>
+        <li>对于通用元素使用 class ，这样利于渲染性能的优化。</li>
+        <li>对于经常出现的组件，避免使用属性选择器（例如，<code>[class^="..."]</code>）。浏览器的性能会受到这些因素的影响。</li>
+        <li>选择器要尽可能短，并且尽量限制组成选择器的元素个数，建议不要超过 3 。</li>
+        <li><strong>只有</strong>在必要的时候才将 class 限制在最近的父元素内（也就是后代选择器）（例如，不使用带前缀的 class 时 -- 前缀类似于命名空间）。</li>
+    </ul>
+    <p>扩展阅读：</p>
+    <ul>
+        <li><a href="http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/">Scope CSS classes with
+            prefixes</a></li>
+        <li><a href="http://markdotto.com/2012/03/02/stop-the-cascade/">Stop the cascade</a></li>
+    </ul>
+</div>
+<textarea class="lang-css" hidden>
+    /* Bad example */
+    span { ... }
+    .page-container #stream .stream-item .tweet .tweet-header .username { ... }
+    .avatar { ... }
+
+    /* Good example */
+    .avatar { ... }
+    .tweet-header .username { ... }
+    .tweet .avatar { ... }
+</textarea>

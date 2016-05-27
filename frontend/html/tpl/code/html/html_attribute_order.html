@@ -1,0 +1,22 @@
+<div class="col-desc" hidden>
+    <h3>属性顺序</h3>
+    <p>HTML 属性应当按照以下给出的顺序依次排列，确保代码的易读性。</p>
+    <ul>
+        <li><code>class</code></li>
+        <li><code>id</code>, <code>name</code></li>
+        <li><code>data-*</code></li>
+        <li><code>src</code>, <code>for</code>, <code>type</code>, <code>href</code></li>
+        <li><code>title</code>, <code>alt</code></li>
+        <li><code>aria-*</code>, <code>role</code></li>
+    </ul>
+    <p>class 用于标识高度可复用组件，因此应该排在首位。id 用于标识具体组件，应当谨慎使用（例如，页面内的书签），因此排在第二位。</p>
+</div>
+<textarea class="lang-html" hidden>
+    <a class="..." id="..." data-modal="toggle" href="#">
+        Example link
+    </a>
+
+    <input class="form-control" type="text">
+
+    <img src="..." alt="...">
+</textarea>

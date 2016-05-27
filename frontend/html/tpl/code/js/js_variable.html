@@ -1,0 +1,52 @@
+<div class="col-desc" hidden>
+    <h3>变量声明</h3>
+    <blockquote>
+        <small>
+            <p>变量必须要使用var来声明，且尽量保证var在同一作用域内只会出现一次。</p>
+            <p>一般情况下不要定义全局变量，因为很容易引起变量名冲突，造成变量被重写！如果必须要定义全局变量，则可以使用window['变量名']的方式来定义。</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    var ns;
+    var no = undefined;
+    var types = 1 + 3 * 2;
+    var ext = "jpg,png,gif";
+    var trash = Boolean(false);
+    var obj = new Object();
+    var items = new Array(12, 67);
+    var note = types + ext;
+    var prefixname = "[DEV]";
+    var input = "<input id=\"yui\"/>";
+    var sencodes_tables = {
+        MINUTE : 60,
+        HOUR : 60 * 60,
+        DAY : 60 * 60 * 24
+    };
+    Local = 231;
+    glb = 100;
+
+    /* Good example */
+    var ns,
+        no,
+        types = 7,
+        ext = 'jpg,png,gif',
+        trash = false,
+        obj = {},
+        items = [12, 67],
+        note = types + ext,
+        PREFIX_NAME = '[DEV]',
+        input = '<input id="yui"/>',
+        SECONDS_TABLE = {
+            minute : 60,
+            // 60*60
+            hour : 3600,
+            //60 * 60 * 24
+            day : 86400
+        },
+        Local = 231;
+    Window['glb']= 100;
+
+</textarea>

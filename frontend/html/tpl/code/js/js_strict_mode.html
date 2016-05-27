@@ -1,0 +1,37 @@
+<div class="col-desc" hidden>
+    <h3>严格模式</h3>
+    <blockquote>
+        <small>
+            <p>由于JS是一门弱类型的语言，因此<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">W3C</a>提供了严格模式来约束前端JS代码的书写。
+            </p>
+            <p>通过在JS文件的第一行或者是在JS函数里面的第一行书写'"use strict";'来告诉编译器使用严格模式来编译本文件或本函数内的JS代码</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    /* Compiler won't  report any error.*/
+    (function(){
+      x = 3.14;
+      console.log(x);
+      // Define your library strictly...
+    })();
+
+    /* Bad example */
+    /* Compiler would  report an error.*/
+    (function(){
+      "use strict";
+      x = 3.14;
+      console.log(x);
+    })();
+
+    /* Good example */
+    (function(){
+      "use strict";
+      var x = 3.14;
+      console.log(x);
+      // Define your library strictly...
+    })();
+
+</textarea>
