@@ -1,0 +1,32 @@
+<div class="col-desc" hidden>
+    <h3>内部函数定义</h3>
+    <blockquote>
+        <small>
+            <p>在函数体内部，不要以代码块的形式来定义一个内部函数；应该以变量的方式来定义。</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    function test(){
+        while(statement){//if, for or other code block
+            //TODO
+            function Inner(){
+                //TODO
+            }
+        }
+    }
+
+
+    /* Good example */
+    function test(){
+        while(statement){//if, for or other code block
+            //TODO
+            var _inner = function(){
+                //TODO
+            };
+        }
+    }
+
+</textarea>

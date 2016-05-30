@@ -1,0 +1,23 @@
+<div class="col-desc" hidden>
+    <h3>选择器优化</h3>
+    <blockquote>
+        <small>
+            <p>原则一：减少选择器的层级</p>
+            <p>原则二：尽量使用类选择器来代替标签选择器</p>
+            <p>原则三：缩小选择器的查找范围</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-html" hidden>
+
+    /* Bad example */
+    $('.cls #part_table');
+    $('#part_table tbody tr');
+
+
+    /* Good example */
+    $('#part_table');
+    $('#part_table').find('tbody tr');
+    $('tbody tr', $('#part_table'));
+
+</textarea>

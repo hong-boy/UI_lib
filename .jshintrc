@@ -16,6 +16,7 @@
     "window",
     "jQuery",
     "$",
+    "IOT",
     "hljs"
   ]
 }

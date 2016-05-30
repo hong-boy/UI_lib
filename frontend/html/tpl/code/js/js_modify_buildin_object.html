@@ -1,0 +1,16 @@
+<div class="col-desc" hidden>
+    <h3>不要修改内建对象的原型</h3>
+    <blockquote>
+        <small>
+            <p>不要随意修改内建对象的原型！</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    String.prototype.trim = function() {
+        return this.replace(/(^\s*)|(\s*$)/g, "");
+    };
+
+</textarea>

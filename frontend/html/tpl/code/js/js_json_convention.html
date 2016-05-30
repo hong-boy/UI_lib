@@ -1,0 +1,45 @@
+<div class="col-desc" hidden>
+    <h3>JSON书写规范</h3>
+    <blockquote>
+        <small>
+            <p>属性名应当以小写字母开头，可以使用驼峰方式或者下滑线来连接两个单词。</p>
+            <p>属性名应当使用双引号括起来。</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    {
+        double_quotes : "Double quotes",
+        'single_quotes' : 'single quotes',
+        "name with blankspace" : "Are you ok?",
+        "CamelCaseKey" : "Bad key",
+        "ID" : "#567890",
+        "" : {
+            1 : "v"
+        },
+        "done" : "true",
+        "count" : "24567",
+        "item": ["01", "02"],
+        "totalItems": 2
+    }
+
+
+    /* Good example */
+    {
+        "double_quotes" : "Double quotes",
+        "single_quotes" : "single quotes",
+        "name_with_blankspace" : "Are you ok?",
+        "camelCaseKey" : "Bad key",
+        "id" : "#567890",
+        "yyy" : {
+            "1" : "v"
+        },
+        "done" : true,
+        "count" : 24567,
+        "totalItem": 2,
+        "items": ["01", "02"]
+    }
+
+</textarea>

@@ -1,0 +1,22 @@
+<div class="col-desc" hidden>
+    <h3>合并选择器表达式</h3>
+    <blockquote>
+        <small>
+            <p>通过合并选择器表达式，可以帮助减少代码量。</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-html" hidden>
+
+    /* Bad example */
+    $('#report_div').addClass('tabDiv');
+    $('#profiling_div').addClass('tabDiv');
+    $('#trace_view_div').addClass('tabDiv');
+    $('#debug_view_div').addClass('tabDiv');
+    $('#tree_view_div').addClass('tabDiv');
+
+
+    /* Good example */
+    $('#report_div, #profiling_div, #trace_view_div, #debug_view_div, #tree_view_div').addClass('tabDiv');
+
+</textarea>

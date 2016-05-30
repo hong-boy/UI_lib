@@ -1,0 +1,50 @@
+<div class="col-desc" hidden>
+    <h3>分号和逗号</h3>
+    <blockquote>
+        <small>
+            <p>用var声明的变量、函数、字面量对象以及每一行单行语句之后，都必须要以分号(";")结尾。</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    var someone = {
+        name : 'CC'
+        ,age : 32
+        ,title : 'CEO'
+    }
+    var fun = function(){
+        //TODO
+    }
+    function foo(){
+        //TODO
+    };
+    var others = {
+        name : 'CC',
+        age : 32,
+        title : 'CEO',
+        hands : ['left','right'],
+    };
+
+
+    /* Good example */
+    var someone = {
+        name : 'CC',
+        age : 32,
+        title : 'CEO'
+    };
+    var fun = function(){
+        //TODO
+    };
+    function foo(){
+        //TODO
+    }
+    var others = {
+        name : 'CC',
+        age : 32,
+        title : 'CEO',
+        hands : ['left','right']
+    };
+
+</textarea>

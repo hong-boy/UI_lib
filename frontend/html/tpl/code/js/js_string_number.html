@@ -1,0 +1,22 @@
+<div class="col-desc" hidden>
+    <h3>String转换为Number</h3>
+    <blockquote>
+        <small>
+            <p>parseInt：如果字符串是以"0"开头时，需要指明基数。</p>
+            <p>Number：性能优于parseInt。</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    parseInt('08');
+    parseInt('10086', 10);
+    '10086' >> 0;
+
+
+    /* Good example */
+    parseInt('08', 10);
+    Number('10086');
+
+</textarea>

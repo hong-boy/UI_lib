@@ -1,0 +1,37 @@
+<div class="col-desc" hidden>
+    <h3>缓存JQuery对象</h3>
+    <blockquote>
+        <small>
+            <p>同一个JQuery对象如果在代码中出现了两次，就应当将其缓存。因为DOM的查找非常非常耗性能！</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-html" hidden>
+
+    /* Bad example */
+    if ($("#debug_view_div").length < 1) {
+        // TODO
+
+        $(XXX).appendTo($("#debug_view_div"));
+        // TODO
+        $('<div/>', {
+            'border' : '1px Solid'
+        }).appendTo($("#debug_view_div"));
+        //TODO
+    }
+
+
+    /* Good example */
+    var debugView = $('#debug_view_div');//缓存
+    if (!debugView.length) {
+        // TODO
+
+        $(XXX).appendTo(debugView);
+        // TODO
+        $('<div/>', {
+            'border' : '1px Solid'
+        }).appendTo(debugView);
+        //TODO
+    }
+
+</textarea>

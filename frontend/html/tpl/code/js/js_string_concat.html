@@ -1,0 +1,40 @@
+<div class="col-desc" hidden>
+    <h3>字符串拼接</h3>
+    <blockquote>
+        <small>
+            <p>拼接字符串时使用Array.join方法来代替加号("+")</p>
+        </small>
+    </blockquote>
+</div>
+<textarea class="lang-js" hidden>
+
+    /* Bad example */
+    var items = [ {
+        name : 'CK',
+        age : 32
+    }, {
+        name : 'UI',
+        age : 12
+    } ], str = '';
+
+    for ( var i = 0, size = items.length; i < szie; i++) {
+        str += items[i].name;
+    }
+    console.log(str);
+
+
+    /* Good example */
+    var items = [ {
+        name : 'CK',
+        age : 32
+    }, {
+        name : 'UI',
+        age : 12
+    } ], str = [];
+
+    for ( var i = 0, size = items.length; i < szie; i++) {
+        st[i] = items[i].name;
+    }
+    console.log(str.join(''));
+
+</textarea>
