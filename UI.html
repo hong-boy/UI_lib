@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>UI</title>
+    <link rel="stylesheet" type="text/css" href="frontend/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="frontend/lib/fontello/css/fontello.css">
+    <link rel="stylesheet" type="text/css" href="frontend/css/_core.css">
+    <link rel="stylesheet" type="text/css" href="frontend/css/_biz.css">
+    <!-- 此文档应当输出公共样式、通用JS组件 -->
+</head>
+<body class="core biz">
+<div class="container">
+    <div class="row wrap-text-color">
+        <h1 class="h1">文字、颜色</h1>
+        <div class="dashboard">
+            <div class="chunk">
+                <h2 class="chunk-header h2">字体</h2>
+                <div class="chunk-content">
+                    <div class="chunk-row">中文 : 微软雅黑</div>
+                    <div class="chunk-row">英文 : Arial</div>
+                    <div class="chunk-row">数字 : Arial</div>
+                </div>
+            </div>
+            <div class="chunk">
+                <h2 class="chunk-header h2">字号、颜色</h2>
+                <div class="chunk-content">
+                    <div class="chunk-row">一级标题 : 18px 加粗 #333</div>
+                    <div class="chunk-row">二级标题 : 16px 加粗 #333</div>
+                    <div class="chunk-row">普通文本 : 14px #333</div>
+                </div>
+            </div>
+            <div class="chunk">
+                <h2 class="chunk-header h2">特殊文字</h2>
+                <div class="chunk-content">
+                    <div class="chunk-row" style="color:#999">注释文本 : 12px #999</div>
+                    <div class="chunk-row" style="color:#ff7700">提醒文本 : 12px #ff7700</div>
+                    <div class="chunk-row" style="color:#ff204a">警告文本 : 12px #ff204a</div>
+                </div>
+            </div>
+            <div class="chunk">
+                <h2 class="chunk-header h2">图标</h2>
+                <div class="chunk-content">
+                    <div class="chunk-row">
+                        <div class="item">
+                            <i class="icon-reset-pwd"></i>
+                            <em>改密码</em>
+                        </div>
+                        <div class="item">
+                            <i class="icon-edit"></i>
+                            <em>编辑</em>
+                        </div>
+                        <div class="item">
+                            <i class="icon-delete"></i>
+                            <em>删除</em>
+                        </div>
+                    </div>
+                    <div class="chunk-row">
+                        <div class="item">
+                            <i class="icon-ok succ-text"></i>
+                            <em>成功</em>
+                        </div>
+                        <div class="item">
+                            <i class="icon-warning warning-text"></i>
+                            <em>警告</em>
+                        </div>
+                        <div class="item">
+                            <i class="icon-failure-circled error-text"></i>
+                            <em>错误</em>
+                        </div>
+                    </div>
+                    <div class="chunk-row">
+                        <div class="item">
+                            <i class="icon-loading"></i>
+                            <em>加载</em>
+                        </div>
+                        <div class="item">
+                            <i class="icon-waiting"></i>
+                            <em>等待</em>
+                        </div>
+                        <div class="item">
+                            <i class="icon-date"></i>
+                            <em>日期</em>
+                        </div>
+                    </div>
+                    <div class="chunk-row">
+                        <div class="item">
+                            <i class="icon-png-left"></i>
+                            <em>翻页</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row wrap-basic-component">
+        <h1 class="h1">基础组件</h1>
+        <h2 class="h2">按钮</h2>
+        <div class="dashboard">
+            <div class="chunk">
+                <h2 class="chunk-header h2">实心按钮</h2>
+                <div class="chunk-content">
+                    <div class="chunk-row">
+                        <button class="btn btn-default">确 定</button>
+                    </div>
+                    <div class="chunk-row">
+                        <button class="btn btn-default" disabled>确 定</button>
+                    </div>
+                </div>
+            </div>
+            <div class="chunk">
+                <h2 class="chunk-header h2">空心按钮</h2>
+                <div class="chunk-content">
+                    <div class="chunk-row">
+                        <button class="btn btn-empty">取 消</button>
+                    </div>
+                    <div class="chunk-row">
+                        <button class="btn btn-empty" disabled>取 消</button>
+                    </div>
+                </div>
+            </div>
+            <div class="chunk">
+                <h2 class="chunk-header h2">圆角按钮</h2>
+                <div class="chunk-content">
+                    <div class="chunk-row">
+                        <button class="btn btn-default btn-circled">搜 索</button>
+                    </div>
+                    <div class="chunk-row">
+                        <button class="btn btn-default btn-circled" disabled>搜 索</button>
+                    </div>
+                </div>
+            </div>
+            <div class="chunk">
+                <h2 class="chunk-header h2">图标按钮</h2>
+                <div class="chunk-content">
+                    <div class="chunk-row">
+                        <button class="btn btn-default btn-icon"><i class="icon-reset-pwd"></i></button>
+                        <button class="btn btn-default btn-icon"><i class="icon-edit"></i></button>
+                        <button class="btn btn-default btn-icon"><i class="icon-delete"></i></button>
+                    </div>
+                    <div class="chunk-row">
+                        <button class="btn btn-default btn-icon" disabled><i class="icon-reset-pwd"></i></button>
+                        <button class="btn btn-default btn-icon" disabled><i class="icon-edit"></i></button>
+                        <button class="btn btn-default btn-icon" disabled><i class="icon-delete"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="chunk">
+                <h2 class="chunk-header h2">滑动按钮</h2>
+                <div class="chunk-content">
+                    <div class="chunk-row">
+                        <button class="btn btn-default btn-icon"><i class="icon-reset-pwd"></i></button>
+                        <button class="btn btn-default btn-icon"><i class="icon-edit"></i></button>
+                        <button class="btn btn-default btn-icon"><i class="icon-delete"></i></button>
+                    </div>
+                    <div class="chunk-row">
+                        <button class="btn btn-default btn-icon" disabled><i class="icon-reset-pwd"></i></button>
+                        <button class="btn btn-default btn-icon" disabled><i class="icon-edit"></i></button>
+                        <button class="btn btn-default btn-icon" disabled><i class="icon-delete"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="frontend/lib/jquery.1.11.min.js"></script>
+<script type="text/javascript" src="frontend/js/_core.js"></script>
+</html>

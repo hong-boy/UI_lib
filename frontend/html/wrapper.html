@@ -42,7 +42,7 @@
         $('nav').on('click', '[navigation]', function () {
             var $thiz = $(this), navi = $thiz.attr('navigation'), page = [navi, 'html'].join('.'), pagePath = ['tpl', page].join("/");
             $('#page').load(pagePath);
-            $thiz.parents('navbar-nav').first().find('a.active').removeClass('active');
+            $thiz.parents('.navbar-nav').first().find('a.active').removeClass('active');
             $thiz.addClass('active');
             window.location.hash = ['#', navi].join('');
             return false;
@@ -51,6 +51,51 @@
         //页面加载完成时
         var pageId = window.location.hash;
         ($(pageId).length ? $(pageId) : $('#code_guide')).trigger('click');
+
+        $(window).scrollInOut({
+            target: $('.site-navbar')
+        });
     });
+    (function ($) {
+        var defaults = {
+            target: null, //待监视的元素
+            offset: 75, //最大偏移量，超出后将隐藏元素
+            delay: 100, //函数延时执行
+            scrollUp: $.noop,
+            scrollDown: $.noop
+        };
+        var scorllInOut = function ($dom, offset, delay, scrollUpFunc, scrollDownFunc) {
+            var timer = null;
+            timer = setTimeout(function () {
+                var $thiz = $(window),
+                        height = $thiz.scrollTop(),
+                        delta = $thiz.data('delta') || -1,
+                        isScorllUp = (height < delta);
+                if (height > offset && !isScorllUp) {
+                    $dom.fadeOut();
+                } else {
+                    $dom.fadeIn();
+                }
+                if (isScorllUp) {
+                    $dom.fadeIn();
+                    scrollUpFunc($dom);
+                } else {
+                    scrollDownFunc($dom);
+                }
+                $thiz.data('delta', height);
+            }, delay);
+            return timer;
+        };
+        $.fn.scrollInOut = function (option) {
+            option = $.extend(true, {}, defaults, option);
+            $(this).scroll(function () {
+                var timer = $(this).data('timer');
+                clearTimeout(timer);
+                timer = scorllInOut(option.target, option.offset, option.delay, option.scrollUp, option.scrollDown);
+                $(this).data('timer', timer);
+            });
+            return this;
+        };
+    })(jQuery);
 </script>
 </html>

@@ -1,0 +1,58 @@
+@import "lib/_base.less";
+.biz{
+  .color-blue{
+    color:cornflowerblue;
+  }
+  background-color:#eee;
+  .dashboard{
+    min-height:100px;
+  }
+  .chunk{
+    display:inline-block;
+    height:100%;
+    .chunk-header{
+      width:100%;
+      color:cornflowerblue;
+    }
+    .chunk-content{
+      width:100%;
+    }
+  }
+  .wrap-text-color{
+    .dashboard{
+      .flexlayout(flex, row, stretch, space-around);
+      height:210px;
+    }
+    .chunk-content{
+      .chunk-row{
+        height:40px;
+        line-height:40px;
+        .item{
+          .flexlayout(inline-flex, row, center, flex-start);
+          width:115px;
+          line-height:initial;
+          i[class*="icon-"]{
+            font-size:18px;
+          }
+        }
+      }
+    }
+  }
+  .wrap-basic-component{
+    .dashboard{
+      .flexlayout(flex, row, stretch, space-around);
+      height:320px;
+    }
+    .chunk-content{
+      .flexlayout(inline-flex, column, flex-start, space-between);
+      .chunk-row{
+        margin-top:30px;
+        text-align:center;
+        .item{
+          width:215px;
+          line-height:initial;
+        }
+      }
+    }
+  }
+}
