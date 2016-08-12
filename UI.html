@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>UI</title>
     <link rel="stylesheet" type="text/css" href="frontend/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="frontend/lib/icheck/css/icheck.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/fontello/css/fontello.css">
     <link rel="stylesheet" type="text/css" href="frontend/css/_core.css">
     <link rel="stylesheet" type="text/css" href="frontend/css/_biz.css">
@@ -97,73 +98,143 @@
         <h1 class="h1">基础组件</h1>
         <h2 class="h2">按钮</h2>
         <div class="dashboard">
-            <div class="chunk">
-                <h2 class="chunk-header h2">实心按钮</h2>
-                <div class="chunk-content">
-                    <div class="chunk-row">
-                        <button class="btn btn-default">确 定</button>
+            <div class="m-case">
+                <div class="chunk">
+                    <h2 class="chunk-header h2">实心按钮</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <button class="btn btn-default">确 定</button>
+                        </div>
+                        <div class="chunk-row">
+                            <button class="btn btn-default" disabled>确 定</button>
+                        </div>
                     </div>
-                    <div class="chunk-row">
-                        <button class="btn btn-default" disabled>确 定</button>
+                </div>
+                <div class="chunk">
+                    <h2 class="chunk-header h2">空心按钮</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <button class="btn btn-empty">取 消</button>
+                        </div>
+                        <div class="chunk-row">
+                            <button class="btn btn-empty" disabled>取 消</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk">
+                    <h2 class="chunk-header h2">圆角按钮</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <button class="btn btn-default btn-circled">搜 索</button>
+                        </div>
+                        <div class="chunk-row">
+                            <button class="btn btn-default btn-circled" disabled>搜 索</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk">
+                    <h2 class="chunk-header h2">图标按钮</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <button class="btn btn-default btn-icon"><i class="icon-reset-pwd"></i></button>
+                            <button class="btn btn-default btn-icon"><i class="icon-edit"></i></button>
+                            <button class="btn btn-default btn-icon"><i class="icon-delete"></i></button>
+                        </div>
+                        <div class="chunk-row">
+                            <button class="btn btn-default btn-icon" disabled><i class="icon-reset-pwd"></i></button>
+                            <button class="btn btn-default btn-icon" disabled><i class="icon-edit"></i></button>
+                            <button class="btn btn-default btn-icon" disabled><i class="icon-delete"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk">
+                    <h2 class="chunk-header h2">滑动按钮</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <!-- DOM驱动 -->
+                            <div class="slide-btn-wrap" id="slide_btn_wrap1">
+                                <label class="slide-btn-off" for="chk_1">关</label>
+                                <label class="slide-btn-label">
+                                    <input type="checkbox" id="chk_1" checked/>
+                                    <div class="slide-btn-chk"></div>
+                                </label>
+                                <label class="slide-btn-on" for="chk_1">开</label>
+                            </div>
+                        </div>
+                        <div class="chunk-row" id="slide_btn_wrapper">
+                            <!-- JS驱动 -->
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="chunk">
-                <h2 class="chunk-header h2">空心按钮</h2>
-                <div class="chunk-content">
-                    <div class="chunk-row">
-                        <button class="btn btn-empty">取 消</button>
+            <div class="m-code">
+                <header>
+                    <div class="list-items">
+                        <div class="item">HTML</div>
+                        <div class="item">JS</div>
+                        <div class="item">CSS</div>
                     </div>
-                    <div class="chunk-row">
-                        <button class="btn btn-empty" disabled>取 消</button>
+                </header>
+                <div class="tabs"></div>
+            </div>
+            <pre> 实心按钮：.btn.btn-default 空心按钮：.btn.btn-empty 圆角按钮：加上.btn-circled  滑动按钮：使用slideBtn插件来初始化
+            </pre>
+        </div>
+        <h2 class="h2">单选、复选</h2>
+        <div class="dashboard chk-radio-wrap" id="chk_radio_wrap">
+            <div class="m-case">
+                <div class="chunk">
+                    <h2 class="chunk-header h2">单选</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <label>选项 :</label>
+                            <label>
+                                <input type="radio" name="options" value="1">
+                                <span class="icheck-desc">未选中</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="options" value="2" checked>
+                                <span class="icheck-desc">已选中</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="options" value="2" checked disabled>
+                                <span class="icheck-desc">已选中-禁用</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk">
+                    <h2 class="chunk-header h2">复选</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <label>选项 :</label>
+                            <label>
+                                <input type="checkbox" name="options1" value="1">
+                                <span class="icheck-desc">未选中</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="options2" value="2" checked>
+                                <span class="icheck-desc">已选中</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="options3" value="3" checked disabled>
+                                <span class="icheck-desc">已选中-禁用</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="options4" value="4" disabled>
+                                <span class="icheck-desc">未选中-禁用</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="chunk">
-                <h2 class="chunk-header h2">圆角按钮</h2>
-                <div class="chunk-content">
-                    <div class="chunk-row">
-                        <button class="btn btn-default btn-circled">搜 索</button>
-                    </div>
-                    <div class="chunk-row">
-                        <button class="btn btn-default btn-circled" disabled>搜 索</button>
-                    </div>
-                </div>
-            </div>
-            <div class="chunk">
-                <h2 class="chunk-header h2">图标按钮</h2>
-                <div class="chunk-content">
-                    <div class="chunk-row">
-                        <button class="btn btn-default btn-icon"><i class="icon-reset-pwd"></i></button>
-                        <button class="btn btn-default btn-icon"><i class="icon-edit"></i></button>
-                        <button class="btn btn-default btn-icon"><i class="icon-delete"></i></button>
-                    </div>
-                    <div class="chunk-row">
-                        <button class="btn btn-default btn-icon" disabled><i class="icon-reset-pwd"></i></button>
-                        <button class="btn btn-default btn-icon" disabled><i class="icon-edit"></i></button>
-                        <button class="btn btn-default btn-icon" disabled><i class="icon-delete"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="chunk">
-                <h2 class="chunk-header h2">滑动按钮</h2>
-                <div class="chunk-content">
-                    <div class="chunk-row">
-                        <button class="btn btn-default btn-icon"><i class="icon-reset-pwd"></i></button>
-                        <button class="btn btn-default btn-icon"><i class="icon-edit"></i></button>
-                        <button class="btn btn-default btn-icon"><i class="icon-delete"></i></button>
-                    </div>
-                    <div class="chunk-row">
-                        <button class="btn btn-default btn-icon" disabled><i class="icon-reset-pwd"></i></button>
-                        <button class="btn btn-default btn-icon" disabled><i class="icon-edit"></i></button>
-                        <button class="btn btn-default btn-icon" disabled><i class="icon-delete"></i></button>
-                    </div>
-                </div>
-            </div>
+            <pre>使用iCheck插件来初始化单选、复选框</pre>
         </div>
     </div>
 </div>
 </body>
 <script type="text/javascript" src="frontend/lib/jquery.1.11.min.js"></script>
+<script type="text/javascript" src="frontend/lib/icheck/icheck.js"></script>
 <script type="text/javascript" src="frontend/js/_core.js"></script>
+<script type="text/javascript" src="frontend/js/_biz.js"></script>
 </html>

@@ -37,7 +37,7 @@
     box-shadow:0 0 2px 2px #eee;
     background-color:#fff;
   }
-  .btn{
+  .btn{ //按钮
     @btnNormalMinWidth:110px; //按钮最小宽度
     @btnNormalHeight:40px; //按钮高度
     @borderRadius:30px; //圆角效果
@@ -126,4 +126,86 @@
       }
     }
   }
+  .slide-btn-wrap{ //滑动按钮
+    .flexlayout(flex, row, center, space-between);
+    min-width:110px;
+    &:hover .slide-btn-chk{
+      transform:translate3d(0, 0, 0);
+    }
+    .slide-clickable{
+      cursor:pointer;
+      color:@commentsTextColor;
+    }
+    .slide-btn-label{
+      @btnWidth:70px; //按钮宽度
+      @btnHeight:30px; //按钮高度
+      @btnBorderRadius:20px; //圆角
+      @btnIconSize:28px; //内圆的大小
+      @chkBeforePosLeft:(7/4)*1px; //slide-btn-chk:before背景偏移
+      @bgChkBeforeColor:#919191; //slide-btn-chk:before背景颜色
+      @chkAfterPosLeft:1px; //slide-btn-chk:after背景偏移
+      @chkAfterPosTop:1px; //slide-btn-chk:after背景偏移
+      @bgChkAfterColor:#e5e5e5; //slide-btn-chk:after背景颜色
+      @bgActiveColor:#3ABAEB;
+      @bgNormalColor:#919191;
+      @bgDisabledColor:#e5e5e5;
+      position:relative;
+      display:inline-block;
+      box-sizing:border-box;
+      width:@btnWidth;
+      height:@btnHeight;
+      input[type="checkbox"]{
+        display:none;
+      }
+      .slide-btn-chk{
+        position:relative;
+        margin:0;
+        width:100%;
+        height:100%;
+        box-sizing:border-box;
+        border-radius:@btnBorderRadius;
+        background-color:@bgNormalColor;
+        z-index:0;
+        transition:background-color 0.3s ease-in;
+        cursor:pointer;
+      }
+      input[type="checkbox"]:checked + .slide-btn-chk{
+        background-color:@bgActiveColor;
+      }
+      input[type="checkbox"][disabled] + .slide-btn-chk{
+        cursor:not-allowed;
+        background-color:@bgDisabledColor;
+      }
+      .slide-btn-chk:before{
+        content:' ';
+        position:absolute;
+        height:@btnHeight;
+        left:@chkBeforePosLeft;
+        border-radius:@btnBorderRadius;
+        transform:scale(1);
+        transition:scale 0.2s linear;
+      }
+      input[type="checkbox"]:checked + .slide-btn-chk:before{
+        -webkit-transform:scale(0);
+        transform:scale(0);
+      }
+      .slide-btn-chk:after{
+        content:' ';
+        position:absolute;
+        width:@btnIconSize;
+        height:@btnIconSize;
+        left:@chkAfterPosLeft;
+        top:@chkAfterPosTop;
+        border-radius:@btnIconSize;
+        background-color:#fff;
+        box-shadow:0 0.04rem 0.3467rem rgba(0, 0, 0, 0.4);
+        transition:left 0.3s linear;
+      }
+      input[type="checkbox"]:checked + .slide-btn-chk:after{
+        left:@btnWidth - @btnIconSize - 1px;
+      }
+    }
+  }
+
+
 }

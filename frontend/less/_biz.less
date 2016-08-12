@@ -40,8 +40,48 @@
   }
   .wrap-basic-component{
     .dashboard{
-      .flexlayout(flex, row, stretch, space-around);
-      height:320px;
+      min-height:200px;
+      pre{
+        margin-top:20px;
+        margin-bottom:0px;
+        min-height:80px;
+      }
+      &.chk-radio-wrap{
+        .chunk{
+          height:100px;
+        }
+      }
+      .m-case{
+        .flexlayout(flex, row, stretch, space-around);
+      }
+      .m-code{
+        display:none; //TODO
+        width:99%;
+        margin:0 auto;
+        margin-top:10px;
+        height:200px;
+        border-style:inset;
+        border-width:2px;
+        border-color:#ccc;
+        background:#f3f5f6;
+        header{
+          padding-left:10px;
+          background-color:#fff;
+          box-shadow:0 0 5px rgba(57, 70, 78, 0.2);
+        }
+        .list-items{
+          height:50px;
+          line-height:50px;
+          .item{
+            display:inline-block;
+            width:50px;
+            text-align:center;
+          }
+        }
+      }
+    }
+    .chunk{
+      height:187px;
     }
     .chunk-content{
       .flexlayout(inline-flex, column, flex-start, space-between);

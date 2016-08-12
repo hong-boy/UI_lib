@@ -6,6 +6,14 @@
 .core em {
   font-style: normal;
 }
+.core label {
+  margin-bottom: 0;
+  font-weight: normal;
+}
+.core .row {
+  margin-left: 0;
+  margin-right: 0;
+}
 .core h1.h1 {
   font-size: 18px;
   font-weight: bold;
@@ -104,4 +112,75 @@
 }
 .core .btn.btn-empty.btn-circled {
   border-radius: 30px;
+}
+.core .slide-btn-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 110px;
+}
+.core .slide-btn-wrap:hover .slide-btn-chk {
+  transform: translate3d(0, 0, 0);
+}
+.core .slide-btn-wrap .slide-clickable {
+  cursor: pointer;
+  color: #999;
+}
+.core .slide-btn-wrap .slide-btn-label {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 70px;
+  height: 30px;
+}
+.core .slide-btn-wrap .slide-btn-label input[type="checkbox"] {
+  display: none;
+}
+.core .slide-btn-wrap .slide-btn-label .slide-btn-chk {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background-color: #919191;
+  z-index: 0;
+  transition: background-color 0.3s ease-in;
+  cursor: pointer;
+}
+.core .slide-btn-wrap .slide-btn-label input[type="checkbox"]:checked + .slide-btn-chk {
+  background-color: #3ABAEB;
+}
+.core .slide-btn-wrap .slide-btn-label input[type="checkbox"][disabled] + .slide-btn-chk {
+  cursor: not-allowed;
+  background-color: #e5e5e5;
+}
+.core .slide-btn-wrap .slide-btn-label .slide-btn-chk:before {
+  content: ' ';
+  position: absolute;
+  height: 30px;
+  left: 1.75px;
+  border-radius: 20px;
+  transform: scale(1);
+  transition: scale 0.2s linear;
+}
+.core .slide-btn-wrap .slide-btn-label input[type="checkbox"]:checked + .slide-btn-chk:before {
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+.core .slide-btn-wrap .slide-btn-label .slide-btn-chk:after {
+  content: ' ';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  left: 1px;
+  top: 1px;
+  border-radius: 28px;
+  background-color: #fff;
+  box-shadow: 0 0.04rem 0.3467rem rgba(0, 0, 0, 0.4);
+  transition: left 0.3s linear;
+}
+.core .slide-btn-wrap .slide-btn-label input[type="checkbox"]:checked + .slide-btn-chk:after {
+  left: 41px;
 }

@@ -1,0 +1,106 @@
+/* iCheck plugin CSS
+----------------------------------- */
+.icheckbox_min,
+.iradio_min{
+display:inline-block;
+*display:inline;
+vertical-align:middle;
+margin:0;
+padding:0;
+width:12px;
+height:12px;
+background:url(icheck_min.png) no-repeat;
+border:none;
+cursor:pointer;
+}
+.iradio_min + .icheck-desc:hover,
+.icheckbox_min + .icheck-desc:hover{
+color:#666;
+}
+.icheckbox_min{
+background-position:0 0;
+}
+.icheckbox_min.hover{
+background-position:0 0;
+}
+.icheckbox_min.checked{
+background-position:0 -16px;
+}
+.icheckbox_min.disabled{
+background-position:0 -48px;
+}
+.icheckbox_min.checked.disabled{
+background-position:0 -32px;
+}
+.iradio_min{
+background-position:0 -64px;
+}
+.iradio_min.hover{
+background-position:0 -64px;
+}
+.iradio_min.checked{
+background-position:0 -80px;
+}
+.iradio_min.disabled{
+background-position:0 -112px;
+}
+.iradio_min.checked.disabled{
+background-position:0 -96px;
+}
+/** icheck normal **/
+.icheckbox_normal,
+.iradio_normal{
+display:inline-block;
+*display:inline;
+vertical-align:middle;
+top:-2px;
+margin:0 0 0 16px;
+padding:0;
+width:17px;
+height:17px;
+background:url(icheck_normal.png) no-repeat;
+border:none;
+cursor:pointer;
+}
+.icheckbox_normal.disabled,
+.iradio_normal.disabled{
+cursor:not-allowed;
+}
+.icheck-desc,
+.iradio-desc{
+margin-left:5px;
+}
+.iradio_normal + .icheck-desc:hover,
+.icheckbox_normal + .icheck-desc:hover{
+color:#666;
+}
+.icheckbox_normal{
+background-position:0 0;
+}
+.icheckbox_normal.hover{
+background-position:0 0;
+}
+.icheckbox_normal.checked{
+background-position:0 -17px;;
+}
+.icheckbox_normal.disabled{
+background-position:-17px 0;
+}
+.icheckbox_normal.checked.disabled{
+background-position:-17px -17px;
+}
+.iradio_normal{
+background-position:-34px 0;
+}
+.iradio_normal.hover{
+background-position:-34px 0;
+}
+.iradio_normal.checked{
+background-position:0 -34px;
+}
+.iradio_normal.disabled{
+background-position:-34px -17px;
+}
+.iradio_normal.checked.disabled{
+background-position:-17px -34px;
+}
