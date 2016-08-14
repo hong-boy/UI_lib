@@ -5,6 +5,7 @@
     <title>UI</title>
     <link rel="stylesheet" type="text/css" href="frontend/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/icheck/css/icheck.css">
+    <link rel="stylesheet" type="text/css" href="frontend/lib/bootstrap-select/css/bootstrap-select.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/fontello/css/fontello.css">
     <link rel="stylesheet" type="text/css" href="frontend/css/_core.css">
     <link rel="stylesheet" type="text/css" href="frontend/css/_biz.css">
@@ -230,11 +231,159 @@
             </div>
             <pre>使用iCheck插件来初始化单选、复选框</pre>
         </div>
+        <h2 class="h2">下拉列表</h2>
+
+        <div class="dashboard dropdown-list-wrap">
+            <div class="m-case">
+                <div class="chunk">
+                    <h2 class="chunk-header h2">单选下拉列表</h2>
+
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <label>选项 :</label>
+                            <select class="selectpicker show-tick" id="single_drowdown" style="height: 40px;"
+                                    data-size="6">
+                                <option value="1">选项一</option>
+                                <option value="1">选项一2</option>
+                                <option value="1">选项一3</option>
+                                <option value="1">选项一4</option>
+                                <option value="1">选项一5</option>
+                                <option value="1">选项一6</option>
+                                <option value="1">选项一7</option>
+                                <option value="1">选项一8</option>
+                                <option value="1">选项一9</option>
+                                <option value="1">选项一0</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk">
+                    <h2 class="chunk-header h2">多选下拉列表</h2>
+
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <label>选项 :</label>
+                            <select class="selectpicker show-tick" id="multi_drowdown" style="height: 40px" multiple
+                                    data-size="6">
+                                <option value="1">选项一</option>
+                                <option value="1">选项一2</option>
+                                <option value="1">选项一3</option>
+                                <option value="1">选项一4</option>
+                                <option value="1">选项一5</option>
+                                <option value="1">选项一6</option>
+                                <option data-divider="true"></option>
+                                <option value="1">选项一7</option>
+                                <option value="1">选项一8</option>
+                                <option value="1">选项一9</option>
+                                <option value="1">选项一0</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk">
+                    <h2 class="chunk-header h2">多选下拉列表-带标题</h2>
+
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <label>选项 :</label>
+                            <select class="selectpicker show-tick" id="multi2_drowdown" multiple data-header="菜单标题"
+                                    data-width="fit" data-size="6">
+                                <option value="1">选项一</option>
+                                <option value="1">选项一2</option>
+                                <option value="1">选项一3</option>
+                                <option value="1">选项一4</option>
+                                <option value="1">选项一5</option>
+                                <option value="1">选项一6</option>
+                                <option data-divider="true"></option>
+                                <option value="1">选项一7</option>
+                                <option value="1">选项一8</option>
+                                <option value="1">选项一9</option>
+                                <option value="1">选项一0</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="m-case">
+                <div class="chunk">
+                    <h2 class="chunk-header h2">多选下拉列表-带全选按钮</h2>
+
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <label>选项 :</label>
+                            <select class="selectpicker show-tick" id="multi1_drowdown" multiple data-actions-box="true"
+                                    data-width="fit" data-size="6">
+                                <option value="1">选项一</option>
+                                <option value="1">选项一2</option>
+                                <option value="1">选项一3</option>
+                                <option value="1">选项一4</option>
+                                <option value="1">选项一5</option>
+                                <option value="1">选项一6</option>
+                                <option data-divider="true"></option>
+                                <option value="1">选项一7</option>
+                                <option value="1">选项一8</option>
+                                <option value="1">选项一9</option>
+                                <option value="1">选项一0</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk">
+                    <h2 class="chunk-header h2">多选下拉列表-条件过滤</h2>
+
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <label>选项 :</label>
+                            <select class="selectpicker show-tick" id="multi3_drowdown" multiple data-live-search="true"
+                                    data-width="fit" data-size="6">
+                                <option value="1">选项一</option>
+                                <option value="1">选项一2</option>
+                                <option value="1">选项一3</option>
+                                <option value="1">选项一4</option>
+                                <option value="1">选项一5</option>
+                                <option value="1">选项一6</option>
+                                <option data-divider="true"></option>
+                                <option value="1">选项一7</option>
+                                <option value="1">选项一8</option>
+                                <option value="1">选项一9</option>
+                                <option value="1">选项一0</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk"></div>
+            </div>
+            <pre>
+使用bootstrap-select插件来初始化<a href="http://silviomoreto.github.io/bootstrap-select/examples/" target="_blank">Demo</a>
+依赖: fontello、bootstrap
+            </pre>
+        </div>
+        <h2 class="h2">时间日期</h2>
+
+        <div class="dashboard date-wrap" id="date_wrap">
+            <div class="m-case">
+                <div class="chunk">
+                    <h2 class="chunk-header h2">日期</h2>
+
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <label>选项 :</label>
+                            <input type="date"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <pre>使用iCheck插件来初始化单选、复选框</pre>
+        </div>
     </div>
 </div>
 </body>
 <script type="text/javascript" src="frontend/lib/jquery.1.11.min.js"></script>
+<script type="text/javascript" src="frontend/lib/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="frontend/lib/icheck/icheck.js"></script>
+<script type="text/javascript" src="frontend/lib/bootstrap-select/js/bootstrap-select.js"></script>
+<script type="text/javascript" src="frontend/lib/bootstrap-select/js/i18n/defaults-zh_CN.min.js"></script>
 <script type="text/javascript" src="frontend/js/_core.js"></script>
 <script type="text/javascript" src="frontend/js/_biz.js"></script>
 </html>

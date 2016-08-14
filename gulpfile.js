@@ -13,3 +13,15 @@ gulp.task('less', function () {
             .pipe(notify({message: 'Task compile less done'}));
     });
 });
+gulp.task('less-bootstrap-select', function () {
+    watch('./frontend/lib/bootstrap-select/less/*.less', function () {
+        gulp.src('./frontend/lib/bootstrap-select/less/bootstrap-select.less')
+            .pipe(less())
+            .pipe(gulp.dest('./frontend/lib/bootstrap-select/css'))
+            .pipe(notify({message: 'Task compile bootstrap-select less done'}));
+    });
+});
+gulp.task('build-less', function () {
+    gulp.start('less');
+    gulp.start('less-bootstrap-select');
+});

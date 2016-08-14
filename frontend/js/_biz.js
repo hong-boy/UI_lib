@@ -33,6 +33,14 @@ $(function () {
         checkboxClass: 'icheckbox_normal',
         labelHover: false
     });
+
+    //下拉列表 - 单选
+    $('#single_dropdown').selectpicker();
+    //下拉列表 - 多选
+    $('#multi_drowdown').selectpicker();
+    $('#multi1_drowdown').selectpicker();
+    $('#multi2_drowdown').selectpicker();
+    $('#multi3_drowdown').selectpicker();
 });
 
 $(function () {

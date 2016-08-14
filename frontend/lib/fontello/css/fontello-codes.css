@@ -1,35 +1,91 @@
 
-.icon-play:before{ content:'\e800'; }
+.icon-play:before {
+    content: '\e800';
+}
+
 /* '' */
-.icon-user:before{ content:'\e801'; }
+.icon-user:before {
+    content: '\e801';
+}
+
 /* '' */
-.icon-plus:before{ content:'\e809'; }
+.icon-ok-1:before {
+    content: '\e802';
+}
+
+/* '' */
+.icon-plus:before {
+    content: '\e809';
+}
+
 /* '' */
-.icon-minus:before{ content:'\e80a'; }
+.icon-minus:before {
+    content: '\e80a';
+}
+
 /* '' */
-.icon-failure-circled:before{ content:'\e80c'; }
+.icon-failure-circled:before {
+    content: '\e80c';
+}
+
 /* '' */
-.icon-edit:before{ content:'\e80f'; }
+.icon-edit:before {
+    content: '\e80f';
+}
+
 /* '' */
-.icon-reset-pwd:before{ content:'\e810'; }
+.icon-reset-pwd:before {
+    content: '\e810';
+}
+
 /* '' */
-.icon-delete:before{ content:'\e811'; }
+.icon-delete:before {
+    content: '\e811';
+}
+
 /* '' */
-.icon-angle-double-right:before{ content:'\e814'; }
+.icon-angle-double-right:before {
+    content: '\e814';
+}
+
 /* '' */
-.icon-arrow-down:before{ content:'\e82d'; }
+.icon-arrow-down:before {
+    content: '\e82d';
+}
+
 /* '' */
-.icon-png-left:before{ content:'\e831'; }
+.icon-png-left:before {
+    content: '\e831';
+}
+
 /* '' */
-.icon-png-right:before{ content:'\e832'; }
+.icon-png-right:before {
+    content: '\e832';
+}
+
 /* '' */
-.icon-warning:before{ content:'\e833'; }
+.icon-warning:before {
+    content: '\e833';
+}
+
 /* '' */
-.icon-loading:before{ content:'\e834'; }
+.icon-loading:before {
+    content: '\e834';
+}
+
 /* '' */
-.icon-waiting:before{ content:'\e835'; }
+.icon-waiting:before {
+    content: '\e835';
+}
+
 /* '' */
-.icon-date:before{ content:'\e836'; }
+.icon-date:before {
+    content: '\e836';
+}
+
 /* '' */
-.icon-ok:before{ content:'\e837'; }
+.icon-ok:before {
+    content: '\e837';
+}
+
 /* '' */
