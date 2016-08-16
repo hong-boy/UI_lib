@@ -41,6 +41,27 @@ $(function () {
     $('#multi1_drowdown').selectpicker();
     $('#multi2_drowdown').selectpicker();
     $('#multi3_drowdown').selectpicker();
+
+
+    //时间日期
+    $.datetimepicker.setLocale('zh');
+    $('#my_date').datetimepicker({
+        format: 'Y-m-d',
+        formatDate: 'Y-m-d',
+        timepicker: false
+    });
+
+    //消息提示
+    $('#succ_msg_btn').unbind('click').bind('click', function () {
+        IOT.tips('重置密码成功，新密码已下发至联系人邮箱...', 'success', 3000, function () {
+            console.log('hidden...');
+        });
+    });
+    $('#error_msg_btn').unbind('click').bind('click', function () {
+        IOT.tips('重置密码失败，请稍后再试...', 'error', 3000, function () {
+            console.log('hidden...');
+        });
+    });
 });
 
 $(function () {

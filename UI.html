@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>UI</title>
     <link rel="stylesheet" type="text/css" href="frontend/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="frontend/lib/dateTimePicker/jquery.datetimepicker.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/icheck/css/icheck.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/bootstrap-select/css/bootstrap-select.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/fontello/css/fontello.css">
@@ -67,7 +68,7 @@
                             <em>警告</em>
                         </div>
                         <div class="item">
-                            <i class="icon-failure-circled error-text"></i>
+                            <i class="icon-error error-text"></i>
                             <em>错误</em>
                         </div>
                     </div>
@@ -355,26 +356,66 @@
                 <div class="chunk"></div>
             </div>
             <pre>
-使用bootstrap-select插件来初始化<a href="http://silviomoreto.github.io/bootstrap-select/examples/" target="_blank">Demo</a>
+插件: bootstrap-select(<a href="http://silviomoreto.github.io/bootstrap-select/examples/" target="_blank">Demo</a>)
 依赖: fontello、bootstrap
             </pre>
         </div>
         <h2 class="h2">时间日期</h2>
-
         <div class="dashboard date-wrap" id="date_wrap">
             <div class="m-case">
                 <div class="chunk">
                     <h2 class="chunk-header h2">日期</h2>
-
                     <div class="chunk-content">
                         <div class="chunk-row">
                             <label>选项 :</label>
-                            <input type="date"/>
+                            <input type="text" id="my_date" placeholder="请选择日期"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk"></div>
+                <div class="chunk"></div>
+            </div>
+            <pre>使用dateTimePicker插件来初始化<a href="http://www.jq22.com/yanshi332" target="_blank">Demo</a></pre>
+        </div>
+        <h2 class="h2">消息提示</h2>
+        <div class="dashboard msg-wrap" id="msg_wrap">
+            <div class="m-case">
+                <div class="chunk">
+                    <h2 class="chunk-header h2">消息</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <button type="button" id="succ_msg_btn" class="btn btn-default">成 功</button>
+                        </div>
+                        <div class="chunk-row">
+                            <button type="button" id="error_msg_btn" class="btn btn-default">错 误</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk"></div>
+                <div class="chunk"></div>
+            </div>
+            <pre>
+插件: IOT.tips
+            </pre>
+        </div>
+        <h2 class="h2">蒙层-加载中</h2>
+        <div class="dashboard overlay-wrap" id="overlay_wrap">
+            <div class="m-case">
+                <div class="chunk">
+                    <h2 class="chunk-header h2">消息</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <button type="button" id="succ_msg_btn" class="btn btn-default">成 功</button>
+                        </div>
+                        <div class="chunk-row">
+                            <button type="button" id="error_msg_btn" class="btn btn-default">错 误</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <pre>使用iCheck插件来初始化单选、复选框</pre>
+            <pre>
+插件: IOT.overlay
+            </pre>
         </div>
     </div>
 </div>
@@ -382,6 +423,7 @@
 <script type="text/javascript" src="frontend/lib/jquery.1.11.min.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="frontend/lib/icheck/icheck.js"></script>
+<script type="text/javascript" src="frontend/lib/dateTimePicker/jquery.datetimepicker.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap-select/js/bootstrap-select.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap-select/js/i18n/defaults-zh_CN.min.js"></script>
 <script type="text/javascript" src="frontend/js/_core.js"></script>

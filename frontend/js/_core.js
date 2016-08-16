@@ -102,3 +102,218 @@
         return methods[method].call(methods, $(this).first(), option);
     };
 })(jQuery);
+
+/**
+ * 扩展原生类型
+ * 'e' stands for 'extend'
+ */
+(function () {
+    /**
+     * 将字符串中的占位符转换为给定字符
+     * @param str 目标字符串 形如：'/users/{0}?password={1}'，其中0\1代表占位符所对应的参数的顺序
+     * @returns {*} 返回一个新的字符串
+     */
+    String.prototype.eFormat = function () {
+        var str = this;
+        if (!str || !str.length) {
+            return str;
+        }
+        for (var tempStr = str, i = 0, len = arguments.length; i < len; i++) {
+            tempStr = tempStr.replace(new RegExp("\\{" + i + "\\}", "g"), arguments[i]);
+        }
+        return tempStr;
+    }
+})();
+
+/**
+ * 消息提示框 - IOTips
+ */
+(function (window, $, undefined) {
+    var COUNTER = 1; //计数器
+    var role = 'iotips'; //tag标记
+    var DEFAULTS = {
+        ns: 'iot-tips', //命名空间
+        type: 'error', //消息类型，支持：success | error
+        content: '',
+        parent: '#msg_wrap', //容器
+        time: 3000, //显示时长，false: 表示不自动关闭
+        icon: '', //false: 不显示icon
+        overlay: false, //是否需要显示蒙层，形如：['#000', 0.4]
+        enableMultiple: false, //是否同时显示多条消息
+        zIndex: 20160816, //Z轴高度
+        //closable: false, //是否需要手动关闭消息框 *
+        onHide: null //回调函数，消息框消失之后的回调
+    };
+    window.IOTips = function (option) {
+        this.id = COUNTER++;
+        this.option = $.extend(true, {}, DEFAULTS, option);
+    };
+
+    /**
+     * 根据消息类型生成消息框class
+     * @param option
+     * @returns {{clazz: string, icon: string}}
+     */
+    var genDialogClazz = function (option) {
+        var clazz = '', iconClazz = '';
+        switch (option.type) {
+            case 'success':
+            {
+                clazz = 'iotips-success';
+                iconClazz = 'icon-ok succ-text';
+                break;
+            }
+            case 'error':
+            {
+            }
+            default:
+            {
+                clazz = 'iotips-error';
+                iconClazz = 'icon-warning warning-text';
+                break;
+            }
+        }
+        option.icon && (iconClazz = option.icon);
+        return {clazz: clazz, icon: iconClazz};
+    };
+
+    /**
+     * 创建消息框
+     * @param option
+     */
+    var createDialog = function (dtd, option, id) {
+        var ns = option.ns,
+            domId = [ns, id].join('_'),
+            $vDom = $('#' + domId),
+            dialogClazz = genDialogClazz(option),
+            $content = $('<em class="iotips-content">{0}</em>'.eFormat(option.content)),
+            $dialog = $('<div class="iotips-layer {0}-cust-layer {1}"></div>'.eFormat(ns, dialogClazz.clazz)),
+            $overlay = '',
+            $icon = $('<i class="icon {0}"></i>'.eFormat(dialogClazz.icon));
+        $vDom = $vDom.length ? $vDom : $('<div id="{0}" class="iotips-layer-wrapper" data-role="{1}"></div>'.eFormat(domId, role));
+        !option.enableMultiple && $('{0} [data-role="{1}"]'.eFormat(option.parent, role)).not('#' + domId).each(function () {
+            $(this).remove()
+        });
+        if (option.overlay && option.overlay.length > 1) {
+            var overlayArr = option.overlay;
+            $overlay = $('<div class="iotips-layer-overlay {0}-overlay"></div>'.eFormat(ns)).css({
+                backgroundColor: overlayArr[0] || '#000',
+                opacity: $.isNumeric(overlayArr[1]) ? overlayArr[1] : 0.4
+            });
+            $vDom.css({
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%'
+            });
+        }
+        $vDom.fadeOut(function () {
+            $dialog.append($icon).append($content).css('z-index', option.zIndex);
+            $vDom.empty().append($overlay).append($dialog).css('z-index', option.zIndex - 1);
+            dtd.resolve($vDom);
+        });
+        return dtd;
+    };
+    /**
+     * 关闭全部
+     */
+    IOTips.hideAll = function () {
+        $('[data-role="{0}"]'.eFormat(role)).each(function () {
+            var instance = $(this).data('instance');
+            if (instance instanceof IOTips) {
+                instance.hide();
+            } else {
+                $(this).remove();
+            }
+        });
+    };
+    /**
+     * 显示消息
+     * @param option {Object} 配置项（可选）
+     */
+    IOTips.prototype.show = function (option) {
+        var thiz = this,
+            dtd = $.Deferred();
+        $.extend(true, thiz.option, option);
+        $.when(createDialog(dtd, thiz.option, thiz.id))
+            .done(function ($dom) {
+                var parent = thiz.option.parent,
+                    $parent = $(parent);
+                $dom.data('instance', thiz);
+                if (parent !== 'body' && parent !== 'html') {
+                    $parent.css({
+                        position: 'relative'
+                    });
+                    $dom.css({
+                        position: 'absolute'
+                    });
+                }
+                $dom.appendTo($parent).fadeIn();
+            })
+            .done(function () {
+                //开启定时器
+                thiz.option.time && setTimeout(function () {
+                    thiz.hide();
+                }, thiz.option.time);
+            });
+
+        return thiz;
+    };
+    /**
+     * 关闭消息框
+     */
+    IOTips.prototype.hide = function () {
+        var thiz = this,
+            ns = thiz.option.ns,
+            $dom = $('#{0}_{1}'.eFormat(ns, thiz.id));
+        $dom.fadeOut(function () {
+            $dom.remove();
+            $.isFunction(thiz.option.onHide) && thiz.option.onHide();
+        });
+    };
+})(window, jQuery, undefined);
+
+/**
+ * 加载中 - $.fn.IOTLoading
+ */
+(function (window, $, undefined) {
+    var COUNTER = 1;
+    var DEFAULTS = {
+        content: '加载中...', //显示的文本
+        icon: '', //spinner图标，false: 表示不显示
+        overlay: false, //是否显示蒙层，形如：['#000', 0.4]
+        parent: 'body', //容器
+        enableMultiple: false, //是否允许多个实例同时显示在页面上(同一容器下)
+        onHide: null //回调
+    };
+    window.IOTLoading = function (option) {
+        this.id = COUNTER++;
+        this.option = $.extend(true, {}, DEFAULTS, option);
+    };
+    //TODO - show
+
+})(window, $, undefined);
+
+window.IOT = {
+    /**
+     * 消息提示
+     * @param content{String|Object} 显示内容|配置对象（形如：{}）
+     * @param type {String} 消息类型 包括：'success'|'error'，默认：error
+     * @param time {Number} 显示{time}毫秒后自动消失
+     * @param end {Function} 回调函数(消息提示框消失后立即执行)
+     */
+    tips: function (content, type, time, end) {
+        var instance = null;
+        if ($.isPlainObject(content)) {
+            instance = new window.IOTips(content);
+        } else {
+            instance = new window.IOTips({
+                content: content,
+                type: type,
+                time: time || 3000,
+                onHide: end
+            });
+        }
+        return instance.show();
+    }
+};
