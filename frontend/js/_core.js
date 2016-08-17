@@ -1,9 +1,31 @@
 'use strict';
 /**
+ * 扩展原生类型
+ * 'e' stands for 'extend'
+ */
+(function () {
+    /**
+     * 将字符串中的占位符转换为给定字符
+     * @param str 目标字符串 形如：'/users/{0}?password={1}'，其中0\1代表占位符所对应的参数的顺序
+     * @returns {*} 返回一个新的字符串
+     */
+    String.prototype.eFormat = function () {
+        var str = this;
+        if (!str || !str.length) {
+            return str;
+        }
+        for (var tempStr = str, i = 0, len = arguments.length; i < len; i++) {
+            tempStr = tempStr.replace(new RegExp("\\{" + i + "\\}", "g"), arguments[i]);
+        }
+        return tempStr;
+    }
+})();
+
+/**
  * 滑动开关按钮
  * jQuery.slideBtn
  */
-(function () {
+(function ($) {
     var SPLITER = '_';
     var defaults = {
         ns: '', //命名空间
@@ -104,26 +126,123 @@
 })(jQuery);
 
 /**
- * 扩展原生类型
- * 'e' stands for 'extend'
+ * 带加载效果的按钮
+ * jQuery.spinner
  */
-(function () {
-    /**
-     * 将字符串中的占位符转换为给定字符
-     * @param str 目标字符串 形如：'/users/{0}?password={1}'，其中0\1代表占位符所对应的参数的顺序
-     * @returns {*} 返回一个新的字符串
-     */
-    String.prototype.eFormat = function () {
-        var str = this;
-        if (!str || !str.length) {
-            return str;
+(function ($) {
+    var DATA_TAG = 'loadingBtn'; //tag
+    //ps: 自定义的JS配置项的优先级高于自定义的DOM节点配置项
+    var DEFAULTS = {
+        spinner: {
+            size: 24, //spinner尺寸 对应的DOM节点属性：data-spinner-size
+            color: '#FFF', //spinner颜色 data-spinner-color
+            lines: 12 //spinner线条数量 data-spinner-lines
+        },
+        timeout: 5 * 60 * 1000, //超时时长（ms） data-spinner-timeout
+        timeoutCallback: null //超时后需要执行的回调函数
+    };
+
+    //创建spinner
+    var createSpinner = function ($dom, option) {
+        var spinnerColor, spinnerLines, height = $dom.outerHeight(), opts = option.spinner;
+
+        if (height === 0) {
+            height = parseFloat($dom.css('height'));
         }
-        for (var tempStr = str, i = 0, len = arguments.length; i < len; i++) {
-            tempStr = tempStr.replace(new RegExp("\\{" + i + "\\}", "g"), arguments[i]);
+
+        if (height > 32) {
+            height *= 0.8;
         }
-        return tempStr;
-    }
-})();
+
+        if (opts.size) {
+            height = parseInt(opts.size, 10);
+        }
+
+        if (opts.color) {
+            spinnerColor = opts.color;
+        }
+
+        if (opts.lines) {
+            spinnerLines = parseInt(opts.lines, 10);
+        }
+
+        var radius = height * 0.2,
+            length = radius * 0.6,
+            width = radius < 7 ? 2 : 3;
+
+        return new Spinner({
+            color: spinnerColor || '#fff',
+            lines: spinnerLines || 12,
+            radius: radius,
+            length: length,
+            width: width,
+            zIndex: 'auto',
+            top: '50%',
+            left: '50%'
+        });
+    };
+
+    var startTick = function (dom, time) {
+        var timer = setTimeout(function () {
+            this.spinner('stop');
+            var option = this.data(DATA_TAG);
+            option.timeoutCallback && option.timeoutCallback(this);
+        }.bind(dom), time);
+        dom.data('{0}timer'.eFormat(DATA_TAG), timer);
+    };
+    var clearTick = function (dom) {
+        clearTimeout(dom.data('{0}timer'.eFormat(DATA_TAG)));
+    };
+    var methods = {
+        create: function (dom, option) {
+            if (!$.isPlainObject(dom.data(DATA_TAG))) {
+                var nodeOption = {
+                    spinner: {
+                        size: dom.attr('data-spinner-size'),
+                        color: dom.attr('data-spinner-color'),
+                        lines: dom.attr('data-spinner-lines')
+                    },
+                    timeout: dom.attr('data-spinner-timeout')
+                };
+                option = $.extend(true, {}, DEFAULTS, nodeOption, option);
+                var $label = $('<span class="loading-btn-label"></span>'),
+                    $spinner = $('<span class="loading-btn-spinner"></span>');
+                $label.html(dom.html());
+                createSpinner(dom, option).spin($spinner[0]);
+                dom.addClass('loading-btn').data(DATA_TAG, option);
+                dom.empty().append($label).append($spinner);
+            }
+            return dom;
+        },
+        start: function (dom) {
+            var option = dom.data(DATA_TAG);
+            if ($.isPlainObject(option)) {
+                var bgColor = dom.css('background-color');
+                dom.attr('disabled', true).attr('data-loading', true).css('background-color', bgColor);
+                startTick(dom, option.timeout);
+            } else {
+                console.error('option is empty', option);
+            }
+            return dom;
+        },
+        stop: function (dom) {
+            clearTick(dom);
+            dom.removeAttr('data-loading').removeAttr('disabled');
+            return dom;
+        },
+        isLoading: function (dom) {
+            return dom[0].hasAttribute('data-loading');
+        },
+        destroy: function (dom) {
+            var text = dom.find('.loading-btn-label').html();
+            $.isPlainObject(dom.data(DATA_TAG)) && dom.spinner('stop').data(DATA_TAG, null).empty().html(text);
+            return dom;
+        }
+    };
+    $.fn.spinner = function (method, option) {
+        return methods[method].call(null, $(this).first(), option);
+    };
+})(jQuery);
 
 /**
  * 消息提示框 - IOTips
@@ -135,7 +254,7 @@
         ns: 'iot-tips', //命名空间
         type: 'error', //消息类型，支持：success | error
         content: '',
-        parent: '#msg_wrap', //容器
+        parent: 'body', //容器
         time: 3000, //显示时长，false: 表示不自动关闭
         icon: '', //false: 不显示icon
         overlay: false, //是否需要显示蒙层，形如：['#000', 0.4]
@@ -274,15 +393,18 @@
 })(window, jQuery, undefined);
 
 /**
- * 加载中 - $.fn.IOTLoading
+ * 加载中 - window.IOTLoading
  */
 (function (window, $, undefined) {
     var COUNTER = 1;
+    var ROLE = 'iotloading'; //tag
     var DEFAULTS = {
+        ns: 'iot-loading',
         content: '加载中...', //显示的文本
         icon: '', //spinner图标，false: 表示不显示
         overlay: false, //是否显示蒙层，形如：['#000', 0.4]
         parent: 'body', //容器
+        timeout: 5 * 60 * 1000, //最大等待时长（ms），默认5mins；false：表示永不过期
         enableMultiple: false, //是否允许多个实例同时显示在页面上(同一容器下)
         onHide: null //回调
     };
@@ -290,9 +412,28 @@
         this.id = COUNTER++;
         this.option = $.extend(true, {}, DEFAULTS, option);
     };
-    //TODO - show
 
-})(window, $, undefined);
+    var createDialog = function (dtd, option, id) {
+        var ns = option.ns,
+            icon = option.icon,
+            domId = [ns, id].join('_'),
+            $vDom = $('<div class="iotloading-wrapper" id="{0}" data-role="{1}"></div>'.eFormat(domId, ROLE)),
+            $dialog = $('<div class="iotloading-dialog"></div>'),
+            $icon = $('<i class="icon {0}"></i>'.eFormat());
+
+        return dtd;
+    };
+
+    IOTLoading.prototype.show = function () {
+        var thiz = this,
+            dtd = $.Deferred();
+        $.when(createDialog(dtd, thiz.option, thiz.id))
+            .done(function ($dom) {
+
+            })
+    };
+
+})(window, jQuery, undefined);
 
 window.IOT = {
     /**

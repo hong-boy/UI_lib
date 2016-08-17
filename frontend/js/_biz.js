@@ -23,6 +23,27 @@ $(function () {
         changed: null
     };
     $('#slide_btn_wrapper').slideBtn('init', option);
+    //基础组件 - 带加载效果的按钮
+    $('#btn_load, #btn_load1, #btn_load2').click(function () {
+        $(this).spinner('create').spinner('start');
+        //var ladda = $(this).data('ladda') || Ladda.create(this);
+        //ladda.start();
+        //$(this).data('ladda', ladda);
+        //setTimeout(function(){
+        //    ladda.stop();
+        //}, 300000);
+        return false;
+    });
+    $('#btn_loading').click(function () {
+        var ladda = $(this).data('ladda') || Ladda.create(this);
+        ladda.start();
+        $(this).data('ladda', ladda);
+        setTimeout(function () {
+            ladda.stop();
+        }, 300000);
+        return false;
+    });
+
 
     // - 单选、复选
     $('#chk_radio_wrap input:radio').iCheck({

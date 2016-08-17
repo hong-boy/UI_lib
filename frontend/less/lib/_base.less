@@ -7,10 +7,10 @@
 @succTextColor:#45cbcd; //成功文本字体颜色
 
 //弹性布局
-.flexlayout(@flex, @direction, @alignItems, @justifyContent) {
+.flexlayout(@flex, @direction, @alignItems, @justifyContent, @flexWrap:wrap) {
   display:@flex;
   flex-direction:@direction;
   align-items:@alignItems;
   justify-content:@justifyContent;
+  flex-wrap:@flexWrap;
 }
-;
