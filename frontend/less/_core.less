@@ -18,6 +18,16 @@
     font-weight:bold;
     color:@fontColor;
   }
+  .align-middle{ //元素垂直居中
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+  }
+  .align-center{ //元素水平居中
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+  }
   .comments-text{ //注释文本样式
     font-size:12px;
     color:@commentsTextColor;
@@ -247,7 +257,7 @@
       }
     }
   }
-  .iotips-layer-wrapper{
+  .iotips-layer-wrapper{ //消息提示框
     position:fixed;
     top:50%;
     left:50%;
@@ -278,7 +288,76 @@
       }
     }
   }
-  .animate-spinner{ //旋转动画
+  .iot-loading-wrapper{ //蒙层
+    position:absolute;
+    z-index:20160818;
+    &.iot-loading-theme-simple{ //普通加载框
+      @dialogHeight:60px; //progress高度
+      @dialogWidth:180px; //progress宽度
+      @bgProgColor:#FFF; //progress背景色
+      width:100%;
+      height:100%;
+      top:0;
+      .iot-loading-overlay{
+        position:absolute;
+        width:100%;
+        height:100%;
+        top:0;
+      }
+      .iot-loading-progress{
+        position:relative;
+        left:50%;
+        top:50%;
+        transform:translate(-50%, -50%);
+        width:@dialogWidth;
+        height:@dialogHeight;
+        border-radius:2px;
+        border:1px solid #ccc;
+        background-color:@bgProgColor;
+        z-index:10;
+        pointer-events:none;
+        text-align:left;
+        line-height:60px;
+        padding-left:15px;
+        .iot-loading-spinner{
+          position:relative;
+          left:15px;
+          top:-5px;
+          display:inline-block;
+          width:32px;
+        }
+        .iot-loading-content{
+          margin-left:21px;
+        }
+      }
+    }
+    &.iot-loading-theme-navbar{ //导航条样式
+      @bgNavbarColor:#30aedc; //导航条背景色
+      position:fixed;
+      top:0;
+      width:100%;
+      height:5px;
+      .iot-loading-progress{
+        position:absolute;
+        width:100%;
+        height:100%;
+        background-color:@bgNavbarColor;
+        transition:width 0.4s linear;
+        .progress-inner{ }
+      }
+    }
+    .iot-loading-progress{
+      .progress-inner{ }
+    }
+    .iot-loading-activity{ }
+  }
+  .e-spin-wrap{ //蒙层加载中-内联样式
+    position:relative;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+  }
+  .animate-spin{ //旋转动画
     -moz-animation:spin 5s infinite linear;
     -o-animation:spin 5s infinite linear;
     -webkit-animation:spin 5s infinite linear;
@@ -286,7 +365,7 @@
     display:inline-block
   }
 
-  @-moz-keyframes spin{
+  @-moz-keyframes spin{ //旋转动画效果
     0%{
       -moz-transform:rotate(0deg);
       -o-transform:rotate(0deg);
@@ -301,7 +380,7 @@
     }
   }
 
-  @-webkit-keyframes spin{
+  @-webkit-keyframes spin{ //旋转动画效果
     0%{
       -moz-transform:rotate(0deg);
       -o-transform:rotate(0deg);
@@ -316,7 +395,7 @@
     }
   }
 
-  @-o-keyframes spin{
+  @-o-keyframes spin{ //旋转动画效果
     0%{
       -moz-transform:rotate(0deg);
       -o-transform:rotate(0deg);
@@ -331,7 +410,7 @@
     }
   }
 
-  @-ms-keyframes spin{
+  @-ms-keyframes spin{ //旋转动画效果
     0%{
       -moz-transform:rotate(0deg);
       -o-transform:rotate(0deg);

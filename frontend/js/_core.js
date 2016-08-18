@@ -1,7 +1,7 @@
 'use strict';
 /**
  * 扩展原生类型
- * 'e' stands for 'extend'
+ * 'ex' stands for 'extend'
  */
 (function () {
     /**
@@ -9,7 +9,7 @@
      * @param str 目标字符串 形如：'/users/{0}?password={1}'，其中0\1代表占位符所对应的参数的顺序
      * @returns {*} 返回一个新的字符串
      */
-    String.prototype.eFormat = function () {
+    String.prototype.exFormat = function () {
         var str = this;
         if (!str || !str.length) {
             return str;
@@ -128,6 +128,7 @@
 /**
  * 带加载效果的按钮
  * jQuery.spinner
+ * @dependency: window.Spinner|String.prototype.exFormat
  */
 (function ($) {
     var DATA_TAG = 'loadingBtn'; //tag
@@ -188,10 +189,10 @@
             var option = this.data(DATA_TAG);
             option.timeoutCallback && option.timeoutCallback(this);
         }.bind(dom), time);
-        dom.data('{0}timer'.eFormat(DATA_TAG), timer);
+        dom.data('{0}timer'.exFormat(DATA_TAG), timer);
     };
     var clearTick = function (dom) {
-        clearTimeout(dom.data('{0}timer'.eFormat(DATA_TAG)));
+        clearTimeout(dom.data('{0}timer'.exFormat(DATA_TAG)));
     };
     var methods = {
         create: function (dom, option) {
@@ -227,7 +228,7 @@
         },
         stop: function (dom) {
             clearTick(dom);
-            dom.removeAttr('data-loading').removeAttr('disabled');
+            dom.removeAttr('data-loading').removeAttr('disabled').css('background-color', '');
             return dom;
         },
         isLoading: function (dom) {
@@ -246,6 +247,7 @@
 
 /**
  * 消息提示框 - IOTips
+ * @dependency: String.prototype.exFormat
  */
 (function (window, $, undefined) {
     var COUNTER = 1; //计数器
@@ -305,17 +307,17 @@
             domId = [ns, id].join('_'),
             $vDom = $('#' + domId),
             dialogClazz = genDialogClazz(option),
-            $content = $('<em class="iotips-content">{0}</em>'.eFormat(option.content)),
-            $dialog = $('<div class="iotips-layer {0}-cust-layer {1}"></div>'.eFormat(ns, dialogClazz.clazz)),
+            $content = $('<em class="iotips-content">{0}</em>'.exFormat(option.content)),
+            $dialog = $('<div class="iotips-layer {0}-cust-layer {1}"></div>'.exFormat(ns, dialogClazz.clazz)),
             $overlay = '',
-            $icon = $('<i class="icon {0}"></i>'.eFormat(dialogClazz.icon));
-        $vDom = $vDom.length ? $vDom : $('<div id="{0}" class="iotips-layer-wrapper" data-role="{1}"></div>'.eFormat(domId, role));
-        !option.enableMultiple && $('{0} [data-role="{1}"]'.eFormat(option.parent, role)).not('#' + domId).each(function () {
+            $icon = $('<i class="icon {0}"></i>'.exFormat(dialogClazz.icon));
+        $vDom = $vDom.length ? $vDom : $('<div id="{0}" class="iotips-layer-wrapper" data-role="{1}"></div>'.exFormat(domId, role));
+        !option.enableMultiple && $('{0} [data-role="{1}"]'.exFormat(option.parent, role)).not('#' + domId).each(function () {
             $(this).remove()
         });
         if (option.overlay && option.overlay.length > 1) {
             var overlayArr = option.overlay;
-            $overlay = $('<div class="iotips-layer-overlay {0}-overlay"></div>'.eFormat(ns)).css({
+            $overlay = $('<div class="iotips-layer-overlay {0}-overlay"></div>'.exFormat(ns)).css({
                 backgroundColor: overlayArr[0] || '#000',
                 opacity: $.isNumeric(overlayArr[1]) ? overlayArr[1] : 0.4
             });
@@ -337,7 +339,7 @@
      * 关闭全部
      */
     IOTips.hideAll = function () {
-        $('[data-role="{0}"]'.eFormat(role)).each(function () {
+        $('[data-role="{0}"]'.exFormat(role)).each(function () {
             var instance = $(this).data('instance');
             if (instance instanceof IOTips) {
                 instance.hide();
@@ -384,7 +386,7 @@
     IOTips.prototype.hide = function () {
         var thiz = this,
             ns = thiz.option.ns,
-            $dom = $('#{0}_{1}'.eFormat(ns, thiz.id));
+            $dom = $('#{0}_{1}'.exFormat(ns, thiz.id));
         $dom.fadeOut(function () {
             $dom.remove();
             $.isFunction(thiz.option.onHide) && thiz.option.onHide();
@@ -398,29 +400,174 @@
 (function (window, $, undefined) {
     var COUNTER = 1;
     var ROLE = 'iotloading'; //tag
+    var THEME_SIMPLE = 1; //普通加载框
+    var THEME_PROGRESS_BAR = 2; //页面进度条
+    var THEME_NAVBAR = 3; //导航条细线
     var DEFAULTS = {
         ns: 'iot-loading',
+        theme: THEME_SIMPLE, //显示风格
         content: '加载中...', //显示的文本
-        icon: '', //spinner图标，false: 表示不显示
-        overlay: false, //是否显示蒙层，形如：['#000', 0.4]
-        parent: 'body', //容器
-        timeout: 5 * 60 * 1000, //最大等待时长（ms），默认5mins；false：表示永不过期
+        spinner: {//spinner图标（当style=STYLE_SIMPLE时有效）参考Spinner.js配置项
+            color: '#333',
+            lines: 12,
+            top: '50%',
+            left: '50%'
+        },
+        overlay: ['#000', 0.4], //是否显示蒙层，形如：['#000', 0.4]，false: 表示不显示
+        parent: 'body', //依附的容器
+        timeout: 50 * 60 * 1000, //最大等待时长（ms），默认5mins；false：表示永不过期
         enableMultiple: false, //是否允许多个实例同时显示在页面上(同一容器下)
         onHide: null //回调
     };
     window.IOTLoading = function (option) {
+        this.dom = null;
         this.id = COUNTER++;
         this.option = $.extend(true, {}, DEFAULTS, option);
     };
+    IOTLoading.THEME_SIMPLE = THEME_SIMPLE;
+    IOTLoading.THEME_PROGRESS_BAR = THEME_PROGRESS_BAR;
+    IOTLoading.THEME_NAVBAR = THEME_NAVBAR;
+    /**
+     * 获取DOM模板
+     * @returns {string}
+     */
+    var genTemplate = function () {
+        var tplArr = [
+            '<div class="iot-loading-wrapper" data-role="{0}">'.exFormat(ROLE),
+            '<div class="iot-loading-progress">',
+            '<div class="progress-inner"></div>',
+            '</div>',
+            '<div class="iot-loading-activity"></div>',
+            '</div>'
+        ];
+        return tplArr.join('');
+    };
+    var genSpinnerOption = function ($dom, option) {
+        var spinnerOption = option.spinner,
+            height = 28,
+            radius = height * 0.2,
+            length = radius * 0.6,
+            width = radius < 7 ? 2 : 3,
+            opts = {
+                radius: radius,
+                length: length,
+                width: width,
+                zIndex: 'auto'
+            };
+        return $.extend({}, opts, spinnerOption);
+    };
+    //创建普通加载框
+    var createSimpleDialog = function (dtd, option, id) {
+        var $wrapper = $(option.parent).find('> .iot-loading-wrapper');
+        if (option.enableMultiple || $wrapper.length < 1) {
+            var theme = 'iot-loading-theme-simple',
+                ns = option.ns,
+                domId = [ns, id].join('_'),
+                overlay = option.overlay,
+                $parent = $(option.parent),
+                $dom = $(genTemplate()).addClass(theme).attr('id', domId).css('visibility', 'hidden').appendTo($parent),
+                $progress = $dom.find('.iot-loading-progress').empty(),
+                $spin = $('<span class="iot-loading-spinner"></span>').appendTo($progress),
+                $content = $('<em class="iot-loading-content">{0}</em>'.exFormat(option.content)).appendTo($progress);
+            //render spinner
+            new window.Spinner(genSpinnerOption($progress, option)).spin($spin[0]);
+            //render overlay
+            if (overlay && overlay.length > 1) {
+                $dom.css('pointer-events', 'inherit');
+                var $overlay = $('<div class="iot-loading-overlay"></div>').appendTo($dom);
+                $overlay.css({
+                    backgroundColor: overlay[0],
+                    opacity: overlay[1]
+                });
+            } else {
+                $dom.css('pointer-events', 'none');
+            }
+            $wrapper = $dom;
+            setTimeout(function () {//TODO enhancement
+                dtd.resolve($wrapper);
+            }, 0);
+        } else {
+            console.warn('Cannot create more loading dialog...');
+            setTimeout(function () {//TODO enhancement
+                dtd.reject($wrapper);
+            }, 0);
+        }
+        return dtd;
+    };
 
-    var createDialog = function (dtd, option, id) {
-        var ns = option.ns,
-            icon = option.icon,
+    //创建导航条加载框
+    var createNavbarDialog = function (dtd, option, id) {
+        var theme = 'iot-loading-theme-navbar',
+            ns = option.ns,
+            $parent = $(option.parent),
             domId = [ns, id].join('_'),
-            $vDom = $('<div class="iotloading-wrapper" id="{0}" data-role="{1}"></div>'.eFormat(domId, ROLE)),
-            $dialog = $('<div class="iotloading-dialog"></div>'),
-            $icon = $('<i class="icon {0}"></i>'.eFormat());
+            $dom = $(genTemplate()).addClass(theme).attr('id', domId);
+        $dom.find('.iot-loading-progress').css('width', 0);
+        $dom.hide().appendTo($parent);
+        setTimeout(function () {//TODO enhancement
+            dtd.resolve($dom);
+        }, 0);
+        return dtd;
+    };
 
+    //创建加载框
+    var createDialog = function (dtd, option, id) {
+        var theme = option.theme;
+        var $parent = $(option.parent),
+            parentPos = $parent.css('position');
+        if (option.parent !== 'body' && parentPos === 'static') {
+            $parent.css('position', 'relative');
+        }
+        switch (theme) {
+            case THEME_SIMPLE:
+            {
+                var promise = $.Deferred();
+                $.when(createSimpleDialog(promise, option, id))
+                    .done(function ($dom) {
+                        //caculate width
+                        var scale = 0.7;
+                        var $progress = $dom.find('.iot-loading-progress');
+                        var currContentWidth = $dom.css('height', 0).find('em').first().css('width');
+                        $dom.hide().css('height', '100%').css('visibility', 'visible');
+                        var minWidth = ((parseInt(currContentWidth) + 32) / scale).toFixed(0);
+                        if (minWidth % 2) {
+                            minWidth++;
+                        }
+                        $progress.css({minWidth: (minWidth + 'px')});
+                    })
+                    .fail(function ($dom) {
+                        //Do nothing
+                    })
+                    .always(function ($dom) {
+                        option.parent === 'body' && $dom.css('position', 'fixed');
+                        dtd.resolve($dom);
+                    });
+                break;
+            }
+            case THEME_NAVBAR:
+            {
+                var promise = $.Deferred();
+                $.when(createNavbarDialog(promise, option, id))
+                    .done(function ($dom) {
+
+                    })
+                    .always(function ($dom) {
+                        dtd.resolve($dom);
+                    });
+                break;
+            }
+            case THEME_PROGRESS_BAR:
+            {
+                break;
+            }
+            default:
+            {
+                setTimeout(function () {
+                    dtd.reject(new Error('Theme [%s] is not found!', theme));
+                }, 0);
+                break;
+            }
+        }
         return dtd;
     };
 
@@ -429,8 +576,39 @@
             dtd = $.Deferred();
         $.when(createDialog(dtd, thiz.option, thiz.id))
             .done(function ($dom) {
-
+                $dom.fadeIn();
+                thiz.dom = $dom;
             })
+            .done(function ($dom) {
+                clearTimeout($dom.data('timer'));
+                var timer = thiz.option.timeout && setTimeout(function () {
+                        thiz.hide();
+                    }, thiz.option.timeout);
+                $dom.data('timer', timer);
+            })
+            .fail(function (err) {
+                console.error(err);
+            });
+    };
+
+    IOTLoading.prototype.hide = function () {
+        this.dom && this.dom.fadeOut(function () {
+            this.dom.remove();
+            $.isFunction(this.option.onHide) && this.option.onHide();
+            this.option = null;
+        }.bind(this));
+    };
+    /**
+     * 更新进度条
+     * 当且仅当theme=THEME_NAVBAR时有效
+     * @param{Number} progress 进度（十进制数：0-100）
+     */
+    IOTLoading.prototype.setProgress = function (progress) {
+        if (this.option.theme === IOTLoading.THEME_NAVBAR) {
+            var $dom = this.dom;
+            $dom.find('.iot-loading-progress').css('width', progress > 100 ? '100%' : (progress + '%'));
+        }
+        return this;
     };
 
 })(window, jQuery, undefined);

@@ -6,14 +6,15 @@
     <link rel="stylesheet" type="text/css" href="frontend/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/dateTimePicker/jquery.datetimepicker.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/icheck/css/icheck.css">
-    <link rel="stylesheet" type="text/css" href="frontend/lib/ladda/ladda-themeless.min.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/bootstrap-select/css/bootstrap-select.css">
-    <link rel="stylesheet" type="text/css" href="frontend/lib/pace/pace-theme-minimal.css">
+    <!--<link rel="stylesheet" type="text/css" href="frontend/lib/pace/pace-theme-flash.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="frontend/lib/pace/pace-theme-fill-left.css">-->
+    <link rel="stylesheet" type="text/css" href="frontend/lib/pace/pace-theme-mac-osx.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/fontello/css/fontello.css">
     <link rel="stylesheet" type="text/css" href="frontend/css/_core.css">
     <link rel="stylesheet" type="text/css" href="frontend/css/_biz.css">
     <!-- 此文档应当输出公共样式、通用JS组件 -->
-    <script type="text/javascript" src="frontend/lib/pace/pace.js"></script>
+    <!--<script type="text/javascript" src="frontend/lib/pace/pace.js"></script>-->
 </head>
 <body class="core biz">
 <div class="container">
@@ -425,17 +426,39 @@
 插件: IOT.tips
             </pre>
         </div>
-        <h2 class="h2">蒙层-加载中</h2>
+        <h2 class="h2">蒙层加载</h2>
         <div class="dashboard overlay-wrap" id="overlay_wrap">
             <div class="m-case">
                 <div class="chunk">
-                    <h2 class="chunk-header h2">消息</h2>
+                    <h2 class="chunk-header h2">普通样式</h2>
                     <div class="chunk-content">
                         <div class="chunk-row">
-                            <button type="button" id="succ_msg_btn" class="btn btn-default">成 功</button>
+                            <button type="button" id="btn_overlay2" class="btn btn-default">普通样式</button>
                         </div>
                         <div class="chunk-row">
-                            <button type="button" id="error_msg_btn" class="btn btn-default">错 误</button>
+                            <button type="button" id="btn_overlay" class="btn btn-default">指定容器中打开</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk">
+                    <h2 class="chunk-header h2">内联样式</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <div class="overlay-inline-demo">
+                                <!-- 内联-蒙层加载-DOM驱动 -->
+                                <div class="e-spin-wrap">
+                                    <i class="icon-spinner animate-spin spin-item"></i>
+                                    <em>数据查询中...</em>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chunk">
+                    <h2 class="chunk-header h2">导航条样式</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <button type="button" class="btn btn-default" id="btn_overlay3">查看效果</button>
                         </div>
                     </div>
                 </div>
@@ -450,8 +473,7 @@
 <script type="text/javascript" src="frontend/lib/jquery.1.11.min.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="frontend/lib/icheck/icheck.js"></script>
-<script type="text/javascript" src="frontend/lib/ladda/spin.min.js"></script>
-<script type="text/javascript" src="frontend/lib/ladda/ladda.min.js"></script>
+<script type="text/javascript" src="frontend/lib/spin.min.js"></script>
 <script type="text/javascript" src="frontend/lib/dateTimePicker/jquery.datetimepicker.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap-select/js/bootstrap-select.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap-select/js/i18n/defaults-zh_CN.min.js"></script>
