@@ -77,7 +77,7 @@ $(function () {
             theme: IOTLoading.THEME_SIMPLE,
             content: '10秒后，我会自动消失...',
             parent: '#overlay_wrap',
-            overlay: false
+            //overlay: false
         });
         inst.show();
         setTimeout(function () {
@@ -85,33 +85,43 @@ $(function () {
         }, 10000);
     });
     $('#btn_overlay2').unbind('click').bind('click', function () {
-        var inst = new IOTLoading({
-            theme: IOTLoading.THEME_SIMPLE,
-            content: '10秒后，我会自动消失...',
-            parent: 'body',
-            //overlay: false
-        });
-        inst.show();
-        clearTimeout($(this).data('timer'));
-        var timer = setTimeout(function () {
-            inst.hide();
+        IOT.showOverlay('10秒后我会消失...');
+        setTimeout(function () {
+            IOT.hideOverlay();
         }, 10000);
-        $(this).data('timer', timer);
     });
     $('#btn_overlay3').unbind('click').bind('click', function () {
-        var inst = new IOTLoading({
-            theme: IOTLoading.THEME_NAVBAR,
-            parent: 'body'
-        });
+        var inst = new IOTProgressbar();
         inst.show();
+        inst.updateProgress(20);
         var $thiz = $(this);
         clearInterval($thiz.data('timer'));
         var progress = 30;
         var timer = setInterval(function () {
             if (progress > 100) {
                 clearInterval($thiz.data('timer'));
+                inst.hide();
             }
-            inst.setProgress(progress);
+            inst.updateProgress(progress);
+            progress += 10;
+        }, 3000);
+        $(this).data('timer', timer);
+    });
+    $('#btn_overlay4').unbind('click').bind('click', function () {
+        var inst = new IOTProgressbar({
+            parent: '#overlay_wrap'
+        });
+        inst.show();
+        inst.updateProgress(20);
+        var $thiz = $(this);
+        clearInterval($thiz.data('timer'));
+        var progress = 30;
+        var timer = setInterval(function () {
+            if (progress > 100) {
+                clearInterval($thiz.data('timer'));
+                inst.hide();
+            }
+            inst.updateProgress(progress);
             progress += 10;
         }, 3000);
         $(this).data('timer', timer);

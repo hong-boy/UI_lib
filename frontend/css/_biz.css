@@ -115,11 +115,12 @@
 .biz .msg-wrap .m-case .chunk {
   width: 300px;
 }
-.biz .overlay-wrap .m-case .chunk{
-  width:300px;
+.biz .overlay-wrap .m-case .chunk {
+  width: 300px;
 }
-.biz .overlay-wrap .m-case .chunk .overlay-inline-demo{
-  border:1px solid #ccc;
-  width:300px;
-  height:120px;
+.biz .overlay-wrap .m-case .chunk .overlay-inline-demo {
+  position: relative;
+  border: 1px solid #ccc;
+  width: 300px;
+  height: 120px;
 }

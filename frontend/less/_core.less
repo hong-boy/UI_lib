@@ -319,6 +319,7 @@
         text-align:left;
         line-height:60px;
         padding-left:15px;
+        transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         .iot-loading-spinner{
           position:relative;
           left:15px;
@@ -331,28 +332,28 @@
         }
       }
     }
-    &.iot-loading-theme-navbar{ //导航条样式
+  }
+  .iot-progressbar-wrapper{ //导航进度条
+    position:absolute;
+    z-index:20160818;
+    &.iot-progressbar-theme-navbar{ //导航条样式
       @bgNavbarColor:#30aedc; //导航条背景色
-      position:fixed;
+      @navbarHeight:2px; //导航条高度
+      //position:fixed;
       top:0;
       width:100%;
-      height:5px;
-      .iot-loading-progress{
+      height:@navbarHeight;
+      .iot-progressbar-progress{
         position:absolute;
         width:100%;
         height:100%;
         background-color:@bgNavbarColor;
         transition:width 0.4s linear;
-        .progress-inner{ }
       }
     }
-    .iot-loading-progress{
-      .progress-inner{ }
-    }
-    .iot-loading-activity{ }
   }
   .e-spin-wrap{ //蒙层加载中-内联样式
-    position:relative;
+    position:absolute;
     left:50%;
     top:50%;
     transform:translate(-50%, -50%);
@@ -365,78 +366,12 @@
     display:inline-block
   }
 
-  @-moz-keyframes spin{ //旋转动画效果
-    0%{
-      -moz-transform:rotate(0deg);
-      -o-transform:rotate(0deg);
-      -webkit-transform:rotate(0deg);
-      transform:rotate(0deg)
-    }
-    100%{
-      -moz-transform:rotate(359deg);
-      -o-transform:rotate(359deg);
-      -webkit-transform:rotate(359deg);
-      transform:rotate(359deg)
-    }
-  }
-
-  @-webkit-keyframes spin{ //旋转动画效果
-    0%{
-      -moz-transform:rotate(0deg);
-      -o-transform:rotate(0deg);
-      -webkit-transform:rotate(0deg);
-      transform:rotate(0deg)
-    }
-    100%{
-      -moz-transform:rotate(359deg);
-      -o-transform:rotate(359deg);
-      -webkit-transform:rotate(359deg);
-      transform:rotate(359deg)
-    }
-  }
-
-  @-o-keyframes spin{ //旋转动画效果
-    0%{
-      -moz-transform:rotate(0deg);
-      -o-transform:rotate(0deg);
-      -webkit-transform:rotate(0deg);
-      transform:rotate(0deg)
-    }
-    100%{
-      -moz-transform:rotate(359deg);
-      -o-transform:rotate(359deg);
-      -webkit-transform:rotate(359deg);
-      transform:rotate(359deg)
-    }
-  }
-
-  @-ms-keyframes spin{ //旋转动画效果
-    0%{
-      -moz-transform:rotate(0deg);
-      -o-transform:rotate(0deg);
-      -webkit-transform:rotate(0deg);
-      transform:rotate(0deg)
-    }
-    100%{
-      -moz-transform:rotate(359deg);
-      -o-transform:rotate(359deg);
-      -webkit-transform:rotate(359deg);
-      transform:rotate(359deg)
-    }
-  }
-
   @keyframes spin{
     0%{
-      -moz-transform:rotate(0deg);
-      -o-transform:rotate(0deg);
-      -webkit-transform:rotate(0deg);
       transform:rotate(0deg)
     }
     100%{
-      -moz-transform:rotate(359deg);
-      -o-transform:rotate(359deg);
-      -webkit-transform:rotate(359deg);
-      transform:rotate(359deg)
+      transform:rotate(360deg)
     }
   }
 }
