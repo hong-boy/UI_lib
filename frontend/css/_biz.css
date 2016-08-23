@@ -124,3 +124,15 @@
   width: 300px;
   height: 120px;
 }
+.biz .form-wrap .chunk{
+  width:100%;
+  height:100%;
+}
+.biz .form-wrap .chunk .chunk-header{
+  padding-left:40px;
+}
+.biz .form-wrap .chunk .chunk-row{
+  width:100%;
+  height:100%;
+  padding-left:45px;
+}

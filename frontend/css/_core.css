@@ -327,11 +327,51 @@
   transform: translate(-50%, -50%);
 }
 .core .animate-spin {
-  -moz-animation: spin 5s infinite linear;
-  -o-animation: spin 5s infinite linear;
-  -webkit-animation: spin 5s infinite linear;
-  animation: spin 5s infinite linear;
+  animation:spin 2s infinite linear;
   display: inline-block;
+}
+.core .form.form-horizontal .form-group{
+  margin-left:0;
+  margin-right:0;
+}
+.core .form.form-horizontal .form-label{
+  display:inline-block;
+  text-align:right;
+  min-width:80px;
+  margin-right:10px;
+}
+.core .form.form-horizontal .form-label.required:before{
+  content:'* ';
+  color:red;
+}
+.core .form.form-horizontal .form-label + .form-icheck .iradio_normal,
+.core .form.form-horizontal .form-label + .form-icheck .icheckbox_normal{
+  margin-left:0;
+}
+.core .form.form-horizontal .form-control{
+  display:inline-block;
+  width:280px;
+  height:40px;
+  color:#666;
+  padding:6px 8px;
+  transition:all 0.4s ease-in;
+}
+.core .form.form-horizontal .form-control:hover,
+.core .form.form-horizontal .form-control:focus{
+  border:1px solid #8896b4;
+  box-shadow:0 0 7px 0px #8896b4;
+}
+.core .form.form-horizontal .form-control.disabled,
+.core .form.form-horizontal .form-control[disabled]{
+  color:#afbbd0;
+  background-color:#eff6fb;
+  border:none;
+  box-shadow:none;
+}
+.core .form.form-horizontal .form-control.textarea{
+  margin-left:3px;
+  height:120px;
+  line-height:1.6;
 }
 @keyframes spin {
   0% {

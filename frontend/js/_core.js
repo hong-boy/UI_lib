@@ -20,6 +20,64 @@
         return tempStr;
     }
 })();
+/**
+ * 字符统计插件
+ * $.fn.charCount
+ */
+(function ($) {
+    var defaults = {
+        allowed: 200,
+        warning: 180,
+        css: 'counter',
+        counterElement: 'span',
+        cssWarning: 'warning',
+        cssExceeded: 'exceeded',
+        //counterText: '<font color="#333">{current}</font> / <font color="#999">{allowed}</font>' //支持占位符写法，形如：{current}/{allowed}/{available}
+        counterText: '<font color="#999" style="font-size:12px">还可以输入{available}字</font>' //支持占位符写法，形如：{current}/{allowed}/{available}
+    };
+
+    function calculate(obj) {
+        var count = $(obj).val().length;
+        var options = $(obj).data('options');
+        var allowed = options.allowed;
+        var available = allowed - count;
+        if (available <= options.warning && available >= 0) {
+            $(obj).next().addClass(options.cssWarning);
+        } else {
+            $(obj).next().removeClass(options.cssWarning);
+        }
+        if (available < 0) {
+            $(obj).next().addClass(options.cssExceeded);
+        } else {
+            $(obj).next().removeClass(options.cssExceeded);
+        }
+        var tpl = options.counterText;
+        $(obj).next().html(tpl.replace('{current}', count).replace('{allowed}', allowed).replace('{available}', available));
+    }
+
+    $.fn.charCount = function (options) {
+
+        var options = $.extend(defaults, {allowed: $(this).attr('maxlength')}, options);
+        var tpl = options.counterText;
+        var counterText = tpl.replace('{current}', 0).replace('{allowed}', options.allowed).replace('{available}', 0);
+        this.each(function () {
+            var $parent = $(this).parent();
+            if ($parent.css('position') === 'static') {
+                $parent.css('position', 'relative');
+            }
+            $(this).data('options', options)
+                .after('<' + options.counterElement + ' class="' + options.css + '" style="position:absolute; bottom:0; margin-left:10px">' + counterText + '</' + options.counterElement + '>');
+            calculate(this);
+            $(this).keyup(function () {
+                calculate(this)
+            });
+            $(this).change(function () {
+                calculate(this)
+            });
+        });
+
+    };
+})(jQuery);
 
 /**
  * 滑动开关按钮

@@ -446,7 +446,9 @@
                             <div class="overlay-inline-demo">
                                 <!-- 内联-蒙层加载-DOM驱动 -->
                                 <div class="e-spin-wrap">
-                                    <i class="icon-spinner animate-spin spin-item"></i>
+                                    <div class="inline-block animate-spin">
+                                        <i class="icon-spinner spin-item"></i>
+                                    </div>
                                     <em>数据查询中...</em>
                                 </div>
                             </div>
@@ -467,9 +469,109 @@
             </div>
             <pre>
 普通加载框：调用IOT.showOverlay方法或window.IOTLoading插件来实现
-内联加载框：调用IOT.showInlineOverlay方法或者直接使用HTML代码来实现
+内联加载框：调用IOT.showInlineOverlay方法或者直接使用HTML代码来实现。Issue: animate-spin is not compitable with FF.
 <del>导航条样式：使用window.IOTProgressbar插件</del>
             </pre>
+        </div>
+        <h2 class="h2">表单</h2>
+        <div class="dashboard form-wrap">
+            <div class="m-case">
+                <div class="chunk">
+                    <h2 class="chunk-header h2">基础表单</h2>
+                    <div class="chunk-content">
+                        <div class="chunk-row">
+                            <!-- form css begin -->
+                            <form class="form form-horizontal text-left" novalidate>
+                                <div class="form-group">
+                                    <label class="form-label required">出厂编号</label>
+                                    <input type="text" class="form-control" placeholder="请输入出厂编号" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">出厂编号</label>
+                                    <input type="text" class="form-control" value="这是出厂编号" disabled/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">性别</label>
+                                    <label class="form-icheck">
+                                        <input type="radio" name="dev_num" value="1">
+                                        <span class="icheck-desc">未选中</span>
+                                    </label>
+                                    <label class="form-icheck">
+                                        <input type="radio" name="dev_num" value="2" checked>
+                                        <span class="icheck-desc">已选中</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">性别</label>
+                                    <label class="form-icheck">
+                                        <input type="radio" name="dev_num1" value="1" disabled>
+                                        <span class="icheck-desc">未选中</span>
+                                    </label>
+                                    <label class="form-icheck">
+                                        <input type="radio" name="dev_num1" value="2" checked disabled>
+                                        <span class="icheck-desc">已选中</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label required">爱好</label>
+                                    <label class="form-icheck">
+                                        <input type="checkbox" name="dev_num2" value="1" required>
+                                        <span class="icheck-desc">选项一</span>
+                                    </label>
+                                    <label class="form-icheck">
+                                        <input type="checkbox" name="dev_num2" value="2" required>
+                                        <span class="icheck-desc">选项二</span>
+                                    </label>
+                                    <label class="form-icheck">
+                                        <input type="checkbox" name="dev_num3" value="3" required>
+                                        <span class="icheck-desc">选项三</span>
+                                    </label>
+                                    <label class="form-icheck">
+                                        <input type="checkbox" name="dev_num4" value="4" required>
+                                        <span class="icheck-desc">选项四</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">爱好</label>
+                                    <label class="form-icheck">
+                                        <input type="checkbox" name="dev_num5" value="1" disabled>
+                                        <span class="icheck-desc">选项一</span>
+                                    </label>
+                                    <label class="form-icheck">
+                                        <input type="checkbox" name="dev_num6" value="2" checked disabled>
+                                        <span class="icheck-desc">选项二</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label required">设备选项</label>
+                                    <select class="selectpicker show-tick" id="single_sel" required data-size="6">
+                                        <option value="1">选项一</option>
+                                        <option value="1">选项一2</option>
+                                        <option value="1">选项一3</option>
+                                        <option value="1">选项一4</option>
+                                        <option value="1">选项一5</option>
+                                        <option value="1">选项一6</option>
+                                        <option value="1">选项一7</option>
+                                        <option value="1">选项一8</option>
+                                        <option value="1">选项一9</option>
+                                        <option value="1">选项一0</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label required pull-left">备注</label>
+                                    <textarea class="form-control textarea pull-left" rows="5" cols="20" id="textarea"
+                                              maxlength="200" placeholder="请输入内容" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label required pull-left">备注</label>
+                                    <textarea class="form-control textarea pull-left" rows="5" cols="20"
+                                              placeholder="请输入内容" required disabled>内容....</textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

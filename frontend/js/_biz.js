@@ -129,5 +129,15 @@ $(function () {
 });
 
 $(function () {
-
+    // 表单 - 水平表单
+    $('.form-wrap input:radio').iCheck({
+        radioClass: 'iradio_normal',
+        labelHover: false
+    });
+    $('.form-wrap input:checkbox').iCheck({
+        checkboxClass: 'icheckbox_normal',
+        labelHover: false
+    });
+    $('#single_sel').selectpicker();
+    $('#textarea').charCount();
 });
