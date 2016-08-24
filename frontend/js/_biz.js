@@ -139,5 +139,61 @@ $(function () {
         labelHover: false
     });
     $('#single_sel').selectpicker();
+    //初始化textarea
     $('#textarea').charCount();
+    //表单验证
+    $('#my_form, #my_inline_form').validationEngine({
+        //autoHidePrompt: false,
+        onFieldFailure: function (field) {
+
+        },
+        onFieldSuccess: function (field) {
+
+        },
+        onValidationComplete: function (form, valid) {
+            if (valid) {
+                IOT.tips('表单验证成功！', 'success');
+            } else {
+                IOT.tips('表单验证失败！', 'error');
+            }
+            return false;
+        }
+    });
+    //时间日期
+    $.datetimepicker.setLocale('zh');
+    $('#s_time, #e_time, #s1_time, #e1_time').datetimepicker({
+        format: 'Y-m-d',
+        formatDate: 'Y-m-d',
+        timepicker: false
+    });
+});
+
+$(function () {
+    //弹出层
+    $('#dialog_1').unbind('click').bind('click', function () {
+        var btns = [{
+            text: '确 定',
+            hotkey: null,
+            enabled: true,
+            click: function (dialog) {
+                console.log('confirm');
+            }
+        }, {
+            text: '取 消',
+            clazz: 'btn-empty',
+            hotkey: 27,
+            enabled: true,
+            click: function (dialog) {
+                dialog.close();
+            }
+        }];
+        IOT.displayDefaultDialog('编辑用户', 'some content here...', 500, 300, btns);
+    });
+    $('#dialog_2').unbind('click').bind('click', function () {
+        IOT.confirm('确认要删除该用户吗？', function (dialog) {
+            console.log('confirm...')
+        }, function (dialog) {
+            dialog.close();
+        });
+    });
 });

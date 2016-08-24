@@ -371,7 +371,7 @@
             $icon = $('<i class="icon {0}"></i>'.exFormat(dialogClazz.icon));
         $vDom = $vDom.length ? $vDom : $('<div id="{0}" class="iotips-layer-wrapper" data-role="{1}"></div>'.exFormat(domId, role));
         !option.enableMultiple && $('{0} [data-role="{1}"]'.exFormat(option.parent, role)).not('#' + domId).each(function () {
-            $(this).remove()
+            $(this).remove();
         });
         if (option.overlay && option.overlay.length > 1) {
             var overlayArr = option.overlay;
@@ -387,7 +387,7 @@
             });
         }
         $vDom.fadeOut(function () {
-            $dialog.append($icon).append($content).css('z-index', option.zIndex);
+            $dialog.append($('<div class="iotips-content-wrap"></div>').append($icon).append($content)).css('z-index', option.zIndex);
             $vDom.empty().append($overlay).append($dialog).css('z-index', option.zIndex - 1);
             dtd.resolve($vDom);
         });
@@ -758,6 +758,90 @@
 
 window.IOT = {
     /**
+     * 显示模态框(可以满足大部分需求)
+     * @param title {String}
+     * @param content {String|Function}
+     * @param width {Number}
+     * @param height {Number}
+     * @param buttons [{click:null, text:'', clazz:'', hotkey:null, enabled:true}]
+     * @param onshown {Function} 模态框渲染完成后立即调用
+     * @return {{BootstrapDialog}}
+     */
+    displayDefaultDialog: function (title, content, width, height, buttons, onshown) {
+        var btnArr = [], opts = {
+            cssClass: 'light-theme',
+            title: title,
+            message: content,
+            nl2br: false,
+            size: BootstrapDialog.SIZE_CUSTOM,
+            width: (width || 500) + 'px',
+            height: (height || 370) + 'px',
+            draggable: true,
+            closable: false,
+            closeByBackdrop: false,
+            buttons: []
+        };
+        (buttons || []).forEach(function (item) {
+            btnArr.push({
+                action: $.isFunction(item.click) ? item.click : null,
+                label: item.text,
+                cssClass: item.clazz || '',
+                hotkey: item.hotKey,
+                enabled: item.enabled
+            });
+        });
+        opts.buttons = btnArr;
+        $.isFunction(onshown) && (opts.onshown = onshown);
+        var dialog = new BootstrapDialog(opts);
+        dialog.realize();
+        (typeof title === 'undefined') && dialog.getModalHeader().hide();
+        dialog.getModalFooter().find('button.btn').each(function () {
+            //$(this).removeClass('btn');
+        });
+        return dialog.open();
+    },
+    /**
+     * 确认框
+     * @param content
+     * @param buttons [{click:null, text:'', clazz:''}]
+     * @returns {*}
+     */
+    confirm: function (content, yesFunc, cancelFunc) {
+        var genPanel = function (dialog, content, yesFunc, cancelFunc) {
+            var isJQueryObj = (content instanceof jQuery),
+                $panel = $('<div class="confirm-panel text-center center-block"></div>'),
+                $btnWrap = $('<div class="btn-wrap"></div>'),
+                $yesBtn = $('<button class="btn btn-default">确 认</button>'),
+                $cancelBtn = $('<button class="btn btn-cancel btn-default btn-empty">取 消</button>');
+
+            $panel.append(isJQueryObj ? content : ('<em class="confirm-desc">' + (content) + '</em>')).append($btnWrap);
+            $btnWrap.append(
+                $yesBtn.click(function () {
+                    (yesFunc || $.noop).call(null, dialog);
+                })
+            ).append(
+                $cancelBtn.click(function () {
+                    (cancelFunc || $.noop).call(null, dialog);
+                })
+            );
+            return $panel;
+        };
+        var option = {
+            cssClass: 'light-theme',
+            nl2br: false,
+            size: BootstrapDialog.SIZE_CUSTOM,
+            width: '460px',
+            height: '190px',
+            closable: false,
+            draggable: true
+        };
+        var dialog = new BootstrapDialog(option);
+        dialog.realize();
+        dialog.getModalHeader().hide();
+        dialog.setMessage(genPanel(dialog, content, yesFunc, cancelFunc));
+        return dialog.open();
+    },
+    /**
      * 消息提示
      * @param content{String|Object} 显示内容|配置对象（形如：{}）
      * @param type {String} 消息类型 包括：'success'|'error'，默认：error
@@ -850,8 +934,5 @@ window.IOT = {
             });
         });
         return this;
-    },
-    showProgressbar: function () {
-
-    },
+    }
 };
