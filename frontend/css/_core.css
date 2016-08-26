@@ -517,6 +517,52 @@
 .core .bootstrap-dialog.light-theme .modal-content .modal-footer .btn:not(:first-child){
   margin-left:20px;
 }
+.core .iot-menu-wrapper .iot-menu-navbar{
+  background-color:#E71731;
+  color:#DFDFDF;
+  font-size:16px;
+  height:80px;
+  line-height:80px;
+  list-style:none;
+  margin-bottom:0;
+  padding-left:0;
+}
+.core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item{
+  float:left;
+  min-width:120px;
+}
+.core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item.active,
+.core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item:hover{
+  background-color:#D1020A;
+}
+.core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item.active .iot-menu-item,
+.core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item:hover .iot-menu-item{
+  cursor:pointer;
+  color:#FFF;
+}
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-navbar{
+  list-style:none;
+  margin-bottom:0;
+  padding-left:0;
+  height:60px;
+  line-height:60px;
+  background-color:#504C4D;
+  color:#DFDFDF;
+  font-size:16px;
+}
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item{
+  float:left;
+  min-width:185px;
+}
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item.active,
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item:hover{
+  background-color:#342E2E;
+}
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item.active .iot-sub-menu-item,
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item:hover .iot-sub-menu-item{
+  cursor:pointer;
+  color:#FFF;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);

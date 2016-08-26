@@ -112,7 +112,8 @@
 .biz .date-wrap .m-case .chunk {
   width: 300px;
 }
-.biz .msg-wrap .m-case .chunk {
+.biz .msg-wrap .m-case .chunk,
+.biz .dialog-wrap .m-case .chunk{
   width: 300px;
 }
 .biz .overlay-wrap .m-case .chunk {
@@ -135,4 +136,16 @@
   width:100%;
   height:100%;
   padding-left:45px;
+}
+.biz .menu-wrap .chunk{
+  width:100%;
+  height:100%;
+}
+.biz .menu-wrap .chunk .chunk-header{
+  padding-left:40px;
+}
+.biz .menu-wrap .chunk .chunk-row{
+  width:100%;
+  height:100%;
+  padding:0 15px;
 }

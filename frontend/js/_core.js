@@ -756,6 +756,51 @@
 
 })(window, jQuery, undefined);
 
+/**
+ * 菜单widget
+ */
+(function ($) {
+    var DATA_TAG = 'menuWidget';
+    var SPLITER = '_';
+    var DEFAULTS = {
+        ns: 'menu_widget', //命名空间
+        activeClass: '', //选中状态自定义class
+        hoverClass: '', //悬停状态自定义class
+        subMenuContainer: 'body', //子菜单所依附的元素
+        onShow: null, //子菜单显示时的回调
+        onHide: null, //子菜单隐藏时的回调
+        onComplete: null, //菜单生成/更新后的回调
+        data: [] //菜单项，形如: [{id:'system_manage', label:'系统管理', click:null, active: true, attributes: ['module-menu=/systemManage'], children: []}]
+    };
+
+    var UI = {
+        genMenu: function (data) {
+
+        }
+    };
+
+    var methods = {
+        init: function ($thiz, option, promise) {
+
+        }
+    };
+    $.fn.menuWidget = function (method, option) {
+        if (!$.isFunction(methods[method])) {
+            throw 'Method[' + (method) + '] is not a function!';
+        }
+        var original = $(this).data(DATA_TAG);
+        var dtd = $.Deferred();
+        option = $.extend(true, {}, DEFAULTS, original, option);
+        $.when(methods[method].call(methods, $(this), option, dtd))
+            .done(function ($dom) {
+
+            })
+            .fail(function ($dom, err) {
+
+            });
+    };
+})(jQuery);
+
 window.IOT = {
     /**
      * 显示模态框(可以满足大部分需求)

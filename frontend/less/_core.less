@@ -578,6 +578,67 @@
       }
     }
   }
+  .iot-menu-wrapper{ //菜单
+    @navbarBgColor:#E71731; //菜单背景色
+    @navbarColor:#DFDFDF; //菜单字体颜色
+    @navbarHoverColor:#FFF; //菜单 hover状态字体颜色
+    @navbarFontSize:16px; //菜单字体大小
+    @navbarHeight:80px; //菜单高度
+    @listItemMinWidth:120px; //菜单项最小宽度
+    @listItemHoverBgColor:#D1020A; //菜单项 hover状态背景颜色
+    .iot-menu-navbar{ //一级菜单
+      background-color:@navbarBgColor;
+      color:@navbarColor;
+      font-size:@navbarFontSize;
+      height:@navbarHeight;
+      line-height:@navbarHeight;
+      list-style:none;
+      margin-bottom:0;
+      padding-left:0;
+      .iot-menu-list-item{
+        float:left;
+        min-width:@listItemMinWidth;
+        &.active,
+        &:hover{
+          background-color:@listItemHoverBgColor;
+          .iot-menu-item{
+            cursor:pointer;
+            color:@navbarHoverColor;
+          }
+        }
+      }
+    }
+    .iot-sub-menu-wrapper{ //子菜单
+      @subListItemMinWidth:185px; //子菜单最小宽度
+      @subNavbarBgColor:#504C4D; //子菜单背景颜色
+      @subNavbarHeight:60px; //子菜单高度
+      @subListItemHoverBgColor:#342E2E; //子菜单项hover状态背景颜色
+      &.inline{ //内联样式
+        .iot-sub-menu-navbar{
+          list-style:none;
+          margin-bottom:0;
+          padding-left:0;
+          height:@subNavbarHeight;
+          line-height:@subNavbarHeight;
+          background-color:@subNavbarBgColor;
+          color:@navbarColor;
+          font-size:@navbarFontSize;
+        }
+        .iot-sub-menu-list-item{
+          float:left;
+          min-width:@subListItemMinWidth;
+          &.active,
+          &:hover{
+            background-color:@subListItemHoverBgColor;
+            .iot-sub-menu-item{
+              cursor:pointer;
+              color:@navbarHoverColor;
+            }
+          }
+        }
+      }
+    }
+  }
   @keyframes spin{
     0%{
       transform:rotate(0deg)
