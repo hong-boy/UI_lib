@@ -1,573 +1,739 @@
 .core {
-  font-family: "Microsoft YaHei", Arial, sans-serif;
-  font-size: 14px;
-  color: #333;
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
 }
+
 .core em {
-  font-style: normal;
+    font-style: normal;
 }
+
 .core label {
-  margin-bottom: 0;
-  font-weight: normal;
+    margin-bottom: 0;
+    font-weight: normal;
 }
+
 .core .row {
-  margin-left: 0;
-  margin-right: 0;
+    margin-left: 0;
+    margin-right: 0;
 }
+
 .core .color-blue {
-  color: #39bbea;
+    color: #39bbea;
 }
+
 .core h1.h1 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
 }
+
 .core h2.h2 {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
 }
+
 .core .align-middle {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
+
 .core .align-center {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
+
 .core .comments-text {
-  font-size: 12px;
-  color: #999;
+    font-size: 12px;
+    color: #999;
 }
+
 .core .warning-text {
-  font-size: 12px;
-  color: #ff7700;
+    font-size: 12px;
+    color: #ff7700;
 }
+
 .core .error-text {
-  font-size: 12px;
-  color: #ff204a;
+    font-size: 12px;
+    color: #ff204a;
 }
+
 .core .succ-text {
-  font-size: 12px;
-  color: #45cbcd;
+    font-size: 12px;
+    color: #45cbcd;
 }
+
 .core .dashboard {
-  display: block;
-  width: 100%;
-  height: 100%;
-  box-shadow: 0 0 2px 2px #eee;
-  background-color: #fff;
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 2px 2px #eee;
+    background-color: #fff;
 }
+
 .core .btn.btn-default {
-  display: inline-block;
-  min-width: 110px;
-  height: 40px;
-  color: #fff;
-  border: 1px solid transparent;
-  background-color: #8896b4;
+    display: inline-block;
+    min-width: 110px;
+    height: 40px;
+    color: #fff;
+    border: 1px solid transparent;
+    background-color: #8896b4;
 }
+
 .core .btn.btn-default:hover {
-  background-color: #39bbea;
+    background-color: #39bbea;
 }
+
 .core .btn.btn-default:focus {
-  outline: none;
+    outline: none;
 }
+
 .core .btn.btn-default:active {
-  box-shadow: none;
-  background-color: #30aedc;
+    box-shadow: none;
+    background-color: #30aedc;
 }
+
 .core .btn.btn-default.disabled,
 .core .btn.btn-default[disabled] {
-  background-color: #dcdee3;
+    background-color: #dcdee3;
 }
+
 .core .btn.btn-default.btn-circled {
-  border-radius: 30px;
+    border-radius: 30px;
 }
+
 .core .btn.btn-default.btn-icon {
-  padding: 0px;
-  height: 30px;
-  width: 30px;
-  min-width: 30px;
+    padding: 0px;
+    height: 30px;
+    width: 30px;
+    min-width: 30px;
 }
+
 .core .btn.btn-default.btn-icon i[class*="icon-"] {
-  position: relative;
-  top: -1px;
-  font-size: 20px;
+    position: relative;
+    top: -1px;
+    font-size: 20px;
 }
+
 .core .btn.btn-empty {
-  display: inline-block;
-  min-width: 110px;
-  height: 40px;
-  color: #7583a3;
-  border: 1px solid #8795b3;
-  background-color: #fff;
+    display: inline-block;
+    min-width: 110px;
+    height: 40px;
+    color: #7583a3;
+    border: 1px solid #8795b3;
+    background-color: #fff;
 }
+
 .core .btn.btn-empty:hover {
-  color: #39baea;
-  background-color: #fff;
-  border: 1px solid #39bbea;
+    color: #39baea;
+    background-color: #fff;
+    border: 1px solid #39bbea;
 }
+
 .core .btn.btn-empty:focus {
-  outline: none;
+    outline: none;
 }
+
 .core .btn.btn-empty:active {
-  box-shadow: none;
-  background-color: #edfbff;
-  border: 1px solid #38bce8;
+    box-shadow: none;
+    background-color: #edfbff;
+    border: 1px solid #38bce8;
 }
+
 .core .btn.btn-empty.disabled,
 .core .btn.btn-empty[disabled] {
-  color: #bcc3d3;
-  background-color: #fff;
-  border: 1px solid #dae0e9;
+    color: #bcc3d3;
+    background-color: #fff;
+    border: 1px solid #dae0e9;
 }
+
 .core .btn.btn-empty.btn-circled {
-  border-radius: 30px;
+    border-radius: 30px;
 }
+
 .core .btn.loading-btn {
-  position: relative;
-  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;
+    position: relative;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;
 }
+
 .core .btn.loading-btn[data-loading] {
-  padding-left: 36px;
-  padding-right: 36px;
+    padding-left: 36px;
+    padding-right: 36px;
 }
+
 .core .btn.loading-btn[data-loading] .loading-btn-spinner {
-  opacity: 1;
-  left: 14px;
+    opacity: 1;
+    left: 14px;
 }
+
 .core .btn.loading-btn[data-loading] .loading-btn-label {
-  left: 10px;
+    left: 10px;
 }
+
 .core .btn.loading-btn .loading-btn-label {
-  position: relative;
-  min-width: 35%;
-  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;
+    position: relative;
+    min-width: 35%;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;
 }
+
 .core .btn.loading-btn .loading-btn-spinner {
-  position: absolute;
-  z-index: 2;
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  top: 50%;
-  margin-top: -16px;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;
+    position: absolute;
+    z-index: 2;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    top: 50%;
+    margin-top: -16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all !important;
 }
+
 .core .slide-btn-wrap {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  min-width: 110px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 110px;
 }
+
 .core .slide-btn-wrap:hover .slide-btn-chk {
-  transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
+
 .core .slide-btn-wrap .slide-clickable {
-  cursor: pointer;
-  color: #999;
+    cursor: pointer;
+    color: #999;
 }
+
 .core .slide-btn-wrap .slide-btn-label {
-  position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  width: 70px;
-  height: 30px;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 70px;
+    height: 30px;
 }
+
 .core .slide-btn-wrap .slide-btn-label input[type="checkbox"] {
-  display: none;
+    display: none;
 }
+
 .core .slide-btn-wrap .slide-btn-label .slide-btn-chk {
-  position: relative;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  border-radius: 20px;
-  background-color: #919191;
-  z-index: 0;
-  transition: background-color 0.3s ease-in;
-  cursor: pointer;
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background-color: #919191;
+    z-index: 0;
+    transition: background-color 0.3s ease-in;
+    cursor: pointer;
 }
+
 .core .slide-btn-wrap .slide-btn-label input[type="checkbox"]:checked + .slide-btn-chk {
-  background-color: #3ABAEB;
+    background-color: #3ABAEB;
 }
+
 .core .slide-btn-wrap .slide-btn-label input[type="checkbox"][disabled] + .slide-btn-chk {
-  cursor: not-allowed;
-  background-color: #e5e5e5;
+    cursor: not-allowed;
+    background-color: #e5e5e5;
 }
+
 .core .slide-btn-wrap .slide-btn-label .slide-btn-chk:before {
-  content: ' ';
-  position: absolute;
-  height: 30px;
-  left: 1.75px;
-  border-radius: 20px;
-  transform: scale(1);
-  transition: scale 0.2s linear;
+    content: ' ';
+    position: absolute;
+    height: 30px;
+    left: 1.75px;
+    border-radius: 20px;
+    transform: scale(1);
+    transition: scale 0.2s linear;
 }
+
 .core .slide-btn-wrap .slide-btn-label input[type="checkbox"]:checked + .slide-btn-chk:before {
-  -webkit-transform: scale(0);
-  transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
 }
+
 .core .slide-btn-wrap .slide-btn-label .slide-btn-chk:after {
-  content: ' ';
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  left: 1px;
-  top: 1px;
-  border-radius: 28px;
-  background-color: #fff;
-  box-shadow: 0 0.04rem 0.3467rem rgba(0, 0, 0, 0.4);
-  transition: left 0.3s linear;
+    content: ' ';
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    left: 1px;
+    top: 1px;
+    border-radius: 28px;
+    background-color: #fff;
+    box-shadow: 0 0.04rem 0.3467rem rgba(0, 0, 0, 0.4);
+    transition: left 0.3s linear;
 }
+
 .core .slide-btn-wrap .slide-btn-label input[type="checkbox"]:checked + .slide-btn-chk:after {
-  left: 41px;
+    left: 41px;
 }
+
 .core .iotips-layer-wrapper {
-  position: fixed;
-  top: 50%;
-  left: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
 }
+
 .core .iotips-layer-wrapper .iotips-layer-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
-.core .iotips-layer-wrapper .iotips-content-wrap{
-  display:flex;
-  flex-direction:row;
-  align-items:center;
-  justify-content:center;
-  flex-wrap:nowrap;
+
+.core .iotips-layer-wrapper .iotips-content-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
 }
+
 .core .iotips-layer-wrapper .iotips-layer {
-  position: absolute;
-  display: flex;
-  flex-direction:column;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  top:50%;
-  left:50%;
-  padding:0 20px;
-  transform:translateX(-50%) translateY(-50%);
-  min-width: 480px;
-  height:82px;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    top: 50%;
+    left: 50%;
+    padding: 0 20px;
+    transform: translateX(-50%) translateY(-50%);
+    min-width: 480px;
+    height: 82px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
 }
+
 .core .iotips-layer-wrapper .iotips-layer .icon {
-  font-size: 28px;
+    font-size: 28px;
 }
+
 .core .iotips-layer-wrapper .iotips-layer .iotips-content {
-  position:relative;
-  display:-webkit-box;
-  -webkit-box-orient:vertical;
-  -webkit-line-clamp:2;
-  left:5px;
-  font-size: 16px;
-  color: #f6f6f6;
-  max-width:410px;
-  max-height:47px;
-  overflow:hidden;
-  text-overflow:ellipsis;
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    left: 5px;
+    font-size: 16px;
+    color: #f6f6f6;
+    max-width: 410px;
+    max-height: 47px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 .core .iot-loading-wrapper {
-  position: absolute;
-  z-index: 20160818;
+    position: absolute;
+    z-index: 20160818;
 }
+
 .core .iot-loading-wrapper.iot-loading-theme-simple {
-  width: 100%;
-  height: 100%;
-  top: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
 }
+
 .core .iot-loading-wrapper.iot-loading-theme-simple .iot-loading-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
 }
+
 .core .iot-loading-wrapper.iot-loading-theme-simple .iot-loading-progress {
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 180px;
-  height: 60px;
-  border-radius: 2px;
-  border: 1px solid #ccc;
-  background-color: #FFF;
-  z-index: 10;
-  pointer-events: none;
-  text-align: left;
-  line-height: 60px;
-  padding-left: 15px;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 60px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    background-color: #FFF;
+    z-index: 10;
+    pointer-events: none;
+    text-align: left;
+    line-height: 60px;
+    padding-left: 15px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 .core .iot-loading-wrapper.iot-loading-theme-simple .iot-loading-progress .iot-loading-spinner {
-  position: relative;
-  left: 15px;
-  top: -5px;
-  display: inline-block;
-  width: 32px;
+    position: relative;
+    left: 15px;
+    top: -5px;
+    display: inline-block;
+    width: 32px;
 }
+
 .core .iot-loading-wrapper.iot-loading-theme-simple .iot-loading-progress .iot-loading-content {
-  margin-left: 21px;
+    margin-left: 21px;
 }
+
 .core .iot-progressbar-wrapper {
-  position: absolute;
-  z-index: 20160818;
+    position: absolute;
+    z-index: 20160818;
 }
+
 .core .iot-progressbar-wrapper.iot-progressbar-theme-navbar {
-  top: 0;
-  width: 100%;
-  height: 2px;
+    top: 0;
+    width: 100%;
+    height: 2px;
 }
+
 .core .iot-progressbar-wrapper.iot-progressbar-theme-navbar .iot-progressbar-progress {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #30aedc;
-  transition: width 0.4s linear;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #30aedc;
+    transition: width 0.4s linear;
 }
+
 .core .e-spin-wrap {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
+
 .core .animate-spin {
-  animation:spin 2s infinite linear;
-  display: inline-block;
+    animation: spin 2s infinite linear;
+    display: inline-block;
 }
-.core .form .form-group{
-  position:relative;
-  margin-left:0;
-  margin-right:0;
+
+.core .form .form-group {
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
 }
-.core .form .form-label{
-  display:inline-block;
-  text-align:right;
-  min-width:80px;
-  margin-right:10px;
+
+.core .form .form-label {
+    display: inline-block;
+    text-align: right;
+    min-width: 80px;
+    margin-right: 10px;
 }
-.core .form .form-label.required:before{
-  content:'* ';
-  color:red;
+
+.core .form .form-label.required:before {
+    content: '* ';
+    color: red;
 }
+
 .core .form .form-label + .form-icheck .iradio_normal,
-.core .form .form-label + .form-icheck .icheckbox_normal{
-  margin-left:0;
+.core .form .form-label + .form-icheck .icheckbox_normal {
+    margin-left: 0;
 }
-.core .form .form-control{
-  display:inline-block;
-  width:280px;
-  height:40px;
-  color:#666;
-  padding:6px 8px;
-  box-shadow:none;
-  outline:none;
+
+.core .form .form-control {
+    display: inline-block;
+    width: 280px;
+    height: 40px;
+    color: #666;
+    padding: 6px 8px;
+    box-shadow: none;
+    outline: none;
 }
+
 .core .form .form-control:hover,
-.core .form .form-control:focus{
-  border-color:#8896b4;
-  box-shadow:0 0 7px 0px #8896b4;
+.core .form .form-control:focus {
+    border-color: #8896b4;
+    box-shadow: 0 0 7px 0px #8896b4;
 }
+
 .core .form .form-control.disabled,
-.core .form .form-control[disabled]{
-  color:#afbbd0;
-  background-color:#eff6fb;
-  border:none;
-  box-shadow:none;
+.core .form .form-control[disabled] {
+    color: #afbbd0;
+    background-color: #eff6fb;
+    border: none;
+    box-shadow: none;
 }
-.core .form .form-control.textarea{
-  margin-left:3px;
-  height:120px;
-  line-height:1.6;
+
+.core .form .form-control.textarea {
+    margin-left: 3px;
+    height: 120px;
+    line-height: 1.6;
 }
-.core .form .form-control-date{
-  position:relative;
-  display:inline-block;
+
+.core .form .form-control-date {
+    position: relative;
+    display: inline-block;
 }
-.core .form .form-control-date .form-control{
-  padding-right:30px;
-  max-width:180px;
+
+.core .form .form-control-date .form-control {
+    padding-right: 30px;
+    max-width: 180px;
 }
-.core .form .form-control-date .icon-date{
-  position:absolute;
-  right:6px;
-  top:4px;
-  font-size:22px;
-  color:#c9ccd6;
-  transition:color 0.4s ease-in-out;
+
+.core .form .form-control-date .icon-date {
+    position: absolute;
+    right: 6px;
+    top: 4px;
+    font-size: 22px;
+    color: #c9ccd6;
+    transition: color 0.4s ease-in-out;
 }
+
 .core .form .form-control-date:hover .icon-date,
 .core .form .form-control-date:focus .icon-date,
-.core .form .form-control-date:active .icon-date{
-  color:#8895b4;
+.core .form .form-control-date:active .icon-date {
+    color: #8895b4;
 }
-.core .form.form-horizontal .form-group.form-btn-group{
-  padding-left:calc(90px);
+
+.core .form.form-horizontal .form-group.form-btn-group {
+    padding-left: calc(90px);
 }
-.core .form.form-horizontal .form-group.form-btn-group .btn:first-child{
-  margin-right:17px;
+
+.core .form.form-horizontal .form-group.form-btn-group .btn:first-child {
+    margin-right: 17px;
 }
-.core .form.form-inline .form-inline-row{
-  position:relative;
-  display:block;
-  margin-bottom:22px;
+
+.core .form.form-inline .form-inline-row {
+    position: relative;
+    display: block;
+    margin-bottom: 22px;
 }
-.core .form.form-inline .form-group{
-  margin-right:80px;
+
+.core .form.form-inline .form-group {
+    margin-right: 80px;
 }
-.core .form.form-inline .form-group.form-btn-group{
-  padding-left:calc(90px);
+
+.core .form.form-inline .form-group.form-btn-group {
+    padding-left: calc(90px);
 }
-.core .form.form-inline .form-group.form-btn-group .btn:first-child{
-  margin-right:17px;
+
+.core .form.form-inline .form-group.form-btn-group .btn:first-child {
+    margin-right: 17px;
 }
-.core .form.form-inline .form-control{
-  width:180px;
+
+.core .form.form-inline .form-control {
+    width: 180px;
 }
-.core .bootstrap-dialog.light-theme .modal-dialog{
-  width:auto;
-  min-width:380px;
+
+.core .bootstrap-dialog.light-theme .modal-dialog {
+    width: auto;
+    min-width: 380px;
 }
-.core .bootstrap-dialog.light-theme .modal-content{
-  border-radius:5px;
+
+.core .bootstrap-dialog.light-theme .modal-content {
+    border-radius: 5px;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-header{
-  padding-left:30px;
-  height:50px;
-  border-top-left-radius:5px;
-  border-top-right-radius:5px;
-  background-color:#fff;
-  border-bottom:1px solid #eee;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-header {
+    padding-left: 30px;
+    height: 50px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-header .bootstrap-dialog-title{
-  font-size:18px;
-  line-height:18px;
-  font-weight:bold;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-header .bootstrap-dialog-title {
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: bold;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-header .bootstrap-dialog-close-button{
-  position:relative;
-  top:-3px;
-  display:block;
-  width:38px;
-  height:38px;
-  border-radius:38px;
-  border:1px solid #c7d6dd;
-  background-color:#fff;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-header .bootstrap-dialog-close-button {
+    position: relative;
+    top: -3px;
+    display: block;
+    width: 38px;
+    height: 38px;
+    border-radius: 38px;
+    border: 1px solid #c7d6dd;
+    background-color: #fff;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-header .bootstrap-dialog-close-button:focus{
-  outline:none;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-header .bootstrap-dialog-close-button:focus {
+    outline: none;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-header .bootstrap-dialog-close-button .btn.close{
-  position:relative;
-  top:50%;
-  right:4px;
-  transform:translateY(-50%);
-  font-size:36px;
-  font-weight:normal;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-header .bootstrap-dialog-close-button .btn.close {
+    position: relative;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    font-size: 36px;
+    font-weight: normal;
 }
+
 .core .bootstrap-dialog.light-theme .modal-content .modal-header .bootstrap-dialog-close-button .btn.close:active,
-.core .bootstrap-dialog.light-theme .modal-content .modal-header .bootstrap-dialog-close-button .btn.close:active:hover{
-  box-shadow:none;
+.core .bootstrap-dialog.light-theme .modal-content .modal-header .bootstrap-dialog-close-button .btn.close:active:hover {
+    box-shadow: none;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-body{
-  padding:15px 35px;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-body {
+    padding: 15px 35px;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-body .confirm-panel{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:space-around;
-  flex-wrap:wrap;
-  min-height:160px;
-  height:160px \0;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-body .confirm-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    min-height: 160px;
+    height: 160px \0;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-body .confirm-panel .confirm-desc{
-  display:inline-block;
-  max-width:340px;
-  font-size:18px;
-  line-height:30px;
-  word-wrap:break-word;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-body .confirm-panel .confirm-desc {
+    display: inline-block;
+    max-width: 340px;
+    font-size: 18px;
+    line-height: 30px;
+    word-wrap: break-word;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-body .confirm-panel .btn-wrap .btn{
-  min-width:120px;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-body .confirm-panel .btn-wrap .btn {
+    min-width: 120px;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-body .confirm-panel .btn-wrap .btn:last-child{
-  margin-left:20px;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-body .confirm-panel .btn-wrap .btn:last-child {
+    margin-left: 20px;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-footer{
-  padding:0 0 40px 0;
-  text-align:center;
-  border-top:none;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-footer {
+    padding: 0 0 40px 0;
+    text-align: center;
+    border-top: none;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-footer .btn{
-  min-width:120px;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-footer .btn {
+    min-width: 120px;
 }
-.core .bootstrap-dialog.light-theme .modal-content .modal-footer .btn:not(:first-child){
-  margin-left:20px;
+
+.core .bootstrap-dialog.light-theme .modal-content .modal-footer .btn:not(:first-child) {
+    margin-left: 20px;
 }
-.core .iot-menu-wrapper .iot-menu-navbar{
-  background-color:#E71731;
-  color:#DFDFDF;
-  font-size:16px;
-  height:80px;
-  line-height:80px;
-  list-style:none;
-  margin-bottom:0;
-  padding-left:0;
+
+.core .iot-menu-wrapper {
+    position: relative;
 }
-.core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item{
-  float:left;
-  min-width:120px;
+
+.core .iot-menu-wrapper ul {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
 }
+
+.core .iot-menu-wrapper .iot-menu-bg {
+    position: absolute;
+    width: 100%;
+    height: 285px;
+    z-index: 10;
+    background-color: rgba(80, 76, 77, 0.8);
+}
+
+.core .iot-menu-wrapper .iot-menu-navbar {
+    background-color: #E71731;
+    color: #DFDFDF;
+    font-size: 16px;
+    height: 80px;
+    line-height: 80px;
+}
+
+.core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item {
+    float: left;
+    min-width: 120px;
+}
+
 .core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item.active,
-.core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item:hover{
-  background-color:#D1020A;
+.core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item:hover {
+    background-color: #D1020A;
 }
+
 .core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item.active .iot-menu-item,
-.core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item:hover .iot-menu-item{
-  cursor:pointer;
-  color:#FFF;
+.core .iot-menu-wrapper .iot-menu-navbar .iot-menu-list-item:hover .iot-menu-item {
+    cursor: pointer;
+    color: #FFF;
 }
-.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-navbar{
-  list-style:none;
-  margin-bottom:0;
-  padding-left:0;
-  height:60px;
-  line-height:60px;
-  background-color:#504C4D;
-  color:#DFDFDF;
-  font-size:16px;
+
+.core .iot-menu-wrapper .iot-sub-menu-wrapper {
+    position: absolute;
 }
-.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item{
-  float:left;
-  min-width:185px;
+
+.core .iot-menu-wrapper .iot-sub-menu-wrapper .iot-sub-menu-navbar {
+    position: relative;
+    z-index: 11;
 }
+
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-navbar {
+    height: 60px;
+    line-height: 60px;
+    color: #DFDFDF;
+    font-size: 16px;
+}
+
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item {
+    float: left;
+    min-width: 185px;
+}
+
 .core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item.active,
-.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item:hover{
-  background-color:#342E2E;
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item:hover {
+    background-color: rgba(52, 46, 46, 0.5);
 }
+
 .core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item.active .iot-sub-menu-item,
-.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item:hover .iot-sub-menu-item{
-  cursor:pointer;
-  color:#FFF;
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.inline .iot-sub-menu-list-item:hover .iot-sub-menu-item {
+    cursor: pointer;
+    color: #FFF;
 }
+
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.block .iot-sub-menu-navbar {
+    height: 285px;
+    min-height: 60px;
+    line-height: 60px;
+    color: #DFDFDF;
+    font-size: 16px;
+}
+
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.block .iot-sub-menu-list-item {
+    display: inline-block;
+    float: left;
+    height: 100%;
+    min-width: 185px;
+}
+
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.block .iot-sub-menu-list-item.active,
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.block .iot-sub-menu-list-item:hover {
+    background-color: rgba(52, 46, 46, 0.5);
+}
+
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.block .iot-sub-menu-list-item .iot-sub-menu-item .sub-menu-item-header {
+    line-height: 55px;
+}
+
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.block .iot-sub-menu-list-item .iot-sub-menu-item .iot-sub-menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 14px;
+    line-height: 40px;
+}
+
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.block .iot-sub-menu-list-item .iot-sub-menu-item .iot-sub-menu-item.active,
+.core .iot-menu-wrapper .iot-sub-menu-wrapper.block .iot-sub-menu-list-item .iot-sub-menu-item .iot-sub-menu-item:hover {
+    cursor: pointer;
+    color: #FFF;
+}
+
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

@@ -586,15 +586,27 @@
     @navbarHeight:80px; //菜单高度
     @listItemMinWidth:120px; //菜单项最小宽度
     @listItemHoverBgColor:#D1020A; //菜单项 hover状态背景颜色
+    position: relative;
+    ul {
+      list-style: none;
+      margin-bottom: 0;
+      padding-left: 0;
+    }
+    .iot-menu-bg {
+      //菜单背景
+      position: absolute;
+      width: 100%;
+      //      height: 60px; //TODO js控制
+      height: 285px; //TODO js控制
+      z-index: 10;
+      background-color: rgba(80, 76, 77, 0.8);
+    }
     .iot-menu-navbar{ //一级菜单
       background-color:@navbarBgColor;
       color:@navbarColor;
       font-size:@navbarFontSize;
       height:@navbarHeight;
       line-height:@navbarHeight;
-      list-style:none;
-      margin-bottom:0;
-      padding-left:0;
       .iot-menu-list-item{
         float:left;
         min-width:@listItemMinWidth;
@@ -610,17 +622,19 @@
     }
     .iot-sub-menu-wrapper{ //子菜单
       @subListItemMinWidth:185px; //子菜单最小宽度
-      @subNavbarBgColor:#504C4D; //子菜单背景颜色
+      @subNavbarBgColor: rgba(80, 76, 77, 0.8); //子菜单背景颜色 #504C4D;
       @subNavbarHeight:60px; //子菜单高度
-      @subListItemHoverBgColor:#342E2E; //子菜单项hover状态背景颜色
+      @subListItemHoverBgColor: rgba(52, 46, 46, .5); //子菜单项hover状态背景颜色 #342E2E
+      position: absolute;
+      //      background-color:@subNavbarBgColor;
+      .iot-sub-menu-navbar {
+        position: relative;
+        z-index: 11;
+      }
       &.inline{ //内联样式
         .iot-sub-menu-navbar{
-          list-style:none;
-          margin-bottom:0;
-          padding-left:0;
           height:@subNavbarHeight;
           line-height:@subNavbarHeight;
-          background-color:@subNavbarBgColor;
           color:@navbarColor;
           font-size:@navbarFontSize;
         }
@@ -633,6 +647,40 @@
             .iot-sub-menu-item{
               cursor:pointer;
               color:@navbarHoverColor;
+            }
+          }
+        }
+      }
+      &.block {
+        .iot-sub-menu-navbar {
+          height: 285px; //TODO - js控制
+          min-height: @subNavbarHeight;
+          line-height: @subNavbarHeight;
+          color: @navbarColor;
+          font-size: @navbarFontSize;
+        }
+        .iot-sub-menu-list-item {
+          display: inline-block;
+          float: left;
+          height: 100%;
+          min-width: @subListItemMinWidth;
+          &.active,
+          &:hover {
+            background-color: @subListItemHoverBgColor;
+          }
+          .iot-sub-menu-item {
+            .sub-menu-item-header {
+              line-height: 55px;
+            }
+            .iot-sub-menu-item {
+              .flexlayout(flex, column, center, center);
+              font-size: 14px;
+              line-height: 40px;
+              &.active,
+              &:hover {
+                cursor: pointer;
+                color: @navbarHoverColor;
+              }
             }
           }
         }

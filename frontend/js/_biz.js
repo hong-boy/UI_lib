@@ -196,4 +196,7 @@ $(function () {
             dialog.close();
         });
     });
+
+    //菜单
+    $('.iot-menu-wrapper').menuWidget('init');
 });

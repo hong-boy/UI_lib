@@ -753,54 +753,149 @@
                     <h2 class="chunk-header h2">菜单</h2>
                     <div class="chunk-content">
                         <div class="chunk-row">
-                            <!-- 菜单 -->
+                            <!-- 菜单-DOM驱动方式 HTML需要保证如下结构 -->
                             <div class="iot-menu-wrapper">
                                 <ul class="iot-menu-navbar">
                                     <li class="iot-menu-list-item">
                                         <span class="iot-menu-item">监控信息</span>
+
+                                        <div class="hide iot-sub-menu-wrapper inline">
+                                            <ul class="iot-sub-menu-navbar">
+                                                <li class="iot-sub-menu-list-item">
+                                                    <span class="iot-sub-menu-item">实时监控</span>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item active">
+                                                    <span class="iot-sub-menu-item">轨迹回放</span>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item">
+                                                    <span class="iot-sub-menu-item">远程控制</span>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item">
+                                                    <span class="iot-sub-menu-item">报警信息</span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
                                     <li class="iot-menu-list-item active open">
-                                        <span class="iot-menu-item">监控信息</span>
+                                        <span class="iot-menu-item">系统管理</span>
+
+                                        <div class="hide iot-sub-menu-wrapper block">
+                                            <ul class="iot-sub-menu-navbar">
+                                                <li class="iot-sub-menu-list-item">
+                                                    <div class="iot-sub-menu-item">
+                                                        <section class="sub-menu-item-header">车辆管理</section>
+                                                        <section>
+                                                            <span class="iot-sub-menu-item">车辆信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                        </section>
+                                                    </div>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item">
+                                                    <div class="iot-sub-menu-item">
+                                                        <section class="sub-menu-item-header">车辆管理</section>
+                                                        <section>
+                                                            <span class="iot-sub-menu-item">车辆信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                        </section>
+                                                    </div>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item active">
+                                                    <div class="iot-sub-menu-item">
+                                                        <section class="sub-menu-item-header">车辆管理</section>
+                                                        <section>
+                                                            <span class="iot-sub-menu-item active">车辆信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                        </section>
+                                                    </div>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item">
+                                                    <div class="iot-sub-menu-item">
+                                                        <section class="sub-menu-item-header">车辆管理</section>
+                                                        <section>
+                                                            <span class="iot-sub-menu-item">车辆信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                        </section>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
-                                    <li class="iot-menu-list-item">
-                                        <span class="iot-menu-item">监控信息</span>
+                                    <li class="iot-menu-list-item" data-menuwidget-left="140">
+                                        <span class="iot-menu-item">系统管理</span>
+
+                                        <div class="hide iot-sub-menu-wrapper block">
+                                            <ul class="iot-sub-menu-navbar">
+                                                <li class="iot-sub-menu-list-item">
+                                                    <div class="iot-sub-menu-item">
+                                                        <section class="sub-menu-item-header">车辆管理</section>
+                                                        <section>
+                                                            <span class="iot-sub-menu-item">车辆信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                        </section>
+                                                    </div>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item">
+                                                    <div class="iot-sub-menu-item">
+                                                        <section class="sub-menu-item-header">车辆管理</section>
+                                                        <section>
+                                                            <span class="iot-sub-menu-item">车辆信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                        </section>
+                                                    </div>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item active">
+                                                    <div class="iot-sub-menu-item">
+                                                        <section class="sub-menu-item-header">车辆管理</section>
+                                                        <section>
+                                                            <span class="iot-sub-menu-item active">车辆信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                        </section>
+                                                    </div>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item">
+                                                    <div class="iot-sub-menu-item">
+                                                        <section class="sub-menu-item-header">车辆管理</section>
+                                                        <section>
+                                                            <span class="iot-sub-menu-item">车辆信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                            <span class="iot-sub-menu-item">SIM信息</span>
+                                                        </section>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
-                                    <li class="iot-menu-list-item">
+                                    <li class="iot-menu-list-item" data-menuwidget-left="200">
                                         <span class="iot-menu-item">监控信息</span>
+
+                                        <div class="hide iot-sub-menu-wrapper inline">
+                                            <ul class="iot-sub-menu-navbar">
+                                                <li class="iot-sub-menu-list-item">
+                                                    <span class="iot-sub-menu-item">实时监控</span>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item active">
+                                                    <span class="iot-sub-menu-item">轨迹回放</span>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item">
+                                                    <span class="iot-sub-menu-item">远程控制</span>
+                                                </li>
+                                                <li class="iot-sub-menu-list-item">
+                                                    <span class="iot-sub-menu-item">报警信息</span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
                                 </ul>
-                                <div hidden class="iot-sub-menu-wrapper inline">
-                                    <ul class="iot-sub-menu-navbar">
-                                        <li class="iot-sub-menu-list-item">
-                                            <span class="iot-sub-menu-item">实时监控</span>
-                                        </li>
-                                        <li class="iot-sub-menu-list-item active">
-                                            <span class="iot-sub-menu-item">轨迹回放</span>
-                                        </li>
-                                        <li class="iot-sub-menu-list-item">
-                                            <span class="iot-sub-menu-item">远程控制</span>
-                                        </li>
-                                        <li class="iot-sub-menu-list-item">
-                                            <span class="iot-sub-menu-item">报警信息</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="iot-sub-menu-wrapper block">
-                                    <ul class="iot-sub-menu-navbar">
-                                        <li class="iot-sub-menu-list-item">
-                                            <span class="iot-sub-menu-item">实时监控</span>
-                                        </li>
-                                        <li class="iot-sub-menu-list-item active">
-                                            <span class="iot-sub-menu-item">轨迹回放</span>
-                                        </li>
-                                        <li class="iot-sub-menu-list-item">
-                                            <span class="iot-sub-menu-item">远程控制</span>
-                                        </li>
-                                        <li class="iot-sub-menu-list-item">
-                                            <span class="iot-sub-menu-item">报警信息</span>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <div class="hide iot-menu-bg"></div>
                             </div>
                         </div>
                     </div>

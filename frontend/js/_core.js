@@ -764,24 +764,41 @@
     var SPLITER = '_';
     var DEFAULTS = {
         ns: 'menu_widget', //命名空间
-        activeClass: '', //选中状态自定义class
-        hoverClass: '', //悬停状态自定义class
-        subMenuContainer: 'body', //子菜单所依附的元素
+        driven: 'dom', //插件的驱动方式：DOM和JS，目前只支持DOM驱动
+        bgElementContainer: null, //背景所依附的元素
+        bgElementStyle: null, //背景元素的style属性
         onShow: null, //子菜单显示时的回调
         onHide: null, //子菜单隐藏时的回调
-        onComplete: null, //菜单生成/更新后的回调
-        data: [] //菜单项，形如: [{id:'system_manage', label:'系统管理', click:null, active: true, attributes: ['module-menu=/systemManage'], children: []}]
-    };
-
-    var UI = {
-        genMenu: function (data) {
-
-        }
+        onComplete: null //菜单生成/更新后的回调
+//        data: [] //菜单项，形如: [{id:'system_manage', label:'系统管理', click:null, active: true, attributes: ['module-menu=/systemManage'], children: []}]
     };
 
     var methods = {
         init: function ($thiz, option, promise) {
-
+            //为一级菜单的每个元素项(li)绑定hover事件
+            $thiz.off('mouseover', '.iot-menu-list-item')
+                .on('mouseover', '.iot-menu-list-item', function () {
+                    var $this = $(this),
+                        $subMenu = $this.find('.iot-sub-menu-wrapper'),
+                        $bg = $('.iot-menu-bg'),
+                        bgHeight = 0;
+                    //show sub-menu
+                    bgHeight = $subMenu.css('opacity', 0).removeClass('hide').height();
+                    //calculate sub-menu
+                    var adjustLeft = $this.data('menuwidgetLeft');
+                    $.isNumeric(adjustLeft) && $subMenu.css('left', adjustLeft);
+                    //calculate bg container
+                    $bg.height(bgHeight).removeClass('hide');
+                    $subMenu.css('opacity', 1);
+                });
+            $thiz.off('mouseout', '.iot-menu-list-item')
+                .on('mouseout', '.iot-menu-list-item', function () {
+                    var $this = $(this),
+                        $bg = $('.iot-menu-bg');
+                    $this.find('.iot-sub-menu-wrapper').addClass('hide');
+                    $bg.addClass('hide');
+                });
+            promise.resolve();
         }
     };
     $.fn.menuWidget = function (method, option) {
