@@ -198,5 +198,42 @@ $(function () {
     });
 
     //菜单
-    $('.iot-menu-wrapper').menuWidget('init');
+    $('.iot-menu-wrapper').menuWidget('init', {
+        bgElementContainer: '.menu-wrap'
+    });
+
+    //Resizable
+    //$('#my_resizer').resizable({
+    //    handles : "n,e,se,all",
+    //    helper : false,
+    //    helperStyle : {
+    //        "border" : "0px solid #888",
+    //        "border-bottom" : "5px solid #888"
+    //    },
+    //    maxHeight : 600,
+    //    maxWidth : 600,
+    //    minHeight : 10,
+    //    minWidth : 10,
+    //    onStartResize : function() {
+    //    },
+    //    onResize : function() {
+    //    },
+    //    onStopResize : function() {
+    //    }
+    //});
+
+    $('#my_target').simpleResizable('init', {
+        initilizeStatus: 2,
+        minimize: {
+            position: 'SW:0px:0',
+            width: '150px',
+            height: '25px'
+        },
+        restore: {
+            position: 'SW'
+        },
+        onMinimize: function () {
+            return '<div class="">车辆信息列表</div>';
+        }
+    });
 });

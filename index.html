@@ -785,7 +785,6 @@
     <div class="m-case">
         <div class="chunk">
             <h2 class="chunk-header h2">菜单</h2>
-
             <div class="chunk-content">
                 <div class="chunk-row">
                     <!-- 菜单-DOM驱动方式 HTML需要保证如下结构 -->
@@ -793,7 +792,6 @@
                         <ul class="iot-menu-navbar">
                             <li class="iot-menu-list-item">
                                 <span class="iot-menu-item">监控信息</span>
-
                                 <div class="hide iot-sub-menu-wrapper inline">
                                     <ul class="iot-sub-menu-navbar">
                                         <li class="iot-sub-menu-list-item">
@@ -811,9 +809,8 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="iot-menu-list-item active open">
+                            <li class="iot-menu-list-item active">
                                 <span class="iot-menu-item">系统管理</span>
-
                                 <div class="hide iot-sub-menu-wrapper block">
                                     <ul class="iot-sub-menu-navbar">
                                         <li class="iot-sub-menu-list-item">
@@ -862,7 +859,6 @@
                             </li>
                             <li class="iot-menu-list-item" data-menuwidget-left="140">
                                 <span class="iot-menu-item">系统管理</span>
-
                                 <div class="hide iot-sub-menu-wrapper block">
                                     <ul class="iot-sub-menu-navbar">
                                         <li class="iot-sub-menu-list-item">
@@ -911,7 +907,6 @@
                             </li>
                             <li class="iot-menu-list-item" data-menuwidget-left="200">
                                 <span class="iot-menu-item">监控信息</span>
-
                                 <div class="hide iot-sub-menu-wrapper inline">
                                     <ul class="iot-sub-menu-navbar">
                                         <li class="iot-sub-menu-list-item">
@@ -930,7 +925,6 @@
                                 </div>
                             </li>
                         </ul>
-                        <div class="hide iot-menu-bg"></div>
                     </div>
                 </div>
             </div>
@@ -940,10 +934,59 @@
 插件：使用BootstrapDialog来实现，方法：IOT.displayDefaultDialog
             </pre>
 </div>
+    <h2 class="h2">拖动/最大化/最小化</h2>
+    <div class="dashboard resiable-wrap">
+        <div class="m-case" id="resiable_wrapper">
+            <!--<div class="iot-resizable-wrapper">-->
+            <!--<div class="iot-resizable-header">-->
+            <!--<div class="iot-resizable-header-content"></div>-->
+            <!--<div class="iot-resiable-operations"></div>-->
+            <!--</div>-->
+            <!--<div class="iot-resizable-content"></div>-->
+            <!--</div>-->
+            <div class="clearfix" id="my_container"
+                 style="position:relative;border:1px solid darkred; width:100%; height: 800px;">
+                <div id="my_target" class="modal-dialog modal-custom"
+                     style="width: 500px; position:absolute; left:40%; top:50px;">
+                    <div class="modal-content" style="width: 500px;">
+                        <div class="modal-header bootstrap-dialog-draggable">
+                            <div class="bootstrap-dialog-header">
+                                <div class="bootstrap-dialog-close-button" style="display: none;">
+                                    <button class="btn close">×</button>
+                                </div>
+                                <div class="bootstrap-dialog-title" id="5848d405-1606-4051-a08c-14a458cada39_title">
+                                    编辑用户
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body" style="min-height: 300px;">
+                            <div class="bootstrap-dialog-body">
+                                <div class="bootstrap-dialog-message">some content here...</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="display: block;">
+                            <div class="bootstrap-dialog-footer">
+                                <div class="bootstrap-dialog-footer-buttons">
+                                    <button class="btn btn-default" id="f0a88a2c-0cee-4353-af5e-77ceb113eb80">确 定
+                                    </button>
+                                    <button class="btn btn-empty" id="82c73c2d-96cc-462f-816a-0bad353d2d8a">取 消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <pre>
+自定义插件：simpleResizable
+    </pre>
+    </div>
 </div>
 </div>
 </body>
 <script type="text/javascript" src="frontend/lib/jquery.1.11.min.js"></script>
+<script type="text/javascript" src="frontend/lib/jquery.ui/jquery.resizable.js"></script>
+<script type="text/javascript" src="frontend/lib/jquery.ui/jquery.draggable.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap3-dialog/bootstrap-dialog.js"></script>
 <script type="text/javascript" src="frontend/lib/icheck/icheck.js"></script>
