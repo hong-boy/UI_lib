@@ -1277,7 +1277,7 @@
                         //do nothing
                     }
                 };
-                $wrap.attr('tabIndex', -1).focus(function () {
+                $wrap.attr('tabIndex', -1).focusin(function () {
                     updateZIndex($(this));
                 });
                 (minimize.draggable || restore.draggable) && $wrap.draggable(
