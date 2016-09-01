@@ -897,18 +897,22 @@
         RESTORE: 2,
         FULLSCREEN: 3
     };
+    var DEFAULTS_DRAGGABLE = {//draggable option
+        cursor: 'move'
+    };
     var DEFAULTS = {
         initilizeStatus: 1, //初始状态：minimize | restore | fullscreen
-        draggable: false, //是否可拖动
-        dragHandler: null, //拖动句柄
         alwaysShowAllIcons: false, //是否同时显示"最小化"和"还原"按钮
+        zIndex: 9999, //窗口处于focus状态时的层级
         minimize: {//最小化
             icon: 'icon-win-min', //图标
             iconPosition: {left: '', top: '', right: '', bottom: ''}, //图标位置，形如：{left:'', top:'', right:'', bottom:''}
             iconTooltip: '最小化', //title信息
             position: 'SE:50px:50px', //窗口显示位置，形如：'SE:VAL_1:VAL_2'，其中SE表示方向(SouthEast)，VAL_1:表示相对于South方向的偏移，VAL_2:表示相对于East方向的偏移
             width: '',
-            height: ''
+            height: '',
+            draggable: false, //是否可拖动
+            dragHandler: null //拖动句柄
         },
         restore: {//还原
             icon: 'icon-win-restore', //图标
@@ -916,7 +920,9 @@
             iconTooltip: '还原', //title信息
             position: 'SE',
             width: '',
-            height: ''
+            height: '',
+            draggable: false, //是否可拖动
+            dragHandler: null //拖动句柄
         },
         onMinimize: $.noop, //最小化回调(必须实现)，形如：function($wrap, option){}
         onRestore: $.noop, //还原时回调 形如：function($wrap, option){}
@@ -941,14 +947,15 @@
                 targetCSS;
 
             if (!$resizeWrap.hasClass('iot-resizable-wrapper')) {
-                //update parent's position firstly
+                //Update parent's position firstly
                 if ($parent.css('position') === 'static') {
                     $parent.css('position', 'relative');
                 }
                 $resizeWrap = $('<div class="iot-resizable-wrapper"></div>');
+                //Cache restored view style
                 var restoreViewStyle = UI.genRestoreViewStyle($resizeWrap, $dom, $parent, option);
                 $resizeWrap.data(RESTORE_CSS_STATUS, restoreViewStyle);
-                //create useless status for $dom
+                //Clear useless status for $dom
                 $dom.css({
                     'margin': 'auto',
                     'left': '',
@@ -980,20 +987,21 @@
          * @param option
          */
         genRestoreViewStyle: function ($wrap, $dom, $parent, option) {
-            //get original status of $dom. Use restore status as default
+            //Get original status of $dom. Use restore status as default
             $dom.css('opacity', 0).show();
             var restore = option.restore,
+                direction = option.minimize.position.split(':')[0],
                 originalWidth = restore.width || $dom.outerWidth(),
                 originalHeight = restore.height || $dom.outerHeight(),
-                restorePos = restore.position,
+                restorePos = restore.position || direction,
                 originalPos = UI.handlePosition(restorePos, $dom);
 
-            //create wrapper & icon
+            //Create wrapper & icon
             $wrap.append($dom).appendTo($parent).hide();
             $dom.css('opacity', 1);
             $('<div class="iot-resizable-status-min"></div>').appendTo($wrap);
             $('<div class="iot-resizable-icon"></div>').appendTo($wrap);
-            //calculate wrapper style
+            //Calculate wrapper style
             var targetCSS = {
                 width: originalWidth,
                 height: originalHeight
@@ -1018,7 +1026,7 @@
             minAreaWidth = option.minimize.width || $minArea.outerWidth();
             minAreaHeight = option.minimize.height || $minArea.outerHeight();
             targetCSS = {
-                width: parseInt(minAreaWidth) + 50,
+                width: minAreaWidth,
                 height: minAreaHeight
             };
             $minArea.css('opacity', 1);
@@ -1033,8 +1041,8 @@
             var $iconWrap = $wrap.find('> .iot-resizable-icon'),
                 minIconObj = option.minimize,
                 restoreIconObj = option.restore,
-                $minIcon = $('<span class="icon ' + (minIconObj.icon) + '"></span>'),
-                $restoreIcon = $('<span class="icon ' + (restoreIconObj.icon) + '"></span>');
+                $minIcon = $('<span class="icon iot-icon-resize-min ' + (minIconObj.icon) + '"></span>'),
+                $restoreIcon = $('<span class="icon iot-icon-resize-restore ' + (restoreIconObj.icon) + '"></span>');
 
             var renderIcon = function (dom, iconObj) {
                 var resetParentStyle = function (dom, targetCss, position) {
@@ -1062,18 +1070,21 @@
             $wrap.off('click', '.icon-win-min').on('click', '.icon-win-min', function (e) {
                 var $thiz = $(this),
                     $parent = $thiz.parents('.iot-resizable-wrapper'),
-                    $restoreIcon = $parent.find('.icon-win-restore');
+                    $restoreIcon = $parent.find('.iot-icon-resize-restore');
                 if ($parent.data(CURRENT_STATUS_TAG) == STATUS_ENUM.MIN) {
                     return;
                 }
                 var option = $parent.data(DATA_TAG),
+                    miniPos = option.minimize.position,
                     $minArea = $parent.find('.iot-resizable-status-min'),
                     $restoreArea = $parent.find('.iot-resizable-status-restore'),
                     html = option.onMinimize($parent, option),
                     targetCSS = $parent.data(MINIMIZE_CSS_STATUS);
 
                 $minArea.empty().append(html);
-
+                if (option.minimize.draggable) {
+                    $parent.draggable('option', 'handle', option.minimize.dragHandler);
+                }
                 $parent.animate(targetCSS, ANIMATION_SPEED, function () {
                     $restoreArea.hide();
                     $minArea.css('opacity', 1).show();
@@ -1088,7 +1099,7 @@
             $wrap.off('click', '.icon-win-restore').on('click', '.icon-win-restore', function (e) {
                 var $thiz = $(this),
                     $parent = $thiz.parents('.iot-resizable-wrapper'),
-                    $minIcon = $parent.find('.icon-win-min'),
+                    $minIcon = $parent.find('.iot-icon-resize-min'),
                     originalCssStatus = $parent.data(RESTORE_CSS_STATUS);
 
                 if ($parent.data(CURRENT_STATUS_TAG) == STATUS_ENUM.RESTORE) {
@@ -1098,6 +1109,9 @@
                     $minArea = $parent.find('.iot-resizable-status-min'),
                     $restoreArea = $parent.find('.iot-resizable-status-restore');
 
+                if (option.restore.draggable) {
+                    $parent.draggable('option', 'handle', option.restore.dragHandler);
+                }
                 $parent.animate(originalCssStatus, ANIMATION_SPEED, function () {
                     $minArea.hide();
                     $restoreArea.show();
@@ -1149,6 +1163,40 @@
                 }
             }
             return result;
+        },
+        /**
+         * 修正定位样式
+         * @param position
+         * @returns {{}}
+         */
+        fixPosition: function (position) {
+            //Reset position
+            var result = {},
+                posArr = position.split(':'),
+                val = 'initial';
+            switch (posArr[0]) {
+                case 'SE':
+                {
+                    result.left = val;
+                    result.top = val;
+                    break;
+                }
+                case 'NE':
+                {
+                    result.left = val;
+                    break;
+                }
+                case 'SW':
+                {
+                    result.top = val;
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            return result;
         }
     };
 
@@ -1171,16 +1219,85 @@
         option = $.extend(true, {}, DEFAULTS, option);
         $.when(methods[method].call(null, $(this), option, dtd))
             .done(function ($wrap) {
+                //Cache option and reset icons' style
                 $wrap.data(DATA_TAG, option);
                 if (!option.alwaysShowAllIcons) {
                     if (option.initilizeStatus == STATUS_ENUM.MIN) {
-                        $wrap.find('.icon-win-min').hide();
+                        $wrap.find('.iot-icon-resize-min').hide();
                     } else {
-                        $wrap.find('.icon-win-restore').hide();
+                        $wrap.find('.iot-icon-resize-restore').hide();
                     }
                 }
             })
             .done(function ($wrap) {
+                //Darggable check
+                var minimize = option.minimize,
+                    restore = option.restore,
+                    handler = (option.initilizeStatus == STATUS_ENUM.MIN) ? minimize.dragHandler : restore.dragHandler;
+                var updateZIndex = function ($dom) {
+                    var option = $dom.data(DATA_TAG),
+                        $parent = $dom.parent();
+                    $parent.find('.iot-resizable-wrapper').not($dom).each(function () {
+                        $(this).css('z-index', '');
+                    });
+                    $dom.css('z-index', option.zIndex);
+                };
+                var dragStart = function (e, ui) {
+                    updateZIndex(ui.helper);
+                };
+                var dragStop = function (e, ui) {
+                    var $dom = ui.helper,
+                        $parent = $dom.parent(),
+                        dWidth = $dom.width(),
+                        dHeight = $dom.height(),
+                        pWidth = $parent.width(),
+                        pHeight = $parent.height(),
+                        uiPosition = ui.position,
+                        option = $dom.data(DATA_TAG),
+                        minimize = option.minimize,
+                        direction = minimize.position.split(':')[0];
+                    if (direction === 'NE') {
+                        $dom.css({
+                            right: pWidth - (dWidth + uiPosition.left),
+                            left: ''
+                        });
+                    } else if (direction === 'SE') {
+                        $dom.css({
+                            right: pWidth - (dWidth + uiPosition.left),
+                            bottom: pHeight - (dHeight + uiPosition.top),
+                            left: '',
+                            top: ''
+                        });
+                    } else if (direction === 'SW') {
+                        $dom.css({
+                            bottom: pHeight - (dHeight + uiPosition.top),
+                            top: ''
+                        });
+                    } else {
+                        //do nothing
+                    }
+                };
+                $wrap.attr('tabIndex', -1).focus(function () {
+                    updateZIndex($(this));
+                });
+                (minimize.draggable || restore.draggable) && $wrap.draggable(
+                    $.extend(true, DEFAULTS_DRAGGABLE, {
+                        handle: handler,
+                        containment: $wrap.parent(),
+                        stop: dragStop,
+                        start: dragStart
+                    })
+                );
+            })
+            .done(function ($wrap) {
+                //$wrap.find('div').each(function(){
+                //    $(this).attr('tabindex', -1);
+                //});
+                //$wrap.attr('tabIndex', -1).focusin(function(){
+                //    $wrap.css('z-index', option.zIndex);
+                //}).focusout(function(){
+                //    $wrap.css('z-index', '');
+                //});
                 $.isFunction(option.onComplete) && option.onComplete($wrap);
             })
             .fail(function ($wrap, error) {

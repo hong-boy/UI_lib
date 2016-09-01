@@ -28,7 +28,7 @@
   align-items:stretch;
   justify-content:space-around;
   flex-wrap:wrap;
-  height:210px;
+  min-height:210px;
 }
 .biz .wrap-text-color .chunk-content .chunk-row {
   height:40px;
@@ -150,3 +150,4 @@
   height:100%;
   padding:0 15px;
 }
+/*# sourceMappingURL=maps/_biz.css.map */

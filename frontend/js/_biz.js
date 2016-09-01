@@ -225,15 +225,55 @@ $(function () {
     $('#my_target').simpleResizable('init', {
         initilizeStatus: 2,
         minimize: {
-            position: 'SW:0px:0',
-            width: '150px',
-            height: '25px'
+            position: 'NW:50px:0',
+            width: '200px',
+            height: '25px',
+            draggable: true,
+            dragHandler: '.my-min-view'
         },
         restore: {
-            position: 'SW'
+            position: 'NW',
+            draggable: true,
+            dragHandler: '.bootstrap-dialog-title'
         },
         onMinimize: function () {
-            return '<div class="">车辆信息列表</div>';
+            return '<div class="my-min-view" style="background-color:#00d4b4">车辆信息列表</div>';
+        }
+    });
+    $('#my_target1').simpleResizable('init', {
+        initilizeStatus: 2,
+        minimize: {
+            position: 'SW:50px:0',
+            width: '200px',
+            height: '25px',
+            draggable: true,
+            dragHandler: '.my-min-view'
+        },
+        restore: {
+            position: 'SW:0:10px',
+            draggable: true,
+            dragHandler: '.bootstrap-dialog-header'
+        },
+        onMinimize: function () {
+            return '<div class="my-min-view" style="background-color:#00d4b4">车辆信息列表1</div>';
+        }
+    });
+    $('#my_target2').simpleResizable('init', {
+        initilizeStatus: 2,
+        minimize: {
+            position: 'SE:50px:0',
+            width: '200px',
+            height: '25px',
+            draggable: true,
+            dragHandler: '.my-min-view'
+        },
+        restore: {
+            position: 'SE:10px:0',
+            draggable: true,
+            dragHandler: '.bootstrap-dialog-header'
+        },
+        onMinimize: function () {
+            return '<div class="my-min-view" style="background-color:#00d4b4">车辆信息列表11</div>';
         }
     });
 });

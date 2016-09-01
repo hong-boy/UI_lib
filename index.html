@@ -106,6 +106,16 @@
                         <i class="icon-spinner"></i>
                         <em>spinner</em>
                     </div>
+                    <div class="item">
+                        <i class="icon-left-dbl-arrow"></i>
+                        <em>双箭头</em>
+                    </div>
+                </div>
+                <div class="chunk-row">
+                    <div class="item">
+                        <i class="icon-right-dbl-arrow"></i>
+                        <em>双箭头</em>
+                    </div>
                 </div>
             </div>
         </div>
@@ -931,22 +941,73 @@
         </div>
     </div>
             <pre>
-插件：使用BootstrapDialog来实现，方法：IOT.displayDefaultDialog
+菜单
             </pre>
 </div>
     <h2 class="h2">拖动/最大化/最小化</h2>
     <div class="dashboard resiable-wrap">
         <div class="m-case" id="resiable_wrapper">
-            <!--<div class="iot-resizable-wrapper">-->
-            <!--<div class="iot-resizable-header">-->
-            <!--<div class="iot-resizable-header-content"></div>-->
-            <!--<div class="iot-resiable-operations"></div>-->
-            <!--</div>-->
-            <!--<div class="iot-resizable-content"></div>-->
-            <!--</div>-->
             <div class="clearfix" id="my_container"
                  style="position:relative;border:1px solid darkred; width:100%; height: 800px;">
                 <div id="my_target" class="modal-dialog modal-custom"
+                     style="width: 500px; position:absolute; left:40%; top:50px;">
+                    <div class="modal-content" style="width: 500px;">
+                        <div class="modal-header bootstrap-dialog-draggable">
+                            <div class="bootstrap-dialog-header">
+                                <div class="bootstrap-dialog-close-button" style="display: none;">
+                                    <button class="btn close">×</button>
+                                </div>
+                                <div class="bootstrap-dialog-title" id="5848d405-1606-4051-a08c-14a458cada39_title">
+                                    编辑用户
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body" style="min-height: 300px;">
+                            <div class="bootstrap-dialog-body">
+                                <div class="bootstrap-dialog-message">some content here...<input type="text"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="display: block;">
+                            <div class="bootstrap-dialog-footer">
+                                <div class="bootstrap-dialog-footer-buttons">
+                                    <button class="btn btn-default" id="f0a88a2c-0cee-4353-af5e-77ceb113eb80">确 定
+                                    </button>
+                                    <button class="btn btn-empty" id="82c73c2d-96cc-462f-816a-0bad353d2d8a">取 消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="my_target1" class="modal-dialog modal-custom"
+                     style="width: 500px; position:absolute; left:40%; top:50px;">
+                    <div class="modal-content" style="width: 500px;">
+                        <div class="modal-header bootstrap-dialog-draggable">
+                            <div class="bootstrap-dialog-header">
+                                <div class="bootstrap-dialog-close-button" style="display: none;">
+                                    <button class="btn close">×</button>
+                                </div>
+                                <div class="bootstrap-dialog-title" id="5848d405-1606-4051-a08c-14a458cada39_title">
+                                    编辑用户
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body" style="min-height: 300px;">
+                            <div class="bootstrap-dialog-body">
+                                <div class="bootstrap-dialog-message">some content here...</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="display: block;">
+                            <div class="bootstrap-dialog-footer">
+                                <div class="bootstrap-dialog-footer-buttons">
+                                    <button class="btn btn-default" id="f0a88a2c-0cee-4353-af5e-77ceb113eb80">确 定
+                                    </button>
+                                    <button class="btn btn-empty" id="82c73c2d-96cc-462f-816a-0bad353d2d8a">取 消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="my_target2" class="modal-dialog modal-custom"
                      style="width: 500px; position:absolute; left:40%; top:50px;">
                     <div class="modal-content" style="width: 500px;">
                         <div class="modal-header bootstrap-dialog-draggable">
@@ -985,8 +1046,7 @@
 </div>
 </body>
 <script type="text/javascript" src="frontend/lib/jquery.1.11.min.js"></script>
-<script type="text/javascript" src="frontend/lib/jquery.ui/jquery.resizable.js"></script>
-<script type="text/javascript" src="frontend/lib/jquery.ui/jquery.draggable.js"></script>
+<script type="text/javascript" src="frontend/lib/jquery.ui/jquery-ui.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap3-dialog/bootstrap-dialog.js"></script>
 <script type="text/javascript" src="frontend/lib/icheck/icheck.js"></script>

@@ -49,6 +49,10 @@
 <glyph glyph-name="win-max" unicode="&#xe838;" d="M126-24l0 748 748 0 0-748-748 0z m655 655l-562 0 0-562 562 0 0 562z" horiz-adv-x="1000" />
 
 <glyph glyph-name="win-restore" unicode="&#xe839;" d="M94 484l60 0 0-545-60 0 0 545z m550 0l60 0 0-545-60 0 0 545z m-550 46l610 0 0-60-610 0 0 60z m3-531l607 0 0-60-607 0 0 60z m202 717l60 0 0-198-60 0 0 198z m550 0l59 0 0-545-59 0 0 545z m-550 46l609 0 0-60-609 0 0 60z m380-531l229 0 0-60-229 0 0 60z" horiz-adv-x="1000" />
+
+<glyph glyph-name="left-dbl-arrow" unicode="&#xe86d;" d="M500 350l312-312 0 625z m-313 0l313-312 0 312 0 313z" horiz-adv-x="1000" />
+
+<glyph glyph-name="right-dbl-arrow" unicode="&#xe86e;" d="M500 350l-313 313 0-625z m312 0l-312 313 0-313 0-312z" horiz-adv-x="1000" />
 </font>
 </defs>
 </svg>
