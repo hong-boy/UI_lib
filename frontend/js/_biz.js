@@ -276,4 +276,27 @@ $(function () {
             return '<div class="my-min-view" style="background-color:#00d4b4">车辆信息列表11</div>';
         }
     });
+
+    $('#tbl_test').dataTable({
+        "dom": 't<"tbl-bottom"ip>',
+        "processing": false,
+        "ordering": false,
+        "searching": false,
+        "info": true,
+        "lengthChange": false,
+        "iDisplayLength": 10, //: 每页的行数，每页默认数量:10
+        "bPaginate": true, //开关，是否显示分页器
+        "bServerSide": false,
+        "oLanguage": {
+            "sProcessing": '<i class="icon-spin5 animate-spin spin-item"></i>数据查询中......',
+            "sZeroRecords": "对不起，查询不到相关数据！",
+            "sEmptyTable": "表中无数据存在！",
+            "sInfo": '总共: _TOTAL_ 项 &nbsp; 每页: _LENGTH_ 项',
+            "sInfoEmpty": '总共: _TOTAL_ 项',
+            "oPaginate": {
+                "sPrevious": '<span class="png png-prev"></span>',
+                "sNext": '<span class="png png-next" ></span>'
+            }
+        }
+    });
 });

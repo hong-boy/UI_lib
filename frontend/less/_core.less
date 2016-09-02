@@ -547,7 +547,7 @@
         .confirm-panel{ //确认框
           .flexlayout(flex, column, center, space-around);
           min-height:160px;
-          height:160px \0; //TODO IE11 BUG for "flex-direction:column" and "min-height"
+          height:160px; //TODO IE11 BUG for "flex-direction:column" and "min-height"
           .confirm-desc{
             display:inline-block;
             max-width:340px;
@@ -586,6 +586,9 @@
     @navbarHeight:80px; //菜单高度
     @listItemMinWidth:120px; //菜单项最小宽度
     @listItemHoverBgColor:#D1020A; //菜单项 hover状态背景颜色
+    @listItemAfterElemHeight:4px; //菜单项:after元素 高度
+    @listItemAfterElemBgColor:#fff; //菜单项:after元素 背景颜色
+    @listItemAfterElemTop:(@navbarHeight - @listItemAfterElemHeight); //菜单项:after元素 上偏移
     position: relative;
     ul {
       list-style: none;
@@ -596,26 +599,59 @@
       //菜单背景
       position: absolute;
       width: 100%;
-      //      height: 60px; //TODO js控制
-      height: 285px; //TODO js控制
+      height:285px;
       z-index: 10;
       background-color: rgba(80, 76, 77, 0.8);
     }
     .iot-menu-navbar{ //一级菜单
+      position:relative;
       background-color:@navbarBgColor;
       color:@navbarColor;
       font-size:@navbarFontSize;
       height:@navbarHeight;
       line-height:@navbarHeight;
+      &:hover{
+        .iot-menu-list-item-bg:after{
+          opacity:1;
+        }
+      }
+      .iot-menu-list-item-bg{
+        position:absolute;
+        width:@listItemMinWidth;
+        height:@navbarHeight;
+        background:@listItemHoverBgColor;
+        pointer-events:none;
+        transition:all 0.25s linear;
+        &:after{
+          content:'';
+          position:absolute;
+          opacity:0;
+          left:0;
+          top:@listItemAfterElemTop;
+          width:100%;
+          height:@listItemAfterElemHeight;
+          border-radius:@listItemAfterElemHeight;
+          background-color:@listItemAfterElemBgColor;
+        }
+      }
       .iot-menu-list-item{
         float:left;
         min-width:@listItemMinWidth;
+        .iot-menu-item{
+          position:relative;
+          z-index:9;
+        }
         &.active,
         &:hover{
-          background-color:@listItemHoverBgColor;
+          //background-color:@listItemHoverBgColor;
+          .iot-menu-item{
+            cursor:default;
+            color:@navbarHoverColor;
+          }
+        }
+        &[data-menuwidget-clickable]{
           .iot-menu-item{
             cursor:pointer;
-            color:@navbarHoverColor;
           }
         }
       }
@@ -705,6 +741,212 @@
         color:#999;
         &:hover{
           color:#333;
+        }
+      }
+    }
+  }
+  .tbl-wrap{ //表格
+    @primaryFontColor:#666; //datatables 主字体颜色
+    @secondaryFontColor:#999; //datatables 次字体颜色
+    &.theme-lightgray{ //主题-lightgray
+      @dtlWrapperMinHeight:167px; //datatables wrapper最小高度
+      @dtlWrapperMgBottom:35px; //datatables wrapper底部外边距
+      @pngHeight:45px; //分页高度
+      @pngMaxWidth:350px; //分页最大宽度
+      @pngFontColor:@primaryFontColor; //分页字体颜色
+      @pngBtnPadding:0 5px; //分页按钮内边距
+      @pngBtnMaxHeight:30px; //分页按钮最大高度
+      @pngBtnHoverFontColor:#4cbeeb !important; //分页按钮hover or active状态字体颜色
+      @pngBtnHoverBackground:none; //分页按钮hover or active状态背景样式
+      @pngBtnCurrentFontWeight:bold; //分页按钮“当前页”按钮字体风格
+      @pngPrevNextSize:30px; //分页按钮“上一页” or “下一页”按钮尺寸
+      @pngPrevNextBgImage:url("@{baseUrl}/lib/dataTables/png_arrow.png"); //分页按钮“上一页” or “下一页”背景图片
+      @dtlInfoPosRight:130px; //分页显示信息右偏移
+      @dtlInfoMgRight:15px; //分页显示信息右外边距
+      @dtlInfoPaddingTop:14px; //分页显示信息上内边距
+      @tblMargin:20px 0 25px 0; //表格主体外边距
+      @tblTHeadBgColor:#f8f9fc; //表格thead背景颜色
+      @tblTHeadColor:@secondaryFontColor; //表格thead字体颜色
+      @tblTHeadthPadding:12px 10px; //表格thead th内边距
+      @tblTHeadthBorderBottom:1px solid #eee; //表格thead th底部边框样式
+      @tblTHeadthFontWeight:normal; //表格thead th字体风格样式
+      @tblTHeadthFontSize:14px; //表格thead th字体大小
+      @tblTBodytdFontSize:14px; //表格tbody td字体大小
+      @tblTBodytdPadding:15px 10px; //表格tbody td内边距
+      @tblHoverLeftBorderStyle:4px solid #39baea; //表格.hover-left tbody td:first左边框样式
+      @tblStripeEvenBgColor:#fff; //表格.stripe tbody td:even背景颜色
+      @tblStripeOddBgColor:#f0f4fb; //表格.stripe tbody td:odd背景颜色
+      @tblBorderedBorderColor:#eee; //表格.bordered边框颜色
+
+      .dataTables_wrapper{
+        text-align:right;
+        min-height:@dtlWrapperMinHeight;
+        margin-bottom:@dtlWrapperMgBottom;
+        .dataTables_paginate{ //分页
+          .flexlayout(inline-flex, row, center, space-between);
+          padding:0;
+          height:@pngHeight;
+          max-width:@pngMaxWidth;
+          white-space:nowrap;
+          color:@pngFontColor;
+          .paginate_button{ //分页按钮
+            padding:@pngBtnPadding;
+            margin:0;
+            line-height:normal;
+            border:none;
+            box-shadow:none;
+            max-height:@pngBtnMaxHeight;
+            &:active,
+            &:hover{ //分页按钮hover状态
+              background:none;
+              color:@pngBtnHoverFontColor;
+              border:none;
+              box-shadow:none;
+            }
+            .png{ //上一页 or 下一页 按钮
+              position:relative;
+              display:inline-block;
+              width:@pngPrevNextSize;
+              height:@pngPrevNextSize;
+              background-repeat:no-repeat;
+              background-image:@pngPrevNextBgImage;
+            }
+            &.previous{ //上一页按钮
+              .png-prev{
+                background-position:0 -30px;
+              }
+              &.disabled .png-prev{
+                background-position:-30px -30px;
+              }
+            }
+            &.next{ //下一页按钮
+              .png-next{
+                background-position:0 0;
+              }
+              &.disabled .png-next{
+                background-position:-30px 0;
+              }
+            }
+            &.current{ //当前页按钮
+              &,
+              &:hover,
+              &:active{
+                background:none;
+                border:none;
+                color:@pngBtnHoverFontColor;
+                font-weight:@pngBtnCurrentFontWeight;
+              }
+            }
+          }
+          .dataTables_info{ //分页显示信息
+            display:inline-block;
+            right:@dtlInfoPosRight;
+            margin-right:@dtlInfoMgRight;
+            padding-top:@dtlInfoPaddingTop;
+            color:@primaryFontColor;
+            float:none;
+          }
+          .dataTable{ //表格主体
+            &.tbl{
+              margin:@tblMargin;
+              thead{
+                background-color:@tblTHeadBgColor;
+                tr th{
+                  display:table-cell;
+                  padding:@tblTHeadthPadding;
+                  border-bottom:@tblTHeadthBorderBottom;
+                  text-align:center;
+                  font-size:@tblTHeadthFontSize;
+                  font-weight:@tblTHeadthFontWeight;
+                  color:@tblTHeadColor;
+                }
+              }
+              tbody{
+                tr{
+                  td{
+                    position:relative;
+                    display:table-cell;
+                    padding:@tblTBodytdPadding;
+                    color:@primaryFontColor;
+                    font-size:@tblTBodytdFontSize;
+                    font-weight:normal;
+                    text-align:center;
+                    border-bottom:none;
+                  }
+                }
+                //.tbl-btn{
+                //  display: block;
+                //  padding: 0 20px;
+                //  margin: 5px auto;
+                //}
+                //.tbl-row-group{
+                //  .row{
+                //    margin-top: 10px;
+                //  }
+                //}
+              }
+              a:hover{ //清除a标签样式
+                text-decoration:none;
+              }
+              &.stripe{ //斑马线
+                tbody{
+                  tr.odd,
+                  tr:nth-of-type(odd){
+                    background-color:@tblStripeOddBgColor;
+                  }
+                  tr.even,
+                  tr:nth-of-type(even){
+                    background-color:@tblStripeEvenBgColor;
+                  }
+                  tr:hover{
+                    td:first-child:not(.dataTables_empty){
+                      border-left:4px solid #39baea;
+                    }
+                  }
+                }
+              }
+              &.noborder,
+              &.no-footer{ //不显示边框
+                border:none;
+              }
+              &.hover-left{ //hover样式-左边显示4个像素的边框
+                &.stripe{
+                  tbody tr:nth-of-type(even){
+                    td:first-child{
+                      border-left:4px solid @tblStripeEvenBgColor;
+                    }
+                  }
+                }
+                thead tr th{
+                  &:first-child{
+                    border-left:4px solid transparent;
+                  }
+                }
+                tbody{
+                  tr:hover td:not(.dataTables_empty):first-child{
+                    border-left:@tblHoverLeftBorderStyle;
+                  }
+                  tr th{
+                    &:first-child{
+                      border-left:4px solid transparent;
+                    }
+                  }
+                }
+              }
+              &.bordered{
+                &.border-bottom{
+                  tr{
+                    th{
+                      border-bottom:1px solid @tblBorderedBorderColor;
+                    }
+                    td{
+                      border-bottom:1px solid @tblBorderedBorderColor;
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

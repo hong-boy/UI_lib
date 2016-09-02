@@ -1,13 +1,1 @@
-{
-  "version":3,
-  "names":[],
-  "mappings":"",
-  "sources":[
-    "mixin.less"
-  ],
-  "sourcesContent":[
-    "//Flexible layout\r\n.flexlayout(@flex: flex, @direct: row, @alignItems: center, @justifyContent: center) {\r\n  display: @flex;\r\n  flex-direction: @direct;\r\n  align-items: @alignItems;\r\n  justify-content: @justifyContent;\r\n}"
-  ],
-  "file":"mixin.css",
-  "sourceRoot":"/source/"
-}
+{"version":3,"names":[],"mappings":"","sources":["mixin.less"],"sourcesContent":["//Flexible layout\r\n.flexlayout(@flex: flex, @direct: row, @alignItems: center, @justifyContent: center) {\r\n  display: @flex;\r\n  flex-direction: @direct;\r\n  align-items: @alignItems;\r\n  justify-content: @justifyContent;\r\n}"],"file":"mixin.css","sourceRoot":"/source/"}

@@ -762,7 +762,6 @@
 (function ($) {
     var DATA_TAG = 'menuWidget';
     var BG_DATA_TAG = 'bgElementTag';
-    var SPLITER = '_';
     var DEFAULTS = {
         ns: 'menu_widget', //命名空间
         driven: 'dom', //插件的驱动方式：DOM和JS，目前只支持DOM驱动
@@ -806,6 +805,8 @@
     var methods = {
         init: function ($thiz, option, promise) {
             //为一级菜单的每个元素项(li)绑定hover事件
+            //<div class="iot-menu-list-item-bg"></div>
+            $thiz.find('.iot-menu-navbar').prepend('<div class="iot-menu-list-item-bg"></div>');
             $thiz.data(DATA_TAG, option);
             $thiz.data(BG_DATA_TAG, genBackgroundElement($thiz, option));
             $thiz.off('mouseenter', '.iot-menu-list-item')
@@ -814,8 +815,9 @@
                         option = $wrap.data(DATA_TAG),
                         $this = $(this),
                         $subMenu = $this.find('.iot-sub-menu-wrapper'),
+                        $listItemBg = $wrap.find('.iot-menu-list-item-bg'),
                         $bg = $wrap.data(BG_DATA_TAG),
-                        bgHeight = 0;
+                        bgHeight;
                     //show sub-menu
                     bgHeight = $subMenu.css('opacity', 0).removeClass('hide').height();
                     //calculate sub-menu
@@ -824,18 +826,27 @@
                     //calculate bg container
                     $bg.height(bgHeight).removeClass('hide');
                     $subMenu.css('opacity', 1);
+                    //calculate item bg position
+                    var pos = $this.position();
+                    pos.width = $this.width();
+                    $listItemBg.css(pos);
                     //onShow
                     $.isFunction(option.onShow) && option.onShow($this);
-                    console.log('mouseover...');
                 });
             $thiz.off('mouseleave', '.iot-menu-list-item')
                 .on('mouseleave', '.iot-menu-list-item', $thiz, function (e) {
                     var $wrap = e.data,
                         option = $wrap.data(DATA_TAG),
                         $this = $(this),
+                        $activeItem = $wrap.find('.iot-menu-list-item.active'),
+                        $listItemBg = $wrap.find('.iot-menu-list-item-bg'),
                         $bg = $wrap.data(BG_DATA_TAG);
                     $this.find('.iot-sub-menu-wrapper').addClass('hide');
                     $bg.addClass('hide');
+                    //calculate item bg position
+                    var pos = $activeItem.position();
+                    pos.width = $this.width();
+                    $listItemBg.css(pos);
                     //onHide
                     $.isFunction(option.onHide) && option.onHide($this);
                 });
@@ -855,6 +866,18 @@
                         $parentList.trigger('mouseleave');
                     }
                 });
+            //为一级菜单绑定click事件
+            $thiz.off('click.menu', '.iot-menu-list-item[data-menuwidget-clickable]')
+                .on('click.menu', '.iot-menu-list-item[data-menuwidget-clickable]', $thiz, function (e) {
+                    var $wrap = e.data,
+                        option = $wrap.data(DATA_TAG),
+                        $this = $(this);
+                    $wrap.find('.active').removeClass('active');
+                    $this.addClass('active');
+                    if (option.autoHide) {
+                        $this.trigger('mouseleave');
+                    }
+                });
             setTimeout(function () {
                 promise.resolve($thiz);
             }, 1);
@@ -869,6 +892,10 @@
         var dtd = $.Deferred();
         option = $.extend(true, {}, DEFAULTS, original, option);
         $.when(methods[method].call(methods, $(this), option, dtd))
+            .done(function ($dom) {
+                var pos = $dom.find('.iot-menu-list-item.active').position();
+                $dom.find('.iot-menu-list-item-bg').css(pos);
+            })
             .done(function ($dom) {
                 var option = $dom.data(DATA_TAG),
                     $bg = $('.iot-menu-bg'),
@@ -1163,51 +1190,122 @@
                 }
             }
             return result;
-        },
-        /**
-         * 修正定位样式
-         * @param position
-         * @returns {{}}
-         */
-        fixPosition: function (position) {
-            //Reset position
-            var result = {},
-                posArr = position.split(':'),
-                val = 'initial';
-            switch (posArr[0]) {
-                case 'SE':
-                {
-                    result.left = val;
-                    result.top = val;
-                    break;
-                }
-                case 'NE':
-                {
-                    result.left = val;
-                    break;
-                }
-                case 'SW':
-                {
-                    result.top = val;
-                    break;
-                }
-                default:
-                {
-                    break;
-                }
-            }
-            return result;
         }
     };
 
     var methods = {
         init: function ($dom, option, promise) {
-            var $wrap = UI.createResizer($dom, option);
-            UI.createIcon($wrap, option);
-            UI.bindEvent($wrap, option);
-            $wrap.fadeIn(function () {
-                promise.resolve($wrap);
-            });
+            var dtd = $.Deferred();
+            option = $.extend(true, {}, DEFAULTS, option);
+            $.when(function ($dom, option, dtd) {
+                    var $wrap = UI.createResizer($dom, option);
+                    UI.createIcon($wrap, option);
+                    UI.bindEvent($wrap, option);
+                    $wrap.fadeIn(function () {
+                        dtd.resolve($wrap);
+                    });
+                    return dtd;
+                }($dom, option, dtd))
+                .done(function ($wrap) {
+                    //Cache option and reset icons' style
+                    $wrap.data(DATA_TAG, option);
+                    if (!option.alwaysShowAllIcons) {
+                        if (option.initilizeStatus == STATUS_ENUM.MIN) {
+                            $wrap.find('.iot-icon-resize-min').hide();
+                        } else {
+                            $wrap.find('.iot-icon-resize-restore').hide();
+                        }
+                    }
+                })
+                .done(function ($wrap) {
+                    //Darggable check
+                    var minimize = option.minimize,
+                        restore = option.restore,
+                        handler = (option.initilizeStatus == STATUS_ENUM.MIN) ? minimize.dragHandler : restore.dragHandler;
+                    var updateZIndex = function ($dom) {
+                        var option = $dom.data(DATA_TAG),
+                            $parent = $dom.parent();
+                        $parent.find('.iot-resizable-wrapper').not($dom).each(function () {
+                            $(this).css('z-index', '');
+                        });
+                        $dom.css('z-index', option.zIndex);
+                    };
+                    var dragStart = function (e, ui) {
+                        updateZIndex(ui.helper);
+                    };
+                    var dragStop = function (e, ui) {
+                        var $dom = ui.helper,
+                            $parent = $dom.parent(),
+                            dWidth = $dom.width(),
+                            dHeight = $dom.height(),
+                            pWidth = $parent.width(),
+                            pHeight = $parent.height(),
+                            uiPosition = ui.position,
+                            option = $dom.data(DATA_TAG),
+                            minimize = option.minimize,
+                            direction = minimize.position.split(':')[0];
+                        if (direction === 'NE') {
+                            $dom.css({
+                                right: pWidth - (dWidth + uiPosition.left),
+                                left: ''
+                            });
+                        } else if (direction === 'SE') {
+                            $dom.css({
+                                right: pWidth - (dWidth + uiPosition.left),
+                                bottom: pHeight - (dHeight + uiPosition.top),
+                                left: '',
+                                top: ''
+                            });
+                        } else if (direction === 'SW') {
+                            $dom.css({
+                                bottom: pHeight - (dHeight + uiPosition.top),
+                                top: ''
+                            });
+                        } else {
+                            //do nothing
+                        }
+                    };
+                    $wrap.attr('tabIndex', -1).focusin(function () {
+                        updateZIndex($(this));
+                    });
+                    (minimize.draggable || restore.draggable) && $wrap.draggable(
+                        $.extend(true, DEFAULTS_DRAGGABLE, {
+                            handle: handler,
+                            containment: $wrap.parent(),
+                            stop: dragStop,
+                            start: dragStart
+                        })
+                    );
+                })
+                .done(function ($wrap) {
+                    $.isFunction(option.onComplete) && option.onComplete($wrap);
+                    promise.resolve($wrap);
+                });
+            return promise;
+        },
+        trigger: function ($wrap, action, promise) {
+            var flag = true;
+            switch (action) {
+                case 'minimize':
+                {
+                    $wrap.find('.iot-icon-resize-min').trigger('click');
+                    break;
+                }
+                case 'restore':
+                {
+                    $wrap.find('.iot-icon-resize-restore').trigger('click');
+                    break;
+                }
+                default:
+                {
+                    flag = false;
+                    break;
+                }
+            }
+            setTimeout(function () {
+                flag && promise.resolve($wrap);
+                !flag && promise.reject($wrap, new Error('Action[%s] is illegal!', action));
+            }, 0);
             return promise;
         }
     };
@@ -1216,90 +1314,7 @@
             throw new Error('Method[%s] is not supported!', method);
         }
         var dtd = $.Deferred();
-        option = $.extend(true, {}, DEFAULTS, option);
         $.when(methods[method].call(null, $(this), option, dtd))
-            .done(function ($wrap) {
-                //Cache option and reset icons' style
-                $wrap.data(DATA_TAG, option);
-                if (!option.alwaysShowAllIcons) {
-                    if (option.initilizeStatus == STATUS_ENUM.MIN) {
-                        $wrap.find('.iot-icon-resize-min').hide();
-                    } else {
-                        $wrap.find('.iot-icon-resize-restore').hide();
-                    }
-                }
-            })
-            .done(function ($wrap) {
-                //Darggable check
-                var minimize = option.minimize,
-                    restore = option.restore,
-                    handler = (option.initilizeStatus == STATUS_ENUM.MIN) ? minimize.dragHandler : restore.dragHandler;
-                var updateZIndex = function ($dom) {
-                    var option = $dom.data(DATA_TAG),
-                        $parent = $dom.parent();
-                    $parent.find('.iot-resizable-wrapper').not($dom).each(function () {
-                        $(this).css('z-index', '');
-                    });
-                    $dom.css('z-index', option.zIndex);
-                };
-                var dragStart = function (e, ui) {
-                    updateZIndex(ui.helper);
-                };
-                var dragStop = function (e, ui) {
-                    var $dom = ui.helper,
-                        $parent = $dom.parent(),
-                        dWidth = $dom.width(),
-                        dHeight = $dom.height(),
-                        pWidth = $parent.width(),
-                        pHeight = $parent.height(),
-                        uiPosition = ui.position,
-                        option = $dom.data(DATA_TAG),
-                        minimize = option.minimize,
-                        direction = minimize.position.split(':')[0];
-                    if (direction === 'NE') {
-                        $dom.css({
-                            right: pWidth - (dWidth + uiPosition.left),
-                            left: ''
-                        });
-                    } else if (direction === 'SE') {
-                        $dom.css({
-                            right: pWidth - (dWidth + uiPosition.left),
-                            bottom: pHeight - (dHeight + uiPosition.top),
-                            left: '',
-                            top: ''
-                        });
-                    } else if (direction === 'SW') {
-                        $dom.css({
-                            bottom: pHeight - (dHeight + uiPosition.top),
-                            top: ''
-                        });
-                    } else {
-                        //do nothing
-                    }
-                };
-                $wrap.attr('tabIndex', -1).focusin(function () {
-                    updateZIndex($(this));
-                });
-                (minimize.draggable || restore.draggable) && $wrap.draggable(
-                    $.extend(true, DEFAULTS_DRAGGABLE, {
-                        handle: handler,
-                        containment: $wrap.parent(),
-                        stop: dragStop,
-                        start: dragStart
-                    })
-                );
-            })
-            .done(function ($wrap) {
-                //$wrap.find('div').each(function(){
-                //    $(this).attr('tabindex', -1);
-                //});
-                //$wrap.attr('tabIndex', -1).focusin(function(){
-                //    $wrap.css('z-index', option.zIndex);
-                //}).focusout(function(){
-                //    $wrap.css('z-index', '');
-                //});
-                $.isFunction(option.onComplete) && option.onComplete($wrap);
-            })
             .fail(function ($wrap, error) {
                 console.error(error);
             });
@@ -1387,6 +1402,8 @@ window.IOT = {
         };
         var dialog = new BootstrapDialog(option);
         dialog.realize();
+        dialog.getModal().css('justify-content', 'center');
+        dialog.getModalDialog().addClass('clearfix');
         dialog.getModalHeader().hide();
         dialog.setMessage(genPanel(dialog, content, yesFunc, cancelFunc));
         return dialog.open();
@@ -1484,5 +1501,69 @@ window.IOT = {
             });
         });
         return this;
+    },
+    /**
+     * 获取datatables配置对象
+     * @param sAjaxSource{String|Object} 路由地址
+     * @param aoColumns{Array} 显示列
+     * @param extraParams{Function} 需要传递到后端的额外参数
+     * @param fnDrawCallback{Function} dataTables每次渲染完数据后的回调函数（翻页、没有数据时均会触发）
+     */
+    getDataTableOption: function (sAjaxSource, aoColumns, extraParams, fnDrawCallback) {
+        var option = {},
+            defaultOpt = {
+                "dom": 't<"tbl-bottom"ip>',
+                "processing": false,
+                "ordering": false,
+                "searching": false,
+                "info": true,
+                "lengthChange": false,
+                "iDisplayLength": 10, //: 每页的行数，每页默认数量:10
+                "bPaginate": true, //开关，是否显示分页器
+                "bServerSide": true,
+                fnDrawCallback: null,
+                "oLanguage": {
+                    "sProcessing": '<i class="icon-spin5 animate-spin spin-item"></i>数据查询中......',
+                    "sZeroRecords": "对不起，查询不到相关数据！",
+                    "sEmptyTable": "表中无数据存在！",
+                    "sInfo": '总共: _TOTAL_ 项 &nbsp; 每页: _LENGTH_ 项',
+                    "sInfoEmpty": '总共: _TOTAL_ 项',
+                    "oPaginate": {
+                        "sPrevious": '<span class="png png-prev"></span>',
+                        "sNext": '<span class="png png-next" ></span>'
+                    }
+                }
+            },
+            _fnDrawCallback = null;
+        if ($.isPlainObject(sAjaxSource)) {
+            option = sAjaxSource;
+        } else {
+            option = {
+                sAjaxSource: sAjaxSource,
+                aoColumns: aoColumns,
+                fnDrawCallback: fnDrawCallback || $.noop,
+                fnServerData: function (sSource, aoData, fnCallback) {
+                    var oDraw = aoData[0],
+                        oStart = aoData[3],
+                        oLength = aoData[4],
+                        param = {
+                            pageNum: (oStart.value / oLength.value + 1),
+                            pageSize: oLength.value
+                        };
+                    IOT.getServerData(sSource, $.extend(param, $.isFunction(extraParams) ? extraParams() : {}), function (data) {
+                        IOT.renderDataTableData(oDraw.value, data, fnCallback);
+                    });
+                }
+            };
+        }
+        if (!option.sAjaxSource || !option.sAjaxSource.length) {
+            throw Error('Field [sAjaxSource] is required.');
+        }
+        var opts = $.extend(true, {}, defaultOpt, option);
+        _fnDrawCallback = opts.fnDrawCallback || $.noop;
+        opts.fnDrawCallback = function () {
+            _fnDrawCallback();
+        };
+        return opts;
     }
 };

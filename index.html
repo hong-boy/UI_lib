@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>UI</title>
     <link rel="stylesheet" type="text/css" href="frontend/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="frontend/lib/dataTables/datatables.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/bootstrap3-dialog/bootstrap-dialog.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/dateTimePicker/jquery.datetimepicker.css">
     <link rel="stylesheet" type="text/css" href="frontend/lib/icheck/css/icheck.css">
@@ -790,7 +791,6 @@
             </pre>
 </div>
 <h2 class="h2">菜单</h2>
-
 <div class="dashboard menu-wrap">
     <div class="m-case">
         <div class="chunk">
@@ -800,7 +800,7 @@
                     <!-- 菜单-DOM驱动方式 HTML需要保证如下结构 -->
                     <div class="iot-menu-wrapper">
                         <ul class="iot-menu-navbar">
-                            <li class="iot-menu-list-item">
+                            <li class="iot-menu-list-item" data-menuwidget-clickable="true">
                                 <span class="iot-menu-item">监控信息</span>
                                 <div class="hide iot-sub-menu-wrapper inline">
                                     <ul class="iot-sub-menu-navbar">
@@ -944,6 +944,7 @@
 菜单
             </pre>
 </div>
+
     <h2 class="h2">拖动/最大化/最小化</h2>
     <div class="dashboard resiable-wrap">
         <div class="m-case" id="resiable_wrapper">
@@ -956,11 +957,11 @@
                             <div class="bootstrap-dialog-header">
                                 <div class="bootstrap-dialog-close-button" style="display: none;">
                                     <button class="btn close">×</button>
-                                </div>
+                            </div>
                                 <div class="bootstrap-dialog-title" id="5848d405-1606-4051-a08c-14a458cada39_title">
                                     编辑用户
-                                </div>
                             </div>
+                        </div>
                         </div>
                         <div class="modal-body" style="min-height: 300px;">
                             <div class="bootstrap-dialog-body">
@@ -973,10 +974,10 @@
                                     <button class="btn btn-default" id="f0a88a2c-0cee-4353-af5e-77ceb113eb80">确 定
                                     </button>
                                     <button class="btn btn-empty" id="82c73c2d-96cc-462f-816a-0bad353d2d8a">取 消</button>
-                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
                 <div id="my_target1" class="modal-dialog modal-custom"
                      style="width: 500px; position:absolute; left:40%; top:50px;">
@@ -985,11 +986,11 @@
                             <div class="bootstrap-dialog-header">
                                 <div class="bootstrap-dialog-close-button" style="display: none;">
                                     <button class="btn close">×</button>
-                                </div>
+                            </div>
                                 <div class="bootstrap-dialog-title" id="5848d405-1606-4051-a08c-14a458cada39_title">
                                     编辑用户
-                                </div>
                             </div>
+                        </div>
                         </div>
                         <div class="modal-body" style="min-height: 300px;">
                             <div class="bootstrap-dialog-body">
@@ -1002,10 +1003,10 @@
                                     <button class="btn btn-default" id="f0a88a2c-0cee-4353-af5e-77ceb113eb80">确 定
                                     </button>
                                     <button class="btn btn-empty" id="82c73c2d-96cc-462f-816a-0bad353d2d8a">取 消</button>
-                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
                 <div id="my_target2" class="modal-dialog modal-custom"
                      style="width: 500px; position:absolute; left:40%; top:50px;">
@@ -1014,11 +1015,11 @@
                             <div class="bootstrap-dialog-header">
                                 <div class="bootstrap-dialog-close-button" style="display: none;">
                                     <button class="btn close">×</button>
-                                </div>
+                            </div>
                                 <div class="bootstrap-dialog-title" id="5848d405-1606-4051-a08c-14a458cada39_title">
                                     编辑用户
-                                </div>
                             </div>
+                        </div>
                         </div>
                         <div class="modal-body" style="min-height: 300px;">
                             <div class="bootstrap-dialog-body">
@@ -1031,22 +1032,207 @@
                                     <button class="btn btn-default" id="f0a88a2c-0cee-4353-af5e-77ceb113eb80">确 定
                                     </button>
                                     <button class="btn btn-empty" id="82c73c2d-96cc-462f-816a-0bad353d2d8a">取 消</button>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
         </div>
-    <pre>
+<pre>
 自定义插件：simpleResizable
-    </pre>
+</pre>
+    </div>
+    <h2 class="h2">表格</h2>
+    <div class="dashboard my-tbl-wrap">
+        <div class="m-case">
+            <div class="tbl-wrap lightgray">
+                <table class="dataTable tbl stripe nowrap noborder dashboard" id="tbl_test">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>日志编号</th>
+                        <th>操作用户</th>
+                        <th>操作对象</th>
+                        <th>操作动作</th>
+                        <th>操作时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>123456789</th>
+                        <th>test</th>
+                        <th>test123</th>
+                        <th>123456798</th>
+                        <th>2016-9-2 15:43:00</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <pre>
+表格：
+        </pre>
     </div>
 </div>
 </div>
 </body>
 <script type="text/javascript" src="frontend/lib/jquery.1.11.min.js"></script>
 <script type="text/javascript" src="frontend/lib/jquery.ui/jquery-ui.js"></script>
+<script type="text/javascript" src="frontend/lib/dataTables/datatables.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="frontend/lib/bootstrap3-dialog/bootstrap-dialog.js"></script>
 <script type="text/javascript" src="frontend/lib/icheck/icheck.js"></script>
