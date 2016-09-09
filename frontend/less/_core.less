@@ -585,6 +585,7 @@
     @navbarFontSize:16px; //菜单字体大小
     @navbarHeight:80px; //菜单高度
     @listItemMinWidth:120px; //菜单项最小宽度
+    @listItemPadding:0 20px; //菜单项 内边距
     @listItemHoverBgColor:#D1020A; //菜单项 hover状态背景颜色
     @listItemAfterElemHeight:4px; //菜单项:after元素 高度
     @listItemAfterElemBgColor:#fff; //菜单项:after元素 背景颜色
@@ -637,13 +638,13 @@
       .iot-menu-list-item{
         float:left;
         min-width:@listItemMinWidth;
+        padding:@listItemPadding;
         .iot-menu-item{
           position:relative;
           z-index:9;
         }
         &.active,
         &:hover{
-          //background-color:@listItemHoverBgColor;
           .iot-menu-item{
             cursor:default;
             color:@navbarHoverColor;
@@ -657,12 +658,12 @@
       }
     }
     .iot-sub-menu-wrapper{ //子菜单
-      @subListItemMinWidth:185px; //子菜单最小宽度
+      @subListItemMinWidth:@listItemMinWidth; //子菜单最小宽度
+      @subListItemPadding:0 28px; //子菜单内边距
       @subNavbarBgColor: rgba(80, 76, 77, 0.8); //子菜单背景颜色 #504C4D;
       @subNavbarHeight:60px; //子菜单高度
       @subListItemHoverBgColor: rgba(52, 46, 46, .5); //子菜单项hover状态背景颜色 #342E2E
       position: absolute;
-      //      background-color:@subNavbarBgColor;
       .iot-sub-menu-navbar {
         position: relative;
         z-index: 11;
@@ -677,6 +678,7 @@
         .iot-sub-menu-list-item{
           float:left;
           min-width:@subListItemMinWidth;
+          padding:@subListItemPadding;
           &.active,
           &:hover{
             background-color:@subListItemHoverBgColor;
@@ -688,8 +690,11 @@
         }
       }
       &.block {
+        @subMenuItemHeaderLineHeight:55px; //sub-menu-item-header行高
+        @subMenuItemMenuItemFontSize:14px; //iot-sub-menu-item字体大小
+        @subMenuItemMenuItemLineHeight:40px; //iot-sub-menu-item行高
         .iot-sub-menu-navbar {
-          height: 285px; //TODO - js控制
+          height:100%;
           min-height: @subNavbarHeight;
           line-height: @subNavbarHeight;
           color: @navbarColor;
@@ -700,18 +705,19 @@
           float: left;
           height: 100%;
           min-width: @subListItemMinWidth;
+          padding:@subListItemPadding;
           &.active,
           &:hover {
             background-color: @subListItemHoverBgColor;
           }
           .iot-sub-menu-item {
             .sub-menu-item-header {
-              line-height: 55px;
+              line-height:@subMenuItemHeaderLineHeight;
             }
             .iot-sub-menu-item {
               .flexlayout(flex, column, center, center);
-              font-size: 14px;
-              line-height: 40px;
+              font-size:@subMenuItemMenuItemFontSize;
+              line-height:@subMenuItemMenuItemLineHeight;
               &.active,
               &:hover {
                 cursor: pointer;
@@ -725,14 +731,16 @@
   }
   .iot-resizable-wrapper{ //simpleResizable
     position:absolute;
-    //border:1px solid red;
+    &:focus{
+      outline:none;
+    }
     .iot-resizable-icon{
       position:absolute;
       top:0px;
       right:0px;
       width:30%;
       min-height:30px;
-      //z-index:2;
+      z-index:3;
       text-align:right;
       //padding: 10px 20px;
       font-size:18px;
@@ -760,7 +768,7 @@
       @pngBtnHoverBackground:none; //分页按钮hover or active状态背景样式
       @pngBtnCurrentFontWeight:bold; //分页按钮“当前页”按钮字体风格
       @pngPrevNextSize:30px; //分页按钮“上一页” or “下一页”按钮尺寸
-      @pngPrevNextBgImage:url("@{baseUrl}/lib/dataTables/png_arrow.png"); //分页按钮“上一页” or “下一页”背景图片
+      @pngPrevNextBgImage:url("@{baseUrl}lib/dataTables/png_arrow.png"); //分页按钮“上一页” or “下一页”背景图片
       @dtlInfoPosRight:130px; //分页显示信息右偏移
       @dtlInfoMgRight:15px; //分页显示信息右外边距
       @dtlInfoPaddingTop:14px; //分页显示信息上内边距
@@ -774,10 +782,11 @@
       @tblTBodytdFontSize:14px; //表格tbody td字体大小
       @tblTBodytdPadding:15px 10px; //表格tbody td内边距
       @tblHoverLeftBorderStyle:4px solid #39baea; //表格.hover-left tbody td:first左边框样式
+      @tblHoverLeftBorderTransparent:4px solid transparent; //表格.hover-left tbody td:first左边框样式
+      @tblHoverInlineBgColor:#e9e5e6; //表格.hover-inline tbody td背景颜色样式
       @tblStripeEvenBgColor:#fff; //表格.stripe tbody td:even背景颜色
       @tblStripeOddBgColor:#f0f4fb; //表格.stripe tbody td:odd背景颜色
       @tblBorderedBorderColor:#eee; //表格.bordered边框颜色
-
       .dataTables_wrapper{
         text-align:right;
         min-height:@dtlWrapperMinHeight;
@@ -838,110 +847,105 @@
               }
             }
           }
-          .dataTables_info{ //分页显示信息
-            display:inline-block;
-            right:@dtlInfoPosRight;
-            margin-right:@dtlInfoMgRight;
-            padding-top:@dtlInfoPaddingTop;
-            color:@primaryFontColor;
-            float:none;
-          }
-          .dataTable{ //表格主体
-            &.tbl{
-              margin:@tblMargin;
-              thead{
-                background-color:@tblTHeadBgColor;
-                tr th{
+        }
+        .dataTables_info{ //分页显示信息
+          display:inline-block;
+          right:@dtlInfoPosRight;
+          margin-right:@dtlInfoMgRight;
+          padding-top:@dtlInfoPaddingTop;
+          color:@primaryFontColor;
+          float:none;
+        }
+        .dataTable{ //表格主体
+          &{
+            margin:@tblMargin;
+            thead{
+              background-color:@tblTHeadBgColor;
+              tr th{
+                display:table-cell;
+                padding:@tblTHeadthPadding;
+                border-bottom:@tblTHeadthBorderBottom;
+                text-align:center;
+                font-size:@tblTHeadthFontSize;
+                font-weight:@tblTHeadthFontWeight;
+                color:@tblTHeadColor;
+              }
+            }
+            tbody{
+              tr{
+                td{
+                  position:relative;
                   display:table-cell;
-                  padding:@tblTHeadthPadding;
-                  border-bottom:@tblTHeadthBorderBottom;
+                  padding:@tblTBodytdPadding;
+                  color:@primaryFontColor;
+                  font-size:@tblTBodytdFontSize;
+                  font-weight:normal;
                   text-align:center;
-                  font-size:@tblTHeadthFontSize;
-                  font-weight:@tblTHeadthFontWeight;
-                  color:@tblTHeadColor;
+                  border-bottom:none;
+                }
+              }
+              //.tbl-btn{
+              //  display: block;
+              //  padding: 0 20px;
+              //  margin: 5px auto;
+              //}
+              //.tbl-row-group{
+              //  .row{
+              //    margin-top: 10px;
+              //  }
+              //}
+            }
+            a:hover{ //清除a标签样式
+              text-decoration:none;
+            }
+            &.stripe{ //斑马线
+              tbody{
+                tr.odd,
+                tr:nth-of-type(odd){
+                  background-color:@tblStripeOddBgColor;
+                }
+                tr.even,
+                tr:nth-of-type(even){
+                  background-color:@tblStripeEvenBgColor;
+                }
+              }
+            }
+            &.noborder,
+            &.no-footer{ //不显示边框
+              border:none;
+            }
+            &.hover-left{ //hover样式-左边显示4个像素的边框
+              thead tr th{
+                &:first-child{
+                  border-left:@tblHoverLeftBorderTransparent;
                 }
               }
               tbody{
-                tr{
-                  td{
-                    position:relative;
-                    display:table-cell;
-                    padding:@tblTBodytdPadding;
-                    color:@primaryFontColor;
-                    font-size:@tblTBodytdFontSize;
-                    font-weight:normal;
-                    text-align:center;
-                    border-bottom:none;
-                  }
+                tr:hover td:not(.dataTables_empty):first-child{
+                  border-left:@tblHoverLeftBorderStyle;
                 }
-                //.tbl-btn{
-                //  display: block;
-                //  padding: 0 20px;
-                //  margin: 5px auto;
-                //}
-                //.tbl-row-group{
-                //  .row{
-                //    margin-top: 10px;
-                //  }
-                //}
-              }
-              a:hover{ //清除a标签样式
-                text-decoration:none;
-              }
-              &.stripe{ //斑马线
-                tbody{
-                  tr.odd,
-                  tr:nth-of-type(odd){
-                    background-color:@tblStripeOddBgColor;
-                  }
-                  tr.even,
-                  tr:nth-of-type(even){
-                    background-color:@tblStripeEvenBgColor;
-                  }
-                  tr:hover{
-                    td:first-child:not(.dataTables_empty){
-                      border-left:4px solid #39baea;
-                    }
-                  }
-                }
-              }
-              &.noborder,
-              &.no-footer{ //不显示边框
-                border:none;
-              }
-              &.hover-left{ //hover样式-左边显示4个像素的边框
-                &.stripe{
-                  tbody tr:nth-of-type(even){
-                    td:first-child{
-                      border-left:4px solid @tblStripeEvenBgColor;
-                    }
-                  }
-                }
-                thead tr th{
+                tr td{
                   &:first-child{
-                    border-left:4px solid transparent;
-                  }
-                }
-                tbody{
-                  tr:hover td:not(.dataTables_empty):first-child{
-                    border-left:@tblHoverLeftBorderStyle;
-                  }
-                  tr th{
-                    &:first-child{
-                      border-left:4px solid transparent;
-                    }
+                    border-left:@tblHoverLeftBorderTransparent;
                   }
                 }
               }
-              &.bordered{
-                &.border-bottom{
-                  tr{
-                    th{
-                      border-bottom:1px solid @tblBorderedBorderColor;
-                    }
-                    td{
-                      border-bottom:1px solid @tblBorderedBorderColor;
-                    }
+            }
+            &.hover-inline{ //hover样式-td背景变色
+              tbody{
+                tr:hover td{
+                  background-color:@tblHoverInlineBgColor;
+                }
+              }
+            }
+            &.bordered{
+              &.border-bottom{
+                tr{
+                  th{
+                    border-bottom:1px solid @tblBorderedBorderColor;
+                  }
+                  td{
+                    border-bottom:1px solid @tblBorderedBorderColor;
                   }
                 }
               }

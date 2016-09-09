@@ -818,17 +818,21 @@
                         $listItemBg = $wrap.find('.iot-menu-list-item-bg'),
                         $bg = $wrap.data(BG_DATA_TAG),
                         bgHeight;
-                    //show sub-menu
-                    bgHeight = $subMenu.css('opacity', 0).removeClass('hide').height();
                     //calculate sub-menu
                     var adjustLeft = $this.data('menuwidgetLeft');
+                    var adjustWidth = $this.data('menuwidgetWidth');
+                    var adjustHeight = $this.data('menuwidgetHeight');
                     $.isNumeric(adjustLeft) && $subMenu.css('left', adjustLeft);
+                    $.isNumeric(adjustWidth) && $subMenu.css('width', adjustWidth);
+                    $.isNumeric(adjustHeight) && $subMenu.css('height', adjustHeight);
+                    //show sub-menu
+                    bgHeight = $subMenu.css('opacity', 0).removeClass('hide').height();
                     //calculate bg container
                     $bg.height(bgHeight).removeClass('hide');
                     $subMenu.css('opacity', 1);
                     //calculate item bg position
                     var pos = $this.position();
-                    pos.width = $this.width();
+                    pos.width = $this.outerWidth();
                     $listItemBg.css(pos);
                     //onShow
                     $.isFunction(option.onShow) && option.onShow($this);
@@ -845,7 +849,7 @@
                     $bg.addClass('hide');
                     //calculate item bg position
                     var pos = $activeItem.position();
-                    pos.width = $this.width();
+                    pos.width = $this.outerWidth();
                     $listItemBg.css(pos);
                     //onHide
                     $.isFunction(option.onHide) && option.onHide($this);
@@ -869,13 +873,15 @@
             //为一级菜单绑定click事件
             $thiz.off('click.menu', '.iot-menu-list-item[data-menuwidget-clickable]')
                 .on('click.menu', '.iot-menu-list-item[data-menuwidget-clickable]', $thiz, function (e) {
-                    var $wrap = e.data,
-                        option = $wrap.data(DATA_TAG),
-                        $this = $(this);
-                    $wrap.find('.active').removeClass('active');
-                    $this.addClass('active');
-                    if (option.autoHide) {
-                        $this.trigger('mouseleave');
+                    if (e.target.className && e.target.className.indexOf('iot-sub-menu-item') === -1) {
+                        var $wrap = e.data,
+                            option = $wrap.data(DATA_TAG),
+                            $this = $(this);
+                        $wrap.find('.active').removeClass('active');
+                        $this.addClass('active');
+                        if (option.autoHide) {
+                            $this.trigger('mouseleave');
+                        }
                     }
                 });
             setTimeout(function () {
@@ -985,10 +991,10 @@
                 //Clear useless status for $dom
                 $dom.css({
                     'margin': 'auto',
-                    'left': '',
-                    'right': '',
-                    'bottom': '',
-                    'top': ''
+                    'left': 'auto',
+                    'right': 'auto',
+                    'bottom': 'auto',
+                    'top': 'auto'
                 }).addClass('iot-resizable-status-restore');
 
                 //Cache mini view style
@@ -1044,14 +1050,15 @@
         genMinViewStyle: function ($wrap, option) {
             var $minArea = $wrap.find('.iot-resizable-status-min'),
                 html = option.onMinimize($wrap, option),
+                $html = $(html),
                 minimizePos = option.minimize.position,
                 targetCSS,
                 minAreaHeight,
                 minAreaWidth;
 
-            $minArea.hide().css('opacity', 0).empty().html(html).show();
-            minAreaWidth = option.minimize.width || $minArea.outerWidth();
-            minAreaHeight = option.minimize.height || $minArea.outerHeight();
+            $minArea.hide().css('opacity', 0).empty().append($html).show();
+            minAreaWidth = option.minimize.width;
+            minAreaHeight = option.minimize.height;
             targetCSS = {
                 width: minAreaWidth,
                 height: minAreaHeight
@@ -1094,7 +1101,7 @@
         },
         bindEvent: function ($wrap, option) {
             //最小化
-            $wrap.off('click', '.icon-win-min').on('click', '.icon-win-min', function (e) {
+            $wrap.off('click', '.iot-icon-resize-min').on('click', '.iot-icon-resize-min', function (e) {
                 var $thiz = $(this),
                     $parent = $thiz.parents('.iot-resizable-wrapper'),
                     $restoreIcon = $parent.find('.iot-icon-resize-restore');
@@ -1112,18 +1119,17 @@
                 if (option.minimize.draggable) {
                     $parent.draggable('option', 'handle', option.minimize.dragHandler);
                 }
+                !option.alwaysShowAllIcons && $thiz.hide();
                 $parent.animate(targetCSS, ANIMATION_SPEED, function () {
                     $restoreArea.hide();
                     $minArea.css('opacity', 1).show();
                     $parent.data(CURRENT_STATUS_TAG, STATUS_ENUM.MIN);
-                    !option.alwaysShowAllIcons && $thiz.fadeOut(function () {
-                        $restoreIcon.fadeIn();
-                    });
+                    !option.alwaysShowAllIcons && $restoreIcon.fadeIn();
                 });
             });
 
             //窗口还原
-            $wrap.off('click', '.icon-win-restore').on('click', '.icon-win-restore', function (e) {
+            $wrap.off('click', '.iot-icon-resize-restore').on('click', '.iot-icon-resize-restore', function (e) {
                 var $thiz = $(this),
                     $parent = $thiz.parents('.iot-resizable-wrapper'),
                     $minIcon = $parent.find('.iot-icon-resize-min'),
@@ -1139,14 +1145,13 @@
                 if (option.restore.draggable) {
                     $parent.draggable('option', 'handle', option.restore.dragHandler);
                 }
+                !option.alwaysShowAllIcons && $thiz.hide();
                 $parent.animate(originalCssStatus, ANIMATION_SPEED, function () {
                     $minArea.hide();
                     $restoreArea.show();
                     $parent.data(CURRENT_STATUS_TAG, STATUS_ENUM.RESTORE);
                     $.isFunction(option.onRestore) && option.onRestore($parent, option);
-                    !option.alwaysShowAllIcons && $thiz.fadeOut(function () {
-                        $minIcon.fadeIn();
-                    });
+                    !option.alwaysShowAllIcons && $minIcon.fadeIn();
                 });
             });
         },
@@ -1320,6 +1325,53 @@
             });
     };
 })(jQuery);
+
+/**
+ * 文件上传
+ * window.FileUploader
+ */
+(function (window, $, undefined) {
+    var DEFAULTS = {
+        label: '', //file控件的label，false表示不显示
+        labelClass: '',
+        chooseBtn: '…', //选择文件按钮，false表示不显示
+        chooseBtnClass: '',
+        uploadBtn: '上传',
+        uploadBtnClass: '',
+        allowedExtends: [], //允许的文件扩展名
+        notAllowedExtends: [], //不允许的文件扩展名
+        maxFileSize: '2M', //单个文件长度限制
+        status: {//状态
+            show: true, //是否显示提示信息
+            normal: {msg: '文件支持类型：{allowedExtends}，单个文件大小不超过：{maxFileSize}', icon: 'icon-warning warning-text'},
+            progress: {
+                msg: '正在上传... 已上传：{uploadedFileSize}，当前进度：{percent}',
+                icon: 'icon-loading',
+                showCancel: true,
+                showDelete: true
+            },
+            error: {msg: '上传失败！', icon: 'icon-error error-text', showRetry: true, showCancel: true, showDelete: true},
+            success: {msg: '上传成功！', icon: 'icon-error error-text', showDelete: true}
+        }
+    };
+    window.FileUploader = function (dom, option) {
+        if (!(dom instanceof $)) {
+            throw 'dom should be an instance of jQuery!';
+        }
+        this.dom = dom;
+        this.option = $.extend(true, DEFAULTS, option);
+    };
+
+    var createFileControl = function () {
+
+    };
+
+    //初始化控件
+    FileUploader.prototype.init = function () {
+        var dom = this.dom;
+
+    };
+})(window, jQuery, undefined);
 
 window.IOT = {
     /**
@@ -1509,7 +1561,7 @@ window.IOT = {
      * @param extraParams{Function} 需要传递到后端的额外参数
      * @param fnDrawCallback{Function} dataTables每次渲染完数据后的回调函数（翻页、没有数据时均会触发）
      */
-    getDataTableOption: function (sAjaxSource, aoColumns, extraParams, fnDrawCallback) {
+    dataTableOption: function (sAjaxSource, aoColumns, extraParams, fnDrawCallback) {
         var option = {},
             defaultOpt = {
                 "dom": 't<"tbl-bottom"ip>',

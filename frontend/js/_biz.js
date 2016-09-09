@@ -264,16 +264,16 @@ $(function () {
             position: 'SE:50px:0',
             width: '200px',
             height: '25px',
-            draggable: true,
+            draggable: false,
             dragHandler: '.my-min-view'
         },
         restore: {
             position: 'SE:10px:0',
-            draggable: true,
+            draggable: false,
             dragHandler: '.bootstrap-dialog-header'
         },
         onMinimize: function () {
-            return '<div class="my-min-view" style="background-color:#00d4b4">车辆信息列表11</div>';
+            return '<div class="my-min-view" style="background-color:#00d4b4; ">车辆信息列表11</div>';
         }
     });
 
@@ -287,6 +287,28 @@ $(function () {
         "iDisplayLength": 10, //: 每页的行数，每页默认数量:10
         "bPaginate": true, //开关，是否显示分页器
         "bServerSide": false,
+        "aaData": [
+            /* Reduced data set */
+            ["Trident", "Internet Explorer 4.0", "Win 95+", 4, "X"],
+            ["Trident", "Internet Explorer 5.0", "Win 95+", 5, "C"],
+            ["Trident", "Internet Explorer 5.5", "Win 95+", 5.5, "A"],
+            ["Trident", "Internet Explorer 6.0", "Win 98+", 6, "A"],
+            ["Trident", "Internet Explorer 7.0", "Win XP SP2+", 7, "A"],
+            ["Gecko", "Firefox 1.5", "Win 98+ / OSX.2+", 1.8, "A"],
+            ["Gecko", "Firefox 2", "Win 98+ / OSX.2+", 1.8, "A"],
+            ["Gecko", "Firefox 3", "Win 2k+ / OSX.3+", 1.9, "A"],
+            ["Webkit", "Safari 1.2", "OSX.3", 125.5, "A"],
+            ["Webkit", "Safari 1.3", "OSX.3", 312.8, "A"],
+            ["Webkit", "Safari 2.0", "OSX.4+", 419.3, "A"],
+            ["Webkit", "Safari 3.0", "OSX.4+", 522.1, "A"]
+        ],
+        "aoColumns": [
+            {"sTitle": "Engine"},
+            {"sTitle": "Browser"},
+            {"sTitle": "Platform"},
+            {"sTitle": "Version", "sClass": "center"},
+            {"sTitle": "Grade", "sClass": "center"}
+        ],
         "oLanguage": {
             "sProcessing": '<i class="icon-spin5 animate-spin spin-item"></i>数据查询中......',
             "sZeroRecords": "对不起，查询不到相关数据！",

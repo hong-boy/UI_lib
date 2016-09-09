@@ -435,7 +435,7 @@
         <div class="chunk"></div>
         <div class="chunk"></div>
     </div>
-    <pre>使用dateTimePicker插件来初始化<a href="http://www.jq22.com/yanshi332" target="_blank">Demo</a></pre>
+    <pre>使用dateTimePicker插件来初始化<a href="http://xdsoft.net/jqplugins/datetimepicker" target="_blank">Demo</a></pre>
 </div>
 <h2 class="h2">消息提示</h2>
 
@@ -800,7 +800,8 @@
                     <!-- 菜单-DOM驱动方式 HTML需要保证如下结构 -->
                     <div class="iot-menu-wrapper">
                         <ul class="iot-menu-navbar">
-                            <li class="iot-menu-list-item" data-menuwidget-clickable="true">
+                            <li class="iot-menu-list-item active" data-menuwidget-clickable="true"
+                                data-menuwidget-left="0">
                                 <span class="iot-menu-item">监控信息</span>
                                 <div class="hide iot-sub-menu-wrapper inline">
                                     <ul class="iot-sub-menu-navbar">
@@ -819,8 +820,8 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="iot-menu-list-item active">
-                                <span class="iot-menu-item">系统管理</span>
+                            <li class="iot-menu-list-item " data-menuwidget-left="120" data-menuwidget-height="260">
+                                <span class="iot-menu-item">系统管理1</span>
                                 <div class="hide iot-sub-menu-wrapper block">
                                     <ul class="iot-sub-menu-navbar">
                                         <li class="iot-sub-menu-list-item">
@@ -844,11 +845,11 @@
                                                 </section>
                                             </div>
                                         </li>
-                                        <li class="iot-sub-menu-list-item active">
+                                        <li class="iot-sub-menu-list-item">
                                             <div class="iot-sub-menu-item">
                                                 <section class="sub-menu-item-header">车辆管理</section>
                                                 <section>
-                                                    <span class="iot-sub-menu-item active">车辆信息</span>
+                                                    <span class="iot-sub-menu-item">车辆信息</span>
                                                     <span class="iot-sub-menu-item">SIM信息</span>
                                                 </section>
                                             </div>
@@ -867,8 +868,8 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="iot-menu-list-item" data-menuwidget-left="140">
-                                <span class="iot-menu-item">系统管理</span>
+                            <li class="iot-menu-list-item" data-menuwidget-left="120" data-menuwidget-height="260">
+                                <span class="iot-menu-item">系统管理2</span>
                                 <div class="hide iot-sub-menu-wrapper block">
                                     <ul class="iot-sub-menu-navbar">
                                         <li class="iot-sub-menu-list-item">
@@ -892,11 +893,11 @@
                                                 </section>
                                             </div>
                                         </li>
-                                        <li class="iot-sub-menu-list-item active">
+                                        <li class="iot-sub-menu-list-item">
                                             <div class="iot-sub-menu-item">
                                                 <section class="sub-menu-item-header">车辆管理</section>
                                                 <section>
-                                                    <span class="iot-sub-menu-item active">车辆信息</span>
+                                                    <span class="iot-sub-menu-item">车辆信息</span>
                                                     <span class="iot-sub-menu-item">SIM信息</span>
                                                 </section>
                                             </div>
@@ -920,16 +921,16 @@
                                 <div class="hide iot-sub-menu-wrapper inline">
                                     <ul class="iot-sub-menu-navbar">
                                         <li class="iot-sub-menu-list-item">
-                                            <span class="iot-sub-menu-item">实时监控</span>
-                                        </li>
-                                        <li class="iot-sub-menu-list-item active">
-                                            <span class="iot-sub-menu-item">轨迹回放</span>
+                                            <span class="iot-sub-menu-item">实时监控实时监控</span>
                                         </li>
                                         <li class="iot-sub-menu-list-item">
-                                            <span class="iot-sub-menu-item">远程控制</span>
+                                            <span class="iot-sub-menu-item">轨迹</span>
                                         </li>
                                         <li class="iot-sub-menu-list-item">
-                                            <span class="iot-sub-menu-item">报警信息</span>
+                                            <span class="iot-sub-menu-item">控制</span>
+                                        </li>
+                                        <li class="iot-sub-menu-list-item">
+                                            <span class="iot-sub-menu-item">报警</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -1041,190 +1042,41 @@
         </div>
 <pre>
 自定义插件：simpleResizable
+依赖：jquery.ui.draggable、fontello
 </pre>
     </div>
     <h2 class="h2">表格</h2>
     <div class="dashboard my-tbl-wrap">
         <div class="m-case">
-            <div class="tbl-wrap lightgray">
-                <table class="dataTable tbl stripe nowrap noborder dashboard" id="tbl_test">
+            <div class="tbl-wrap theme-lightgray">
+                <table class="dataTable stripe nowrap noborder dashboard hover-left" id="tbl_test">
                     <thead>
                     <tr>
-                        <th>序号</th>
-                        <th>日志编号</th>
-                        <th>操作用户</th>
-                        <th>操作对象</th>
-                        <th>操作动作</th>
-                        <th>操作时间</th>
+                        <th style="width:100px;">日志编号</th>
+                        <th style="width:200px;">操作用户</th>
+                        <th style="width:300px;">操作对象</th>
+                        <th style="width:200px;">操作动作</th>
+                        <th style="width:300px;">操作时间</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <th>123456789</th>
-                        <th>test</th>
-                        <th>test123</th>
-                        <th>123456798</th>
-                        <th>2016-9-2 15:43:00</th>
-                    </tr>
-                    </tbody>
                 </table>
             </div>
         </div>
         <pre>
-表格：
+表格：dataTable插件(<a href="https://www.datatables.net/examples/index" target="_blank">Demo</a>)
+表格hover样式：hover-inline、hover-left
+        </pre>
+    </div>
+    <h2 class="h2">文件上传</h2>
+    <div class="dashboard form-wrapper">
+        <div class="m-case">
+            <form class="form" method="post" enctype="multipart/form-data">
+                <input type="file" multiple="true" name="myFiles"/>
+                <button type="submit" class="btn btn-default">上传</button>
+            </form>
+        </div>
+        <pre>
+文件上传：
         </pre>
     </div>
 </div>

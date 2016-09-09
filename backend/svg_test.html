@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG</title>
+    <script type="text/javascript" src="raphael.min.js"></script>
+</head>
+<body>
+<div id="wrap" style="width:500px; border:1px solid red;"></div>
+</body>
+<script type="text/javascript">
+    var paper = new Raphael(document.getElementById('wrap'), 500, 500);
+    var tetronimo = paper.path("M 250 250 l 0 -50 l -50 0 l 0 -50 l -50 0 l 0 50 l -50 0 l 0 50 z");
+    tetronimo.attr(
+            {
+                gradient: '90-#526c7a-#64a0c1',
+                stroke: '#3b4449',
+                'stroke-width': 10,
+                'stroke-linejoin': 'round',
+                rotation: -90
+            }
+    );
+
+    tetronimo.animate({rotation: 360}, 2000, 'bounce');
+    //http://code.tutsplus.com/tutorials/an-introduction-to-the-raphael-js-library--net-7186
+    //http://dmitrybaranovskiy.github.io/raphael/reference.html#Element
+</script>
+</html>
