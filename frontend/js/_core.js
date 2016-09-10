@@ -925,6 +925,8 @@
     var RESTORE_CSS_STATUS = 'restoreCssStatus';
     var MINIMIZE_CSS_STATUS = 'minCssStatus';
     var ANIMATION_SPEED = 'fast';
+    var ZINDEX_COUNTER = 10; //定义对话框的层级
+    var ORIGINAL_ZINDEX_TAG = 'originalZIndexTag';
     var STATUS_ENUM = {
         MIN: 1,
         RESTORE: 2,
@@ -977,7 +979,8 @@
         createResizer: function ($dom, option) {
             var $resizeWrap = $dom.parent(),
                 $parent = $resizeWrap,
-                targetCSS;
+                targetCSS,
+                zIndex = $dom.css('zIndex');
 
             if (!$resizeWrap.hasClass('iot-resizable-wrapper')) {
                 //Update parent's position firstly
@@ -1010,7 +1013,12 @@
                     $resizeWrap.find('.iot-resizable-status-min').hide();
                     targetCSS = restoreViewStyle;
                 }
-                $resizeWrap.data(CURRENT_STATUS_TAG, option.initilizeStatus).css(targetCSS).show();
+                zIndex = zIndex === 'auto' ? ZINDEX_COUNTER++ : zIndex;
+                $resizeWrap.data(CURRENT_STATUS_TAG, option.initilizeStatus)
+                    .data(ORIGINAL_ZINDEX_TAG, zIndex)
+                    .css(targetCSS)
+                    .css('zIndex', zIndex)
+                    .show();
             }
             return $resizeWrap;
         },
@@ -1231,7 +1239,8 @@
                         var option = $dom.data(DATA_TAG),
                             $parent = $dom.parent();
                         $parent.find('.iot-resizable-wrapper').not($dom).each(function () {
-                            $(this).css('z-index', '');
+                            var $thiz = $(this);
+                            $thiz.css('z-index', $thiz.data(ORIGINAL_ZINDEX_TAG));
                         });
                         $dom.css('z-index', option.zIndex);
                     };

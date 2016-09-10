@@ -1,88 +1,108 @@
 .ui-lib-page {
-  position: relative;
-  min-height: calc(100vh - 160px);
+    position: relative;
+    min-height: calc(100vh - 160px);
 }
+
 .ui-lib-page .left-panel {
-  display: inline-block;
-  width: 220px;
-  height: 100%;
+    display: inline-block;
+    width: 220px;
+    height: 100%;
 }
+
 .ui-lib-page .right-panel {
-  position: absolute;
-  display: inline-block;
-  width: 950px;
-  height: 100%;
+    position: absolute;
+    display: inline-block;
+    width: 950px;
+    height: 100%;
 }
+
 .ui-lib-page .right-panel .u-iframe {
-  width: 100%;
-  height: 100%;
-  border: 1px solid #eee;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #eee;
 }
+
 .ui-lib-page .accordion {
-  width: 200px;
-  border: 1px solid #d5dce7;
-  border-radius: 4px;
-  background-color: #fff;
+    width: 200px;
+    border: 1px solid #d5dce7;
+    border-radius: 4px;
+    background-color: #fff;
 }
+
 .ui-lib-page .accordion .menu {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: auto;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
 }
+
 .ui-lib-page .accordion .menu .item {
-  overflow-y: hidden;
-  padding-left: 18px;
-  width: 100%;
-  line-height: 40px;
-  border-bottom: 1px solid #d5dce7;
-  font-size: 14px;
-  color: #333;
-  background-color: #f3f5fa;
+    overflow-y: hidden;
+    padding-left: 18px;
+    width: 100%;
+    line-height: 40px;
+    border-bottom: 1px solid #d5dce7;
+    font-size: 14px;
+    color: #333;
+    background-color: #f3f5fa;
 }
+
 .ui-lib-page .accordion .menu .item:hover {
-  background-color: #d4e2f5;
+    background-color: #d4e2f5;
 }
+
 .ui-lib-page .accordion .menu .item.collapsed + .sub-item {
-  height: 0px;
+    height: 0px;
 }
+
 .ui-lib-page .accordion .menu .item.sub-item {
-  padding-left: 0;
-  background-color: #fff;
-  border-bottom: none;
-  transition: min-height, max-height 0.2s linear;
+    padding-left: 0;
+    background-color: #fff;
+    border-bottom: none;
+    transition: min-height, max-height 0.2s linear;
 }
+
 .ui-lib-page .accordion .menu .item.sub-item .item {
-  padding-left: 44px;
+    padding-left: 44px;
 }
+
 .ui-lib-page .accordion .menu .item.sub-item .sub-item.leaf-item .item {
-  padding-left: 83px;
+    padding-left: 83px;
 }
+
 .ui-lib-page .accordion .menu .item.sub-item.leaf-item {
-  padding-left: 0;
-  background-color: #fff;
-  border-bottom: none;
+    padding-left: 0;
+    background-color: #fff;
+    border-bottom: none;
 }
+
 .ui-lib-page .accordion .menu .item.sub-item.leaf-item .sub-menu {
-  width: 100%;
-  background-color: inherit;
+    width: 100%;
+    background-color: inherit;
 }
+
 .ui-lib-page .accordion .menu .item.sub-item.leaf-item .sub-menu .item {
-  background-color: inherit;
+    background-color: inherit;
 }
+
 .ui-lib-page .accordion .menu .item.sub-item.leaf-item .sub-menu .item .item-label {
-  color: #777;
+    color: #777;
 }
+
 .ui-lib-page .accordion .menu .item.sub-item.leaf-item .sub-menu .item:hover {
-  background-color: inherit;
+    background-color: inherit;
 }
+
 .ui-lib-page .accordion .menu .item.sub-item.leaf-item .sub-menu .item:hover .item-label {
-  color: #333;
+    color: #333;
 }
+
 .ui-lib-page .accordion .menu .item-label {
-  cursor: pointer;
+    cursor: pointer;
 }
+
 .ui-lib-page .accordion .menu .item-label::selection {
-  background: inherit;
+    background: inherit;
 }
+
 /*# sourceMappingURL=maps/ui_lib.css.map */
