@@ -34,6 +34,7 @@
         $('#init1').unbind('click').bind('click', function (e) {
             map1 = new BMap.Map("allmap1");
             map1.centerAndZoom("重庆", 12);
+            map1.enableScrollWheelZoom();
             // 百度地图API功能
         });
         $('#open_ruler1').unbind('click').bind('click', function (e) {
@@ -44,10 +45,21 @@
         });
         $('#open_ruler2').unbind('click').bind('click', function (e) {
             // 百度地图API功能
-            $.getScript('DistanceTool.js', function () {
+            console.log(!!$(this).data('isDone'));
+            if (!!$(this).data('isDone')) {
+                $.getScript('DistanceTool.js', function () {
+                    var myDis = new BMapLib.DistanceTool(map2);
+                    myDis.open();  //开启鼠标测距
+                    $(this).data('isDone', false);
+                }.bind(this));
+            } else {
                 var myDis = new BMapLib.DistanceTool(map2);
                 myDis.open();  //开启鼠标测距
-            });
+            }
+//            $.getScript('DistanceTool.js', function () {
+//                var myDis = new BMapLib.DistanceTool(map2);
+//                myDis.open();  //开启鼠标测距
+//            });
 //            var myDis = new BMapLib.DistanceTool(map2);
 //            myDis.open();  //开启鼠标测距
             //myDis.close();  //关闭鼠标测距大
@@ -72,7 +84,9 @@
             $('#allmap2').remove();
             $body.append('<div id="allmap2" style="display:inline-block; height: 500px; width: 500px; border: 1px solid greenyellow"></div>');
             map2 = new BMap.Map("allmap2");
+            map2.enableScrollWheelZoom();
             map2.centerAndZoom("北京", 12);
+            $('#open_ruler2').data('isDone', true);
         });
 
     });

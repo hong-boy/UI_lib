@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG demo - Drags</title>
+    <style type="text/css">
+        .container{
+            width:800px;
+            height:800px;
+            border:1px solid #ccc;
+        }
+    </style>
+    <script type="text/javascript" src="../frontend/lib/jquery.1.11.min.js"></script>
+    <script type="text/javascript" src="raphael.min.js"></script>
+    <script type="text/javascript" src="raphael.group.js"></script>
+    <script type="text/javascript">
+        var ENUM_MOODS = ['Rubbish', 'Not Good', 'OK', 'Smily', 'Positively Manic'];
+        var ENUM_COLORS = ['#cc0000', '#a97e22', '#9f9136', '#7c9a2d', '#3a9a2d'];
+        var num = 2;
+        $(function () {
+            function move(dx, dy) {
+                var $thiz = $(this.node),
+                        st = $thiz.data('set');
+                st.forEach(function (item) {
+                    switch (item.type) {
+                        case 'circle':
+                        {
+                            item.attr({cx: item.ox + dx, cy: item.oy + dy});
+                            break;
+                        }
+                        default:
+                        {
+                            item.attr({x: item.ox + dx, y: item.oy + dy});
+                            break;
+                        }
+                    }
+                });
+            }
+
+            function moveStart() {
+                var $thiz = $(this.node),
+                        st = $thiz.data('set');
+                st.forEach(function (item) {
+                    switch (item.type) {
+                        case 'circle':
+                        {
+                            item.ox = item.attr('cx');
+                            item.oy = item.attr('cy');
+                            break;
+                        }
+                        default:
+                        {
+                            item.ox = item.attr('x');
+                            item.oy = item.attr('y');
+                            break;
+                        }
+                    }
+                    item.animate({'fill-opacity': 0.2}, 500);
+                });
+            }
+
+            function moveEnd() {
+                var $thiz = $(this.node),
+                        st = $thiz.data('set');
+                st.forEach(function (item) {
+                    item.animate({'fill-opacity': 1}, 200);
+                });
+            }
+
+            var paper = new Raphael($('.container')[0], 800, 800);
+            var st = paper.set();
+            var temp = 0, xAxis = 250, yAxis = 250, width = 200, height = 120;
+            for (var i = 0; i < num; i++) {
+                temp = yAxis - (i * height);
+                var g = paper.set(), nodeGroup, rect, text, circle;
+                nodeGroup = 'node-group-' + i;
+                g.push(
+                        rect = paper.rect(xAxis, temp, width, height).attr({
+                            fill: ENUM_COLORS[i],
+                            stroke: 'none',
+                            'group': nodeGroup
+                        })
+                );
+                g.push(
+                        text = paper.text(xAxis + (width / 2), temp + (height / 2), ENUM_MOODS[i]).attr({
+                            'fill': '#333',
+                            'group': nodeGroup
+                        })
+                );
+                g.push(
+                        circle = paper.circle(xAxis + (width / 2), yAxis, 10).attr({'fill': '#fff', 'group': nodeGroup})
+                );
+                rect.drag(move, moveStart, moveEnd);
+                $(rect.node).data('set', g);
+                var tempArr = [];
+                g.forEach(function (item) {
+                    tempArr.push(item);
+                });
+                paper.groupFn('container', tempArr);
+                st.push(g);
+            }
+//            paper.text(xAxis, 300, ENUM_MOODS[num-1]).attr('fill', ENUM_COLORS[num-1]);
+            //http://lab.yuanwai.wang/raphael-js/docs/
+        });
+    </script>
+</head>
+<body>
+<div class="container" id="container"></div>
+</body>
+</html>

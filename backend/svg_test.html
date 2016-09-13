@@ -9,6 +9,33 @@
 <div id="wrap" style="width:500px; border:1px solid red;"></div>
 </body>
 <script type="text/javascript">
+    //    var paper = new Raphael(document.getElementById('wrap'), 500, 500);
+    //    var tetronimo = paper.path("M 250 250 l 0 -50 l -50 0 l 0 -50 l -50 0 l 0 50 l -50 0 l 0 50 z");
+    //    tetronimo.attr(
+    //            {
+    //                gradient: '90-#526c7a-#64a0c1',
+    //                stroke: '#3b4449',
+    //                'stroke-width': 10,
+    //                'stroke-linejoin': 'round',
+    //                rotation: -90
+    //            }
+    //    );
+    //
+    //    tetronimo.animate({rotation: 360}, 2000, 'bounce');
+    //http://code.tutsplus.com/tutorials/an-introduction-to-the-raphael-js-library--net-7186
+    //http://dmitrybaranovskiy.github.io/raphael/reference.html#Element
+</script>
+<script type="text/javascript">
+    //    var paper = new Raphael(document.getElementById('wrap'), 500, 500);
+    //    var circle = paper.circle(100, 100, 80);
+    //    for(var i = 0; i < 5; i+=1) {
+    //        var multiplier = i*5;
+    //        paper.circle(250 + (2*multiplier), 100 + multiplier, 50 - multiplier)
+    //    }
+    //    var rectangle = paper.rect(200, 200, 250, 100);
+    //    var ellipse = paper.ellipse(200, 400, 100, 50);
+</script>
+<script type="text/javascript">
     var paper = new Raphael(document.getElementById('wrap'), 500, 500);
     var tetronimo = paper.path("M 250 250 l 0 -50 l -50 0 l 0 -50 l -50 0 l 0 50 l -50 0 l 0 50 z");
     tetronimo.attr(
@@ -17,12 +44,26 @@
                 stroke: '#3b4449',
                 'stroke-width': 10,
                 'stroke-linejoin': 'round',
-                rotation: -90
+                rotate: -90
             }
     );
-
-    tetronimo.animate({rotation: 360}, 2000, 'bounce');
-    //http://code.tutsplus.com/tutorials/an-introduction-to-the-raphael-js-library--net-7186
-    //http://dmitrybaranovskiy.github.io/raphael/reference.html#Element
+    tetronimo.drag(function () {
+        console.log(222);
+    });
+    tetronimo.hover(function () {
+        this.attr('stroke', 'red');
+    });
+    tetronimo.mouseout(function () {
+        this.attr('stroke', '#3b4449');
+    });
+    //    tetronimo.animate({rotate: 360, 'stroke-width': 1}, 2000, 'bounce', function() {
+    //        /* callback after original animation finishes */
+    //        this.animate({
+    ////            rotate: -90,
+    //            stroke: '#3b4449',
+    //            'stroke-width': 10
+    //        }, 1000);
+    //    });
 </script>
+
 </html>
