@@ -1,5 +1,13 @@
 .code-guide-page .tab-content {
-  padding-top:2rem;
+    padding-top: 2rem;
+}
+
+.code-guide-page blockquote p {
+    font-size: 14px;
+}
+
+.code-guide-page blockquote em {
+    font-style: normal;
 }
 
 /*# sourceMappingURL=maps/code_guide.css.map */

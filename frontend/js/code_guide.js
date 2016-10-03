@@ -42,13 +42,20 @@ $(function () {
             var thiz = this,
                 $wrap = $('.js-wrapper'),
                 url = [baseUrl, 'js/', '{0}.html'].join('');
-            $('.js-ul [code-pretty]').each(function () {
-                var $thiz = $(this),
-                    id = $thiz.attr('code-pretty');
-                thiz.generateTemplate($wrap, id, IOT.formatString(url, id), function ($code) {
-                    hljs.highlightBlock($code);
-                });
+//            $('.js-ul [code-pretty]').each(function () {
+//                var $thiz = $(this),
+//                    id = $thiz.attr('code-pretty');
+//                thiz.generateTemplate($wrap, id, IOT.formatString(url, id), function ($code) {
+//                    hljs.highlightBlock($code);
+//                });
+//            });
+            $.get('../html/tpl/code/js/code_guide_js.html', function (html) {
+                console.log(html);
+                $wrap.append(html);
             });
+//            var html = _.template('../html/tpl/code/js/code_guide_js.html')();
+//            console.log(html);
+//            $wrap.append(html);
             return this;
         },
         initJQuery: function (baseUrl) {

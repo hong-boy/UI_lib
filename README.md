@@ -6,3 +6,21 @@
 
 #代码规范
 `http://yuanhongb.github.io/UI_lib/frontend/html/wrapper.html#code_guide`
+
+```html
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Marked in the browser</title>
+  <script src="lib/marked.js"></script>
+</head>
+<body>
+  <div id="content"></div>
+  <script>
+    document.getElementById('content').innerHTML =
+      marked('# Marked in browser\n\nRendered by **marked**.');
+  </script>
+</body>
+</html>
+```

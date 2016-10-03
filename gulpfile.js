@@ -4,7 +4,10 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     notify = require('gulp-notify'),
     sourcemaps = require('gulp-sourcemaps'),
+    markdown = require('gulp-markdown'),
+    marked = require('marked'),
     del = require('del');
+
 
 gulp.task('im-less', function () {
     gulp.src('./frontend/less/*.less')
@@ -39,4 +42,29 @@ gulp.task('less-bootstrap-select', function () {
 gulp.task('build-less', function () {
     gulp.start('less');
     gulp.start('less-bootstrap-select');
+});
+
+gulp.task('markdown', function () {
+    var renderer = new marked.Renderer();
+    renderer.heading = function (text, level, raw) {
+        var tempArr = text.split('|'),
+            label = tempArr[0],
+            id = tempArr[1];
+        return '<h'
+            + level
+            + ' id="'
+            + this.options.headerPrefix
+            + id
+            + '">'
+            + label
+            + '</h'
+            + level
+            + '>\n';
+    };
+    gulp.src('./md/*.md')
+        .pipe(markdown({
+            headerPrefix: '',
+            renderer: renderer
+        }))
+        .pipe(gulp.dest('dist'));
 });

@@ -1,0 +1,473 @@
+<h3 id="js_name_convention">变量命名</h3>
+<blockquote>
+    <p>使用驼峰式命名规则。
+        前端文件命名：文件名应该由小写字母组成，且每个单词之间使用下滑线(&quot;_&quot;)来连接。例如：code<em>guide.js<br>
+            NodeJS文件命名：遵循驼峰命名，首字母大写，以Action、Service、Dao、Util结尾。例如：CodeGuideAction.js<br> 配置文件命名：以&quot;功能名.config.js&quot;的形式来书写，功能名尽量使用一个单词来表示，单词必须小写，若必须使用多个单词表示时，可以使用短横线(&quot;-&quot;)来连接。
+            例如：local-passport.config.js<br> HTML中元素ID的命名：由小写字母组成，且每个单词之间使用下滑线(&quot;</em>&quot;)来连接。例如：elem_id<br>
+        CSS选择器的命名：由小写字母组成，且每个单词之间使用短横线(&quot;-&quot;)来连接。例如：elem-clzz<br> 不得使用保留字或者关键字来作为变量名！ </p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    FunctionNames
+    VariableNames
+    classNames
+    ENUMNAMES
+    MethodNames
+    Symbolic_constants
+
+    /* Good example */
+    functionNamesLikeThis
+    variableNamesLikeThis
+    ClassNamesLikeThis
+    EnumNamesLikeThis
+    methodNamesLikeThis
+    SYMBOLIC_CONSTANTS_LIKE_THIS
+</code></pre>
+<h3 id="js_variable">变量声明</h3>
+<blockquote>
+    <p>变量必须要使用var来声明，且尽量保证var在同一作用域内只会出现一次。<br>一般情况下不要定义全局变量，因为很容易引起变量名冲突，造成变量被重写！如果必须要定义全局变量，则可以使用window[&#39;变量名&#39;]的方式来定义。
+    </p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    var ns;
+    var no = undefined;
+    var types = 1 + 3 * 2;
+    var ext = &quot;jpg,png,gif&quot;;
+    var trash = Boolean(false);
+    var obj = new Object();
+    var items = new Array(12, 67);
+    var note = types + ext;
+    var prefixname = &quot;[DEV]&quot;;
+    var input = &quot;&lt;input id=\&quot;yui\&quot;/&gt;&quot;;
+    var sencodes_tables = {
+    MINUTE : 60,
+    HOUR : 60 * 60,
+    DAY : 60 * 60 * 24
+    };
+    Local = 231;
+    glb = 100;
+
+    /* Good example */
+    var ns,
+    no,
+    types = 7,
+    ext = &#39;jpg,png,gif&#39;,
+    trash = false,
+    obj = {},
+    items = [12, 67],
+    note = types + ext,
+    PREFIX_NAME = &#39;[DEV]&#39;,
+    input = &#39;&lt;input id=&quot;yui&quot;/&gt;&#39;,
+    SECONDS_TABLE = {
+    minute : 60,
+    // 60*60
+    hour : 3600,
+    //60 * 60 * 24
+    day : 86400
+    },
+    Local = 231;
+    Window[&#39;glb&#39;]= 100;
+</code></pre>
+<h3 id="js_strict_mode">严格模式</h3>
+<blockquote>
+    <p>由于JS是一门弱类型的语言，因此W3C提供了严格模式来约束前端JS代码的书写。<br>通过在JS文件的第一行或者是在JS函数里面的第一行书写&#39;&quot;use strict&quot;;&#39;来告诉编译器使用严格模式来编译本文件或本函数内的JS代码
+    </p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    /* Compiler won&#39;t report any error.*/
+    (function(){
+    x = 3.14;
+    console.log(x);
+    // Define your library strictly...
+    })();
+
+    /* Bad example */
+    /* Compiler would report an error.*/
+    (function(){
+    &quot;use strict&quot;;
+    x = 3.14;
+    console.log(x);
+    })();
+
+    /* Good example */
+    (function(){
+    &quot;use strict&quot;;
+    var x = 3.14;
+    console.log(x);
+    // Define your library strictly...
+    })();
+</code></pre>
+<h3 id="js_comments">注释</h3>
+<blockquote>
+    <p>对于函数应该使用块级注释或文档注释，对于代码块应该使用单行注释</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    /*
+    * Block comments.
+    * Show log at console panel.
+    */
+    function log(num, arguments){
+    /**
+    * line comments
+    */
+    if(arguments){
+    for(var i=0,size=arguments.length;i&lt;size;i++){
+    //TODO
+    }
+    }
+    return true;
+    }
+
+
+    /* Good example */
+    /**
+    * Block comments.
+    * Show log at console panel.
+    * @param {Number|String} num line number.
+    * @param {Array} arguments opt params.
+    * @returns {boolean}
+    */
+    function log(num, arguments){
+    //if statement.
+    //Single line comments
+    if(arguments){
+    for(var i=0,size=arguments.length;i&lt;size;i++){
+    //TODO
+    }
+    }
+    return true;
+    }
+</code></pre>
+<h3 id="js_quotes">单引号和双引号</h3>
+<blockquote>
+    <p>应当总是优先使用单引号来表示字符串</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    var str = &quot;name&quot;;
+    &quot;&lt;a href=&#39;&#39; id=&#39;bad_demo&#39;&gt;&lt;/a&gt;&quot;
+    &quot;&lt;a href=\&quot;\&quot; id=\&quot;bad_demo1\&quot;&gt;&lt;/a&gt;&quot;
+
+
+    /* Good example */
+    var str = &#39;name&#39;;
+    &#39;&lt;a href=&quot;&quot; id=&quot;good_demo&quot;&gt;&lt;/a&gt;&#39;
+</code></pre>
+<h3 id="js_condition_expression">条件表达式和等式</h3>
+<blockquote>
+    <p>应当总是使用三等号&#39;===&#39;来作等值判断<br>JS中的null、undefined、0，均可以自动转换为布尔值，且表示false。</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    if(&#39;QWERT&#39; == tag){
+    //TODO
+    }
+
+    if(3 == num){
+    //TODO
+    }
+
+    var arr = [0,2,3];
+    if(arr.length &gt; 0){
+    //TODO
+    }else{
+    //TODO
+    }
+
+
+    /* Good example */
+    if(&#39;QWERT&#39; === tag){
+    //TODO
+    }
+
+    if(3 === num){
+    //TODO
+    }
+
+    var arr = [0,2,3];
+    if(arr.length){
+    //TODO
+    }else{
+    //TODO
+    }
+</code></pre>
+<h3 id="js_redundant_variable">减少冗余的变量声明</h3>
+<blockquote>
+    <p>见示例。</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    function foo(path) {
+    //TODO
+    var newPath = path.replace(&#39;resources/framework&#39;, pathToFrameworkRoot + &#39;/WebContent/resources/framework&#39;);
+    return newPath;
+    }
+
+    function isNum(charCode) {
+    if (charCode != 8 &amp;&amp; charCode != 0 &amp;&amp; (charCode &lt; 48 || charCode &gt; 57)) {
+    return false;
+    } else {
+    return true;
+    }
+    }
+
+
+    /* Good example */
+    function foo(path) {
+    return path.replace(&#39;resources/framework&#39;, pathToFrameworkRoot + &#39;/WebContent/resources/framework&#39;);
+    }
+
+    function isNum(charCode) {
+    return !(charCode != 8 &amp;&amp; charCode != 0 &amp;&amp; (charCode &lt; 48 || charCode &gt; 57));
+    }
+</code></pre>
+<h3 id="js_for_loop">For 循环的优化</h3>
+<blockquote>
+    <p>见示例。</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    var arr = [];
+    for ( var i = 0; i &lt; arr.length; i++) {
+
+    }
+
+
+    /* Good example */
+    var arr = [];
+    for (var i = 0, size = arr.length; i &lt; size; i++) {
+
+    }
+</code></pre>
+<h3 id="js_forin_loop">For in 循环</h3>
+<blockquote>
+    <p>必须加上hasOwnProperty判断。</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    var fields = {
+    _id : &#39;k001&#39;,
+    name : &#39;qwert&#39;,
+    age : 18
+    };
+    for ( var key in fields) {
+    var value = fields[key];
+    // TODO
+    }
+
+
+    /* Good example */
+    var fields = {
+    _id : &#39;k001&#39;,
+    name : &#39;qwert&#39;,
+    age : 18
+    };
+    for ( var key in fields) {
+    if (fields.hasOwnProperty(key)) {
+    var value = fields[key];
+    //TODO
+    }
+    }
+</code></pre>
+<h3 id="js_switch">Switch语句</h3>
+<blockquote>
+    <p>见示例。</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    switch (type) {
+    case &#39;string&#39;:
+    // TODO
+    break;
+    case &#39;date&#39;:
+    // TODO
+    break;
+    default:
+    // TODO
+    }
+
+    /* Good example */
+    switch (type) {
+    case &#39;string&#39;: {
+    // TODO
+    }
+    break;
+    case &#39;date&#39;: {
+    // TODO
+    }
+    break;
+    default: {
+    // TODO
+    }
+    }
+</code></pre>
+<h3 id="js_semicolon_comma">分号和逗号</h3>
+<blockquote>
+    <p>用var声明的变量、函数、字面量对象以及每一行单行语句之后，都必须要以分号(&quot;;&quot;)结尾。</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    var someone = {
+    name : &#39;CC&#39;
+    ,age : 32
+    ,title : &#39;CEO&#39;
+    }
+    var fun = function(){
+    //TODO
+    }
+    function foo(){
+    //TODO
+    };
+    var others = {
+    name : &#39;CC&#39;,
+    age : 32,
+    title : &#39;CEO&#39;,
+    hands : [&#39;left&#39;,&#39;right&#39;],
+    };
+
+
+    /* Good example */
+    var someone = {
+    name : &#39;CC&#39;,
+    age : 32,
+    title : &#39;CEO&#39;
+    };
+    var fun = function(){
+    //TODO
+    };
+    function foo(){
+    //TODO
+    }
+    var others = {
+    name : &#39;CC&#39;,
+    age : 32,
+    title : &#39;CEO&#39;,
+    hands : [&#39;left&#39;,&#39;right&#39;]
+    };
+</code></pre>
+<h3 id="js_inner_function">内部函数定义</h3>
+<blockquote>
+    <p>在函数体内部，不要以代码块的形式来定义一个内部函数；应该以变量的方式来定义。</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    function test(){
+    while(statement){//if, for or other code block
+    //TODO
+    function Inner(){
+    //TODO
+    }
+    }
+    }
+
+
+    /* Good example */
+    function test(){
+    while(statement){//if, for or other code block
+    //TODO
+    var _inner = function(){
+    //TODO
+    };
+    }
+    }
+</code></pre>
+<h3 id="js_string_number">String转换为Number</h3>
+<blockquote>
+    <p>parseInt：如果字符串是以&quot;0&quot;开头时，需要指明基数。<br>Number：性能优于parseInt。</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    parseInt(&#39;08&#39;);
+    parseInt(&#39;10086&#39;, 10);
+    &#39;10086&#39; &gt;&gt; 0;
+
+
+    /* Good example */
+    parseInt(&#39;08&#39;, 10);
+    Number(&#39;10086&#39;);
+</code></pre>
+<h3 id="js_string_concat">字符串拼接</h3>
+<blockquote>
+    <p>拼接字符串时使用Array.join方法来代替加号(&quot;+&quot;)</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    var items = [ {
+    name : &#39;CK&#39;,
+    age : 32
+    }, {
+    name : &#39;UI&#39;,
+    age : 12
+    } ], str = &#39;&#39;;
+
+    for ( var i = 0, size = items.length; i &lt; szie; i++) {
+    str += items[i].name;
+    }
+    console.log(str);
+
+
+    /* Good example */
+    var items = [ {
+    name : &#39;CK&#39;,
+    age : 32
+    }, {
+    name : &#39;UI&#39;,
+    age : 12
+    } ], str = [];
+
+    for ( var i = 0, size = items.length; i &lt; szie; i++) {
+    st[i] = items[i].name;
+    }
+    console.log(str.join(&#39;&#39;));
+</code></pre>
+<h3 id="js_modify_buildin_object">不要修改内建对象的原型</h3>
+<blockquote>
+    <p>不要随意修改内建对象的原型！</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    String.prototype.trim = function() {
+    return this.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);
+    };
+</code></pre>
+<h3 id="js_json_convention">JSON书写规范</h3>
+<blockquote>
+    <p>属性名应当以小写字母开头，可以使用驼峰方式或者下滑线来连接两个单词。<br>属性名应当使用双引号括起来。</p>
+</blockquote>
+<pre><code class="lang-js">
+    /* Bad example */
+    {
+    double_quotes : &quot;Double quotes&quot;,
+    &#39;single_quotes&#39; : &#39;single quotes&#39;,
+    &quot;name with blankspace&quot; : &quot;Are you ok?&quot;,
+    &quot;CamelCaseKey&quot; : &quot;Bad key&quot;,
+    &quot;ID&quot; : &quot;#567890&quot;,
+    &quot;&quot; : {
+    1 : &quot;v&quot;
+    },
+    &quot;done&quot; : &quot;true&quot;,
+    &quot;count&quot; : &quot;24567&quot;,
+    &quot;item&quot;: [&quot;01&quot;, &quot;02&quot;],
+    &quot;totalItems&quot;: 2
+    }
+
+
+    /* Good example */
+    {
+    &quot;double_quotes&quot; : &quot;Double quotes&quot;,
+    &quot;single_quotes&quot; : &quot;single quotes&quot;,
+    &quot;name_with_blankspace&quot; : &quot;Are you ok?&quot;,
+    &quot;camelCaseKey&quot; : &quot;Bad key&quot;,
+    &quot;id&quot; : &quot;#567890&quot;,
+    &quot;yyy&quot; : {
+    &quot;1&quot; : &quot;v&quot;
+    },
+    &quot;done&quot; : true,
+    &quot;count&quot; : 24567,
+    &quot;totalItem&quot;: 2,
+    &quot;items&quot;: [&quot;01&quot;, &quot;02&quot;]
+    }
+</code></pre>
