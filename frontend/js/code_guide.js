@@ -16,12 +16,15 @@ $(function () {
             var thiz = this,
                 $wrap = $('.html-wrapper'),
                 url = [baseUrl, 'html/', '{0}.html'].join('');
-            $('.html-ul [code-pretty]').each(function () {
-                var $thiz = $(this),
-                    id = $thiz.attr('code-pretty');
-                thiz.generateTemplate($wrap, id, IOT.formatString(url, id), function ($code) {
-                    hljs.highlightBlock($code);
-                });
+            // $('.html-ul [code-pretty]').each(function () {
+            //     var $thiz = $(this),
+            //         id = $thiz.attr('code-pretty');
+            //     thiz.generateTemplate($wrap, id, IOT.formatString(url, id), function ($code) {
+            //         hljs.highlightBlock($code);
+            //     });
+            // });
+            $.get('../html/tpl/code/html/code_guide_html.html', function (html) {
+                $wrap.append(html);
             });
             return this;
         },
@@ -29,12 +32,15 @@ $(function () {
             var thiz = this,
                 $wrap = $('.css-wrapper'),
                 url = [baseUrl, 'css/', '{0}.html'].join('');
-            $('.css-ul [code-pretty]').each(function () {
-                var $thiz = $(this),
-                    id = $thiz.attr('code-pretty');
-                thiz.generateTemplate($wrap, id, IOT.formatString(url, id), function ($code) {
-                    hljs.highlightBlock($code);
-                });
+            // $('.css-ul [code-pretty]').each(function () {
+            //     var $thiz = $(this),
+            //         id = $thiz.attr('code-pretty');
+            //     thiz.generateTemplate($wrap, id, IOT.formatString(url, id), function ($code) {
+            //         hljs.highlightBlock($code);
+            //     });
+            // });
+            $.get('../html/tpl/code/css/code_guide_css.html', function (html) {
+                $wrap.append(html);
             });
             return this;
         },
@@ -62,12 +68,15 @@ $(function () {
             var thiz = this,
                 $wrap = $('.jq-wrapper'),
                 url = [baseUrl, 'jquery/', '{0}.html'].join('');
-            $('.jq-ul [code-pretty]').each(function () {
-                var $thiz = $(this),
-                    id = $thiz.attr('code-pretty');
-                thiz.generateTemplate($wrap, id, IOT.formatString(url, id), function ($code) {
-                    hljs.highlightBlock($code);
-                });
+            // $('.jq-ul [code-pretty]').each(function () {
+            //     var $thiz = $(this),
+            //         id = $thiz.attr('code-pretty');
+            //     thiz.generateTemplate($wrap, id, IOT.formatString(url, id), function ($code) {
+            //         hljs.highlightBlock($code);
+            //     });
+            // });
+            $.get('../html/tpl/code/jquery/code_guide_jquery.html', function (html) {
+                $wrap.append(html);
             });
             return this;
         },

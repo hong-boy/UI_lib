@@ -1,0 +1,94 @@
+<h3 id="jquery_selector">选择器优化</h3>
+<blockquote>
+<p>原则一：减少选择器的层级<br> 原则二：尽量使用类选择器来代替标签选择器<br>原则三：缩小选择器的查找范围</p>
+</blockquote>
+<pre><code class="lang-jquery">
+   /* Bad example */
+   $(&#39;.cls #part_table&#39;);
+   $(&#39;#part_table tbody tr&#39;);
+
+
+   /* Good example */
+   $(&#39;#part_table&#39;);
+   $(&#39;#part_table&#39;).find(&#39;tbody tr&#39;);
+   $(&#39;tbody tr&#39;, $(&#39;#part_table&#39;));
+</code></pre>
+<h3 id="jquery_merge_selector">合并选择器表达式</h3>
+<blockquote>
+<p>通过合并选择器表达式，可以帮助减少代码量。</p>
+</blockquote>
+<pre><code class="lang-jquery">
+     /* Bad example */
+    $(&#39;#report_div&#39;).addClass(&#39;tabDiv&#39;);
+    $(&#39;#profiling_div&#39;).addClass(&#39;tabDiv&#39;);
+    $(&#39;#trace_view_div&#39;).addClass(&#39;tabDiv&#39;);
+    $(&#39;#debug_view_div&#39;).addClass(&#39;tabDiv&#39;);
+    $(&#39;#tree_view_div&#39;).addClass(&#39;tabDiv&#39;);
+
+
+    /* Good example */
+    $(&#39;#report_div, #profiling_div, #trace_view_div, #debug_view_div, #tree_view_div&#39;).addClass(&#39;tabDiv&#39;);
+</code></pre>
+<h3 id="jquery_cache_selector">缓存JQuery对象</h3>
+<blockquote>
+<p>同一个JQuery对象如果在代码中出现了两次，就应当将其缓存。因为DOM的查找非常非常耗性能！</p>
+</blockquote>
+<pre><code class="lang-jquery">
+    /* Bad example */
+    if ($(&quot;#debug_view_div&quot;).length &lt; 1) {
+        // TODO
+
+        $(XXX).appendTo($(&quot;#debug_view_div&quot;));
+        // TODO
+        $(&#39;&lt;div/&gt;&#39;, {
+            &#39;border&#39; : &#39;1px Solid&#39;
+        }).appendTo($(&quot;#debug_view_div&quot;));
+        //TODO
+    }
+
+
+    /* Good example */
+    var debugView = $(&#39;#debug_view_div&#39;);//缓存
+    if (!debugView.length) {
+        // TODO
+
+        $(XXX).appendTo(debugView);
+        // TODO
+        $(&#39;&lt;div/&gt;&#39;, {
+            &#39;border&#39; : &#39;1px Solid&#39;
+        }).appendTo(debugView);
+        //TODO
+    }
+</code></pre>
+<h3 id="jquery_chains">JQuery链式写法</h3>
+<blockquote>
+<p>链式写法可以帮助减少代码量，增强可读性。</p>
+</blockquote>
+<pre><code class="lang-jquery">
+    /* Bad example */
+    $(&#39;#span&#39;+subConfigId).removeClass(&#39;bluechecked&#39;);
+    $(&#39;#span&#39;+subConfigId).addClass(&#39;nochecked&#39;);
+
+    function updateEOL(lifeCycleInfo, self) {
+        var featureDiv = self.find(&quot;#feature&quot;);
+        featureDiv.empty();
+        featureDiv.text(lifeCycleInfo.choiceTitle);
+        var valueDiv = self.find(&quot;#value&quot;);
+        valueDiv.empty();
+        valueDiv.text(lifeCycleInfo.choiceItem);
+        var eolDiv = self.find(&quot;#eol&quot;);
+        eolDiv.empty();
+        var endOfLife = formatLongDate(lifeCycleInfo.eol);
+        eolDiv.text(endOfLife);
+    }
+
+
+    /* Good example */
+    $(&#39;#span&#39;+subConfigId).removeClass(&#39;bluechecked&#39;).addClass(&#39;nochecked&#39;);
+
+    function updateEOL(lifeCycleInfo, self) {
+        self.find(&quot;#feature&quot;).empty().text(lifeCycleInfo.choiceTitle);
+        self.find(&quot;#value&quot;).empty().text(lifeCycleInfo.choiceItem);
+        self.find(&quot;#eol&quot;).empty().text(formatLongDate(lifeCycleInfo.eol));
+    }
+</code></pre>
