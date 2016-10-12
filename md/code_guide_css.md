@@ -299,4 +299,3 @@ MDN（Mozilla Developer Network）上一片非常好的关于[shorthand properti
 * 在文件结尾添加一个空白行。
 
 参照文档并将这些配置信息添加到项目的 `.editorconfig` 文件中。例如：[Bootstrap 中的 .editorconfig 实例](https://github.com/twbs/bootstrap/blob/master/.editorconfig)。更多信息请参考[about EditorConfig](http://editorconfig.org)。
-s
